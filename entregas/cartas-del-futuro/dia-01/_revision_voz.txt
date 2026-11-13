@@ -1,0 +1,57 @@
+[OK ] 100%
+  guion: Esta mañana encontré una carta debajo de mi puerta.
+  oído:  Esta mañana encontré una carta debajo de mi puerta.
+[OK ] 100%
+  guion: Tenía mi letra.
+  oído:  Tenía mi letra.
+[OK ] 96%
+  guion: Y estaba fechada el veintitrés de noviembre. Dentro de diez días.
+  oído:  que estaba fechada el veintitrés de noviembre, dentro de diez días.
+[OK ] 100%
+  guion: Leo. Soy tú. El tú de dentro de diez días.
+  oído:  Leo soy tú, el tú de dentro de diez días.
+[OK ] 100%
+  guion: Escúchame bien. El día veintitrés vas a perder a la persona que más quieres.
+  oído:  Escúchame bien, el día veintitrés vas a perder a la persona que más quieres.
+[OK ] 100%
+  guion: Cada mañana te llegará una carta. Haz exactamente lo que diga.
+  oído:  Cada mañana te llegará una carta, haz exactamente lo que diga.
+[OK ] 100%
+  guion: Pensé que era una broma de mi hermano. Hasta que leí la última línea.
+  oído:  Pensé que era una broma de mi hermano hasta que leí la última línea.
+[OK ] 98%
+  guion: Hoy, a las nueve y cuarenta y siete, Alba te escribirá. No contestes. Pase lo que pase.
+  oído:  Hoy a las nueve y cuarenta y siete Álvate escribirá, no contestes, pase lo que pase.
+[OK ] 100%
+  guion: Alba. La chica del cuarto piso. Llevo dos años sin atreverme a decirle hola.
+  oído:  Alba, la chica del cuarto piso, llevo dos años sin atreverme a decirle hola.
+[OK ] 100%
+  guion: Me pasé el día entero mirando el reloj.
+  oído:  Me pasé el día entero mirando el reloj.
+[OK ] 100%
+  guion: Nueve y cuarenta y cinco.
+  oído:  nueve y cuarenta y cinco
+[OK ] 100%
+  guion: Nueve y cuarenta y seis.
+  oído:  nueve y cuarenta y seis
+[OK ] 100%
+  guion: Nueve y cuarenta y siete.
+  oído:  nueve y cuarenta y siete
+[OK ] 100%
+  guion: Era ella.
+  oído:  era ella.
+[OK ] 100%
+  guion: La carta dice que no conteste. Pero ella nunca me había escrito. Nunca.
+  oído:  La carta dice que no conteste, pero ella nunca me había escrito nunca.
+[OK ] 100%
+  guion: ¿Qué hace Leo?
+  oído:  ¿Qué hace Leo?
+[OK ] 98%
+  guion: A: Hace caso a la carta y no contesta
+  oído:  Hace caso a la carta y no contesta.
+[OK ] 87%
+  guion: B: Baja al portal a ver a Alba
+  oído:  PED baja el portal a ver a Alba.
+[OK ] 100%
+  guion: Comenta A o B. Lo más votado pasará mañana, en el día dos.
+  oído:  Comenta A o B, lo más votado pasará mañana en el día dos

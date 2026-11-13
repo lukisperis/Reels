@@ -145,10 +145,12 @@ def _mezclar(pista, clip, t, gan=1.0):
 
 def construir(ep, carpeta, rapido=False):
     carpeta.mkdir(parents=True, exist_ok=True)
+    revision = []   # control de calidad: lo que Whisper oyó vs. el guion
     print("1/4 Voces…")
     bloques, t = [], 0.0
     for esc in ep["escenas"]:
-        audio, pal = voz.sintetizar(esc["texto"], esc.get("voz", "narrador"))
+        audio, pal, oido = voz.sintetizar(esc["texto"], esc.get("voz", "narrador"))
+        revision.append((esc["texto"], oido))
         dur = len(audio) / SR + esc.get("pausa", 0.22)
         bloques.append(dict(esc=esc, audio=audio, pal=[(w, a + t, b + t) for w, a, b in pal], t0=t, dur=dur))
         t += dur
@@ -159,7 +161,8 @@ def construir(ep, carpeta, rapido=False):
     t += 0.25
     for clave in ("pregunta", "A", "B", "cta"):
         texto = el[clave] if clave in ("pregunta", "cta") else f"{clave}: {el[clave]}"
-        audio, pal = voz.sintetizar(texto, "narrador")
+        audio, pal, oido = voz.sintetizar(texto, "narrador")
+        revision.append((texto, oido))
         partes_final[clave] = dict(audio=audio, t0=t, pal=[(w, a + t, b + t) for w, a, b in pal])
         t += len(audio) / SR + 0.35
     total = t + 2.2
@@ -270,7 +273,22 @@ def construir(ep, carpeta, rapido=False):
     ff.wait()
     wav.unlink(missing_ok=True)
     _portada(clips[0]["img"], ep, carpeta / "portada.jpg")
+    _informe_voz(revision, carpeta / "_revision_voz.txt")
     return salida, total
+
+
+def _informe_voz(revision, ruta):
+    import difflib
+    lineas, malas = [], 0
+    for guion, oido in revision:
+        if oido is None:
+            continue
+        r = difflib.SequenceMatcher(None, voz._norm(guion), voz._norm(oido)).ratio()
+        marca = "OK " if r > 0.85 else "REVISAR"
+        malas += r <= 0.85
+        lineas.append(f"[{marca}] {r:.0%}\n  guion: {guion}\n  oído:  {oido}")
+    ruta.write_text("\n".join(lineas) + "\n", encoding="utf-8")
+    print(f"   Control de voz: {len(lineas) - malas}/{len(lineas)} frases entendidas bien por Whisper")
 
 
 def _encuadre(c, t, bloques, rng):

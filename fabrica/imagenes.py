@@ -1,5 +1,7 @@
 """Imágenes generadas por IA (pollinations.ai) con caché y etalonaje cinematográfico."""
 import hashlib
+import json
+import os
 import time
 import urllib.parse
 import urllib.request
@@ -15,6 +17,38 @@ def _url(prompt, seed):
     return f"https://image.pollinations.ai/prompt/{q}?width=1080&height=1920&nologo=true&seed={seed}&model=flux"
 
 
+# --- ComfyUI (opcional) ------------------------------------------------------
+# Si tienes ComfyUI corriendo en un PC con GPU, exporta:
+#   COMFYUI_URL=http://IP:8188   COMFYUI_CKPT=nombre_del_modelo.safetensors
+# y las imágenes se generan ahí (mejor calidad, sin límites). Si no, se usa pollinations.ai.
+def _comfy(prompt, seed):
+    url = os.environ["COMFYUI_URL"].rstrip("/")
+    ckpt = os.environ.get("COMFYUI_CKPT", "sd_xl_base_1.0.safetensors")
+    negativo = "text, watermark, logo, deformed, blurry, lowres, extra fingers"
+    flujo = {
+        "1": {"class_type": "CheckpointLoaderSimple", "inputs": {"ckpt_name": ckpt}},
+        "2": {"class_type": "CLIPTextEncode", "inputs": {"text": prompt, "clip": ["1", 1]}},
+        "3": {"class_type": "CLIPTextEncode", "inputs": {"text": negativo, "clip": ["1", 1]}},
+        "4": {"class_type": "EmptyLatentImage", "inputs": {"width": 768, "height": 1344, "batch_size": 1}},
+        "5": {"class_type": "KSampler", "inputs": {"model": ["1", 0], "positive": ["2", 0], "negative": ["3", 0],
+                                                   "latent_image": ["4", 0], "seed": seed, "steps": 28, "cfg": 6.0,
+                                                   "sampler_name": "dpmpp_2m", "scheduler": "karras", "denoise": 1.0}},
+        "6": {"class_type": "VAEDecode", "inputs": {"samples": ["5", 0], "vae": ["1", 2]}},
+        "7": {"class_type": "SaveImage", "inputs": {"images": ["6", 0], "filename_prefix": "reels"}},
+    }
+    req = urllib.request.Request(f"{url}/prompt", data=json.dumps({"prompt": flujo}).encode(),
+                                 headers={"Content-Type": "application/json"})
+    pid = json.load(urllib.request.urlopen(req, timeout=30))["prompt_id"]
+    for _ in range(300):
+        time.sleep(2)
+        hist = json.load(urllib.request.urlopen(f"{url}/history/{pid}", timeout=30))
+        if pid in hist:
+            img = hist[pid]["outputs"]["7"]["images"][0]
+            q = urllib.parse.urlencode({"filename": img["filename"], "subfolder": img["subfolder"], "type": img["type"]})
+            return urllib.request.urlopen(f"{url}/view?{q}", timeout=60).read()
+    raise TimeoutError("ComfyUI no respondió a tiempo")
+
+
 def descargar(prompt, seed=1, reintentos=4):
     CACHE.mkdir(parents=True, exist_ok=True)
     h = hashlib.sha1(f"{prompt}|{seed}".encode()).hexdigest()[:16]
@@ -22,6 +56,13 @@ def descargar(prompt, seed=1, reintentos=4):
     if ruta.exists() and ruta.stat().st_size > 5000:
         return ruta
     err = None
+    if os.environ.get("COMFYUI_URL"):
+        try:
+            ruta.write_bytes(_comfy(prompt, seed))
+            ruta.with_suffix(".comfy").touch()
+            return ruta
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! ComfyUI falló ({e}); uso pollinations.ai")
     for i in range(reintentos):
         try:
             req = urllib.request.Request(_url(prompt, seed), headers={"User-Agent": "reels-fabrica/1.0"})

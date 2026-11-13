@@ -1,6 +1,6 @@
 # Cartas del futuro — Día 1/10
 
-Duración: 53 s · Formato 1080x1920 · Listo para YouTube Shorts, TikTok e Instagram Reels.
+Duración: 60 s · Formato 1080x1920 · Listo para YouTube Shorts, TikTok e Instagram Reels.
 
 ## YouTube Shorts
 **Título:** Me llegó una carta de mi yo del futuro 😨 Día 1/10 #shorts

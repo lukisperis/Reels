@@ -31,6 +31,8 @@ Objetivo: dejar **un episodio nuevo listo para subir** en `entregas/<serie>/dia-
 ```bash
 python -m fabrica.generar series/<serie>/dia-XX.json
 ```
+- Lee `entregas/<serie>/dia-XX/_revision_voz.txt`: si alguna frase sale "REVISAR", reescríbela
+  (números en letra, frases más cortas, sin siglas) y vuelve a generar.
 - Extrae 6–8 fotogramas con ffmpeg y míralos: textos legibles, nada tapado, imágenes coherentes.
   Si una imagen sale mal, cambia su `seed` o el prompt y vuelve a generar.
 

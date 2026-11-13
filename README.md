@@ -26,7 +26,16 @@ python -m fabrica.generar series/cartas-del-futuro/dia-01.json
 El proceso automático que sigue Claude cada día está en `PROCESO_DIARIO.md`.
 
 ## Piezas
-- `fabrica/voz.py` — voces Piper (locales, gratis).
-- `fabrica/imagenes.py` — imágenes vía pollinations.ai + etalonaje.
+- `fabrica/voz.py` — voces **Kokoro** (locales, gratis; Piper de respaldo) + **faster-whisper**, que
+  escucha la voz generada para sincronizar los subtítulos palabra a palabra y comprobar que se entiende
+  (informe en `entregas/.../_revision_voz.txt`).
+- `fabrica/imagenes.py` — imágenes vía pollinations.ai + etalonaje. Opcional: **ComfyUI** en tu PC con
+  GPU (`COMFYUI_URL=http://IP:8188 COMFYUI_CKPT=modelo.safetensors`) para más calidad.
 - `fabrica/sonido.py` — música y efectos sintetizados (sin derechos de autor).
 - `fabrica/montaje.py` — zoom/paneo, cortes con "punch", subtítulos karaoke, tarjeta final A/B.
+
+## Skills y herramientas añadidas
+- `.claude/skills/` — skills de Anthropic (skill-creator, canvas-design, algorithmic-art, frontend-design,
+  theme-factory, etc.) y la skill de **explainroo** (vídeos explicativos con `npx --yes explainroo`).
+  Se cargan solas en las sesiones de Claude Code de este repositorio.
+- faster-whisper, Kokoro y Piper se instalan con `./setup.sh` (no hace falta copiar sus repositorios).

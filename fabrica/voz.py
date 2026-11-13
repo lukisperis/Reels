@@ -1,32 +1,37 @@
-"""Voces neuronales en español (Piper, 100% local) con tiempos aproximados por palabra."""
+"""Voces neuronales en español, 100% locales.
+
+- Motor principal: Kokoro (kokoro-onnx), más natural.  Respaldo: Piper.
+- Tiempos por palabra: faster-whisper escucha la voz generada y marca cuándo se dice cada palabra,
+  así los subtítulos van exactamente sincronizados. También avisa si la voz pronunció algo raro.
+"""
+import difflib
 import re
+import unicodedata
 import numpy as np
 from . import SR, VOCES_DIR
 
 # Reparto de voces. Cambia aquí el "casting" de la serie.
 VOCES = {
-    "narrador": dict(modelo="es_ES-davefx-medium", speaker=None, ritmo=0.86, efecto=None),
-    "futuro":   dict(modelo="es_ES-carlfm-x_low", speaker=None, ritmo=0.95, efecto="eco"),
-    "chico":    dict(modelo="es_ES-sharvard-medium", speaker=0, ritmo=0.90, efecto=None),
-    "chica":    dict(modelo="es_ES-sharvard-medium", speaker=1, ritmo=0.90, efecto=None),
+    "narrador": dict(motor="kokoro", voz="em_alex", velocidad=1.08, efecto=None),
+    "futuro":   dict(motor="kokoro", voz="em_santa", velocidad=0.98, efecto="eco"),
+    "chica":    dict(motor="kokoro", voz="ef_dora", velocidad=1.05, efecto=None),
+    "chico":    dict(motor="piper", modelo="es_ES-sharvard-medium", speaker=0, ritmo=0.90, efecto=None),
 }
 
-_cargadas = {}
+_cache = {}
 
 
-def _voz(modelo):
-    if modelo not in _cargadas:
-        from piper import PiperVoice
-        _cargadas[modelo] = PiperVoice.load(str(VOCES_DIR / f"{modelo}.onnx"))
-    return _cargadas[modelo]
+# ---------------------------------------------------------------------------
+# Utilidades de audio
+# ---------------------------------------------------------------------------
+def _remuestrear(a, sr_in, sr_out):
+    if sr_in == sr_out:
+        return a.astype(np.float32)
+    x = np.arange(0, len(a), sr_in / sr_out)
+    return np.interp(x, np.arange(len(a)), a).astype(np.float32)
 
 
-def _frases(texto):
-    partes = re.split(r"(?<=[.!?…])\s+", texto.strip())
-    return [p for p in partes if p]
-
-
-def _recortar_silencio(a, umbral=0.01, margen=0.03, sr=22050):
+def _recortar_silencio(a, sr, umbral=0.01, margen=0.03):
     idx = np.where(np.abs(a) > umbral)[0]
     if len(idx) == 0:
         return a
@@ -34,18 +39,11 @@ def _recortar_silencio(a, umbral=0.01, margen=0.03, sr=22050):
     return a[max(0, idx[0] - m): idx[-1] + m]
 
 
-def _a_44k(a):
-    # 22050 -> 44100 por interpolación lineal
-    x = np.arange(len(a) * 2) / 2.0
-    return np.interp(x, np.arange(len(a)), a).astype(np.float32)
-
-
 def _eco(a):
     out = np.copy(a)
     for ms, g in ((70, 0.32), (150, 0.2), (260, 0.12)):
         d = int(SR * ms / 1000)
         out[d:] += g * a[:-d]
-    # leve "radio": quita graves por FFT
     f = np.fft.rfft(out)
     freqs = np.fft.rfftfreq(len(out), 1 / SR)
     f[freqs < 180] *= 0.3
@@ -53,30 +51,143 @@ def _eco(a):
     return out / (np.max(np.abs(out)) + 1e-6) * 0.9
 
 
-def sintetizar(texto, voz="narrador", pausa_frase=0.18):
-    """Devuelve (audio float32 @44.1k, [(palabra, t_ini, t_fin), ...])."""
-    from piper import SynthesisConfig
+# ---------------------------------------------------------------------------
+# Motores de voz
+# ---------------------------------------------------------------------------
+def _kokoro(texto, cfg):
+    if "kokoro" not in _cache:
+        from kokoro_onnx import Kokoro
+        _cache["kokoro"] = Kokoro(str(VOCES_DIR / "kokoro-v1.0.onnx"), str(VOCES_DIR / "voices-v1.0.bin"))
+    a, sr = _cache["kokoro"].create(texto, voice=cfg["voz"], speed=cfg["velocidad"], lang="es")
+    return _remuestrear(_recortar_silencio(np.asarray(a, np.float32), sr), sr, SR)
+
+
+def _piper(texto, cfg):
+    from piper import PiperVoice, SynthesisConfig
+    k = "piper:" + cfg["modelo"]
+    if k not in _cache:
+        _cache[k] = PiperVoice.load(str(VOCES_DIR / f"{cfg['modelo']}.onnx"))
+    v = _cache[k]
+    sc = SynthesisConfig(speaker_id=cfg.get("speaker"), length_scale=cfg.get("ritmo", 0.9))
+    a = np.concatenate([c.audio_float_array for c in v.synthesize(texto, sc)])
+    sr = v.config.sample_rate
+    return _remuestrear(_recortar_silencio(a, sr), sr, SR)
+
+
+# ---------------------------------------------------------------------------
+# Alineación palabra a palabra con faster-whisper
+# ---------------------------------------------------------------------------
+def _norm(w):
+    w = unicodedata.normalize("NFD", w.lower())
+    return re.sub(r"[^a-z0-9ñ]", "", "".join(c for c in w if unicodedata.category(c) != "Mn"))
+
+
+def _whisper():
+    if "whisper" not in _cache:
+        try:
+            from faster_whisper import WhisperModel
+            _cache["whisper"] = WhisperModel("small", device="cpu", compute_type="int8",
+                                             download_root=str(VOCES_DIR / "whisper"))
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! faster-whisper no disponible ({e}); uso tiempos estimados")
+            _cache["whisper"] = None
+    return _cache["whisper"]
+
+
+_UNID = ("cero uno dos tres cuatro cinco seis siete ocho nueve diez once doce trece catorce quince dieciséis "
+         "diecisiete dieciocho diecinueve veinte veintiuno veintidós veintitrés veinticuatro veinticinco "
+         "veintiséis veintisiete veintiocho veintinueve").split()
+_DEC = "_ _ _ treinta cuarenta cincuenta sesenta setenta ochenta noventa".split()
+_CEN = ("_ ciento doscientos trescientos cuatrocientos quinientos seiscientos setecientos ochocientos "
+        "novecientos").split()
+
+
+def _numero_es(n):
+    """Número a palabras en español (0–9999), suficiente para horas, fechas y cantidades."""
+    if n < 30:
+        return _UNID[n]
+    if n < 100:
+        d, u = divmod(n, 10)
+        return _DEC[d] + (f" y {_UNID[u]}" if u else "")
+    if n == 100:
+        return "cien"
+    if n < 1000:
+        c, r = divmod(n, 100)
+        return _CEN[c] + (f" {_numero_es(r)}" if r else "")
+    if n < 10000:
+        m, r = divmod(n, 1000)
+        return ("mil" if m == 1 else f"{_UNID[m]} mil") + (f" {_numero_es(r)}" if r else "")
+    return ""
+
+
+def _expandir_numero(palabra, t0, t1):
+    """Whisper escribe '47'; el guion dice 'cuarenta y siete'. Lo pasamos a palabras repartiendo el tiempo."""
+    m = re.fullmatch(r"(\W*)(\d+)(\W*)", palabra)
+    if not m:
+        return [(palabra, t0, t1)]
+    ws = _numero_es(int(m.group(2))).split()
+    if not ws:
+        return [(palabra, t0, t1)]
+    n = len(ws)
+    return [(w, t0 + (t1 - t0) * i / n, t0 + (t1 - t0) * (i + 1) / n) for i, w in enumerate(ws)]
+
+
+def _tiempos_estimados(palabras, dur):
+    pesos = [len(_norm(w)) + 2 + (3 if re.search(r"[,;:.!?…]$", w) else 0) for w in palabras]
+    tot, acc, out = sum(pesos), 0, []
+    for w, p in zip(palabras, pesos):
+        out.append((w, dur * acc / tot, dur * (acc + p) / tot))
+        acc += p
+    return out
+
+
+def alinear(audio, texto):
+    """Devuelve [(palabra_del_guion, t_ini, t_fin)] usando lo que Whisper oye en el audio."""
+    palabras = texto.split()
+    dur = len(audio) / SR
+    m = _whisper()
+    if m is None:
+        return _tiempos_estimados(palabras, dur), None
+    a16 = _remuestrear(audio, SR, 16000)
+    segs, _ = m.transcribe(a16, language="es", word_timestamps=True)
+    oidas = []
+    for s in segs:
+        for w in (s.words or []):
+            oidas += _expandir_numero(w.word.strip(), w.start, w.end)
+    if not oidas:
+        return _tiempos_estimados(palabras, dur), ""
+    a = [_norm(w) for w in palabras]
+    b = [_norm(w[0]) for w in oidas]
+    tiempos = [None] * len(palabras)
+    for op, i1, i2, j1, j2 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
+        if op == "equal":
+            for k in range(i2 - i1):
+                tiempos[i1 + k] = (oidas[j1 + k][1], oidas[j1 + k][2])
+        elif op == "replace" and j2 > j1:
+            t0, t1 = oidas[j1][1], oidas[j2 - 1][2]
+            for k in range(i2 - i1):
+                tiempos[i1 + k] = (t0 + (t1 - t0) * k / (i2 - i1), t0 + (t1 - t0) * (k + 1) / (i2 - i1))
+    # rellenar huecos interpolando entre vecinos conocidos
+    est = _tiempos_estimados(palabras, dur)
+    for i in range(len(palabras)):
+        if tiempos[i] is None:
+            prev = next((tiempos[j][1] for j in range(i - 1, -1, -1) if tiempos[j]), 0.0)
+            nxt = next((tiempos[j][0] for j in range(i + 1, len(palabras)) if tiempos[j]), dur)
+            tiempos[i] = (prev, max(prev + 0.05, min(nxt, prev + (est[i][2] - est[i][1]))))
+    oido = " ".join(w[0] for w in oidas)
+    return [(w, t[0], t[1]) for w, t in zip(palabras, tiempos)], oido
+
+
+def sintetizar(texto, voz="narrador"):
+    """Devuelve (audio float32 @44.1k, [(palabra, t_ini, t_fin), ...], texto_oido_por_whisper)."""
     cfg = VOCES[voz]
-    v = _voz(cfg["modelo"])
-    sc = SynthesisConfig(speaker_id=cfg["speaker"], length_scale=cfg["ritmo"])
-    trozos, palabras, t = [], [], 0.0
-    for frase in _frases(texto):
-        audio = np.concatenate([c.audio_float_array for c in v.synthesize(frase, sc)])
-        audio = _recortar_silencio(audio, sr=v.config.sample_rate)
-        audio = _a_44k(audio)
-        dur = len(audio) / SR
-        ws = frase.split()
-        pesos = [len(re.sub(r"\W", "", w)) + 2 + (3 if re.search(r"[,;:]$", w) else 0) for w in ws]
-        tot = sum(pesos)
-        acc = 0
-        for w, p in zip(ws, pesos):
-            palabras.append((w, t + dur * acc / tot, t + dur * (acc + p) / tot))
-            acc += p
-        trozos.append(audio)
-        trozos.append(np.zeros(int(pausa_frase * SR), np.float32))
-        t += dur + pausa_frase
-    audio = np.concatenate(trozos[:-1]) if trozos else np.zeros(1, np.float32)
+    try:
+        audio = _kokoro(texto, cfg) if cfg["motor"] == "kokoro" else _piper(texto, cfg)
+    except Exception as e:  # noqa: BLE001
+        print(f"  ! {cfg['motor']} falló ({e}); uso Piper")
+        audio = _piper(texto, dict(modelo="es_ES-davefx-medium", ritmo=0.86))
+    audio = audio / (np.max(np.abs(audio)) + 1e-6) * 0.92
+    palabras, oido = alinear(audio, texto)   # alinear antes del eco: Whisper oye mejor la voz limpia
     if cfg["efecto"] == "eco":
         audio = _eco(audio)
-    audio = audio / (np.max(np.abs(audio)) + 1e-6) * 0.92
-    return audio.astype(np.float32), palabras
+    return audio.astype(np.float32), palabras, oido
