@@ -1,0 +1,20 @@
+La boda de mi ex — Día 1: La invitación
+
+[01] (narrador) Tito acaba de recibir esto.
+[02] (narrador) Es la invitación a la boda de su ex.
+[03] (TITO) ¿¡Que se casa!?
+[04] (narrador) Y el novio es Brandon.
+[05] (narrador) Entrenador personal. Ciento veinte kilos de puro músculo.
+[06] (narrador) Tito, en cambio, lleva cuatro días sin ducharse.
+[07] (narrador) Su dieta: pizza fría y bebidas energéticas.
+[08] (narrador) Y su récord de flexiones es… una.
+[09] (narrador) Así que decide intentarlo.
+[10] (narrador) Ni media.
+[11] (narrador) Esa noche, Tito se mira al espejo.
+[12] (TITO) Voy a ir a esa boda. Y nadie me va a reconocer.
+[13] (narrador) Tiene treinta días. Empieza el reto.
+
+FINAL: ¿Por dónde empieza Tito?
+  A) Se apunta al gimnasio
+  B) Se corta esas greñas
+  Comenta A o B. Lo más votado pasa mañana.

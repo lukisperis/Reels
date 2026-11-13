@@ -38,7 +38,43 @@ PROGRESIONES = {
 }
 
 
+def musica_comedia(dur, bpm=112):
+    """Base alegre tipo dibujos: bajo saltarín, acordes en staccato y charles."""
+    t = _t(dur)
+    out = np.zeros_like(t, dtype=np.float32)
+    negra = 60 / bpm
+    prog = [[48, 52, 55], [53, 57, 60], [55, 59, 62], [48, 52, 55]]  # C F G C
+    bajos = [36, 41, 43, 36]
+    nota_len = int(0.16 * SR)
+    env = _env(nota_len, 0.003, 0.07)
+    tt = np.arange(nota_len) / SR
+    paso = 0
+    for s0 in np.arange(0, dur, negra / 2):
+        compas = int(s0 / (negra * 4)) % 4
+        i0 = int(s0 * SR)
+        i1 = min(len(out), i0 + nota_len)
+        if i0 >= len(out):
+            break
+        if paso % 2 == 0:  # bajo en cada negra, alternando tónica/quinta
+            f = _nota(bajos[compas] + (7 if paso % 4 == 2 else 0))
+            b = (np.sin(2 * np.pi * f * tt) + 0.3 * np.sin(4 * np.pi * f * tt)) * env * 0.5
+            out[i0:i1] += b[: i1 - i0]
+        else:  # acorde staccato a contratiempo
+            ac = sum(np.sin(2 * np.pi * _nota(n + 12) * tt) for n in prog[compas]) / 3
+            out[i0:i1] += (ac * env * 0.28)[: i1 - i0]
+        # charles
+        nh = int(0.03 * SR)
+        h = rng.standard_normal(nh) * _env(nh, 0.0005, 0.008) * 0.12
+        out[i0:min(len(out), i0 + nh)] += h[: min(len(out), i0 + nh) - i0]
+        paso += 1
+    fade = int(0.5 * SR)
+    out[-fade:] *= np.linspace(1, 0, fade)
+    return out / (np.max(np.abs(out)) + 1e-6)
+
+
 def musica(dur, estilo="misterio", bpm_latido=70, acorde_seg=4.0):
+    if estilo == "comedia":
+        return musica_comedia(dur)
     t = _t(dur)
     out = np.zeros_like(t, dtype=np.float32)
     prog = PROGRESIONES.get(estilo, PROGRESIONES["misterio"])
@@ -119,4 +155,42 @@ def golpe():
     return (np.sin(2 * np.pi * 90 * tt) * _env(len(tt), 0.001, 0.08) * 0.8).astype(np.float32)
 
 
-SFX = {"whoosh": whoosh, "zumbido": zumbido_movil, "tic": tic, "boom": boom, "riser": riser, "golpe": golpe}
+def ding():
+    tt = _t(0.9)
+    return ((np.sin(2 * np.pi * 1760 * tt) + 0.5 * np.sin(2 * np.pi * 2637 * tt)) * _env(len(tt), 0.002, 0.25) * 0.5).astype(np.float32)
+
+
+def pop():
+    tt = _t(0.12)
+    return (np.sin(2 * np.pi * (300 + 900 * tt / 0.12) * tt) * _env(len(tt), 0.001, 0.04) * 0.7).astype(np.float32)
+
+
+def boing():
+    tt = _t(0.6)
+    f = 180 + 120 * np.sin(2 * np.pi * 9 * tt) * np.exp(-tt * 4)
+    return (np.sin(2 * np.pi * np.cumsum(f) / SR) * _env(len(tt), 0.003, 0.3) * 0.7).astype(np.float32)
+
+
+def catacrac():
+    partes = [boom() * 0.8]
+    for i in range(4):
+        n = int(0.09 * SR)
+        r = _filtro(rng.standard_normal(n).astype(np.float32), lo=800, hi=5000) * _env(n, 0.001, 0.03)
+        partes.append(np.pad(r, (int(i * 0.07 * SR), 0)))
+    m = max(len(p) for p in partes)
+    return sum(np.pad(p, (0, m - len(p))) for p in partes).astype(np.float32)
+
+
+def trombon_triste():
+    """'Wah wah wah waaah' de fracaso."""
+    out = []
+    for i, (n, d) in enumerate(((58, 0.35), (57, 0.35), (56, 0.35), (55, 1.0))):
+        tt = _t(d)
+        f = _nota(n) * (1 + (0.02 * np.sin(2 * np.pi * 6 * tt) if i == 3 else 0))
+        x = sum(np.sin(2 * np.pi * f * h * tt) / h for h in range(1, 6))
+        out.append(_filtro((x * _env(len(tt), 0.02, d * 0.8)).astype(np.float32), hi=1500) * 0.35)
+    return np.concatenate(out)
+
+
+SFX = {"ding": ding, "pop": pop, "boing": boing, "catacrac": catacrac, "fracaso": trombon_triste,
+       "whoosh": whoosh, "zumbido": zumbido_movil, "tic": tic, "boom": boom, "riser": riser, "golpe": golpe}

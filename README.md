@@ -11,12 +11,15 @@ dinámicos y un final interactivo A/B que decide el siguiente episodio.
 - `publicar.md` → títulos, descripción, hashtags y comentario fijado para cada red.
 - `guion.txt` → el guion en texto.
 
-## Serie actual: *Cartas del futuro* (10 días)
-Leo recibe cada mañana una carta escrita por él mismo dentro de 10 días. Tú (la audiencia) decides
-qué hace. Ver `series/cartas-del-futuro/biblia.md`.
+## Serie activa: *La boda de mi ex* (30 días, dibujos animados)
+Tito tiene 30 días para llegar irreconocible a la boda de su ex. El público decide cada paso de su
+glow up. Ver `series/la-boda-de-mi-ex/biblia.md`. Los personajes se dibujan por código
+(`fabrica/caricatura.py`), así que son idénticos en todos los episodios.
+
+En pausa: *Cartas del futuro* (estilo cine, `series/cartas-del-futuro/`).
 
 **Tu única tarea diaria:** subir el vídeo y apuntar qué ganó (A o B) en
-`series/cartas-del-futuro/decisiones.md` (o decírmelo en el chat).
+`series/la-boda-de-mi-ex/decisiones.md` (o decírmelo en el chat).
 
 ## Generar a mano
 ```bash
@@ -31,6 +34,8 @@ El proceso automático que sigue Claude cada día está en `PROCESO_DIARIO.md`.
   (informe en `entregas/.../_revision_voz.txt`).
 - `fabrica/imagenes.py` — imágenes vía pollinations.ai + etalonaje. Opcional: **ComfyUI** en tu PC con
   GPU (`COMFYUI_URL=http://IP:8188 COMFYUI_CKPT=modelo.safetensors`) para más calidad.
+- `fabrica/caricatura.py` — personajes y fondos de dibujos animados (poses, expresiones, boca que
+  habla, onomatopeyas, estadísticas, móvil). Fuentes Anton y Luckiest Guy en `fabrica/fuentes/`.
 - `fabrica/sonido.py` — música y efectos sintetizados (sin derechos de autor).
 - `fabrica/montaje.py` — zoom/paneo, cortes con "punch", subtítulos karaoke, tarjeta final A/B.
 

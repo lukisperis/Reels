@@ -1,0 +1,474 @@
+{
+ "serie": "la-boda-de-mi-ex",
+ "serie_titulo": "La boda de mi ex",
+ "estilo": "cartoon",
+ "episodio": 1,
+ "total": 30,
+ "titulo": "La invitación",
+ "gancho": "Su ex se casa en 30 días… y él está invitado",
+ "portada": "Su ex se casa en 30 días",
+ "musica": "comedia",
+ "voces": {
+  "TITO": {
+   "motor": "kokoro",
+   "voz": "em_santa",
+   "velocidad": 1.12
+  }
+ },
+ "personajes": {
+  "TITO": {
+   "piel": [
+    250,
+    205,
+    165
+   ],
+   "pelo": [
+    40,
+    30,
+    25
+   ],
+   "estilo_pelo": "greñas",
+   "barba": 0.7,
+   "camiseta": [
+    250,
+    200,
+    60
+   ],
+   "pantalon": [
+    200,
+    70,
+    70
+   ],
+   "cuerpo": "flaco",
+   "ojeras": true,
+   "mancha": true,
+   "granos": 3
+  },
+  "BRANDON": {
+   "piel": [
+    205,
+    145,
+    95
+   ],
+   "pelo": [
+    30,
+    25,
+    20
+   ],
+   "estilo_pelo": "tupe",
+   "camiseta": [
+    255,
+    255,
+    255
+   ],
+   "pantalon": [
+    40,
+    50,
+    80
+   ],
+   "cuerpo": "musculoso",
+   "tirantes": true
+  },
+  "VANESA": {
+   "piel": [
+    250,
+    210,
+    180
+   ],
+   "pelo": [
+    170,
+    90,
+    40
+   ],
+   "estilo_pelo": "largo",
+   "camiseta": [
+    235,
+    80,
+    120
+   ],
+   "chica": true,
+   "pantalon": [
+    235,
+    80,
+    120
+   ]
+  }
+ },
+ "escenas": [
+  {
+   "texto": "Tito acaba de recibir esto.",
+   "sfx": [
+    "pop"
+   ],
+   "plano": {
+    "fondo": "movil",
+    "zoom": 1.0,
+    "zoom_fin": 1.08,
+    "movil": {
+     "de": "Vanesa",
+     "titulo": "¡NOS CASAMOS!",
+     "avatares": [
+      "VANESA",
+      "BRANDON"
+     ],
+     "lineas": [
+      "13 DE DICIEMBRE",
+      "Tito, ¡estás invitado!"
+     ]
+    }
+   }
+  },
+  {
+   "texto": "Es la invitación a la boda de su ex.",
+   "sfx": [
+    "ding"
+   ],
+   "plano": {
+    "fondo": "movil",
+    "zoom": 1.2,
+    "zoom_fin": 1.3,
+    "foco": [
+     0.5,
+     0.42
+    ],
+    "movil": {
+     "de": "Vanesa",
+     "titulo": "¡NOS CASAMOS!",
+     "avatares": [
+      "VANESA",
+      "BRANDON"
+     ],
+     "lineas": [
+      "13 DE DICIEMBRE",
+      "Tito, ¡estás invitado!"
+     ]
+    }
+   }
+  },
+  {
+   "voz": "TITO",
+   "texto": "¿¡Que se casa!?",
+   "efecto": [
+    "shake"
+   ],
+   "pausa": 0.5,
+   "plano": {
+    "fondo": "dormitorio",
+    "zoom": 1.35,
+    "foco": [
+     0.5,
+     0.5
+    ],
+    "personajes": [
+     {
+      "id": "TITO",
+      "expresion": "sorpresa",
+      "accion": "arriba",
+      "habla": true,
+      "salto": true,
+      "escala": 1.25
+     }
+    ],
+    "onomatopeya": {
+     "texto": "¿¡QUÉ!?",
+     "en": 0.0,
+     "sfx": "boing",
+     "y": 0.2
+    }
+   }
+  },
+  {
+   "texto": "Y el novio es Brandon.",
+   "sfx": [
+    "ding"
+   ],
+   "plano": {
+    "fondo": "rayos",
+    "variante": 1,
+    "zoom": 1.05,
+    "personajes": [
+     {
+      "id": "BRANDON",
+      "expresion": "chulo",
+      "accion": "musculo",
+      "entra": "derecha",
+      "escala": 1.3
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Entrenador personal. Ciento veinte kilos de puro músculo.",
+   "plano": {
+    "fondo": "rayos",
+    "variante": 1,
+    "zoom": 1.25,
+    "zoom_fin": 1.4,
+    "foco": [
+     0.5,
+     0.48
+    ],
+    "personajes": [
+     {
+      "id": "BRANDON",
+      "expresion": "chulo",
+      "accion": "musculo",
+      "escala": 1.3
+     }
+    ],
+    "onomatopeya": {
+     "texto": "120 KG",
+     "en": 1.2,
+     "sfx": "pop",
+     "y": 0.18,
+     "rot": 6
+    }
+   }
+  },
+  {
+   "texto": "Tito, en cambio, lleva cuatro días sin ducharse.",
+   "plano": {
+    "fondo": "dormitorio",
+    "zoom": 1.2,
+    "zoom_fin": 1.35,
+    "foco": [
+     0.5,
+     0.55
+    ],
+    "personajes": [
+     {
+      "id": "TITO",
+      "expresion": "cansado",
+      "accion": "jugar",
+      "olor": true,
+      "moscas": true,
+      "escala": 1.25
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Su dieta: pizza fría y bebidas energéticas.",
+   "sfx": [
+    {
+     "nombre": "pop",
+     "en": 0.4
+    }
+   ],
+   "plano": {
+    "fondo": "dormitorio",
+    "zoom": 1.3,
+    "zoom_fin": 1.4,
+    "foco": [
+     0.55,
+     0.7
+    ],
+    "personajes": [
+     {
+      "id": "TITO",
+      "expresion": "feliz",
+      "accion": "jugar",
+      "olor": true,
+      "escala": 1.25
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Y su récord de flexiones es… una.",
+   "plano": {
+    "fondo": "dormitorio",
+    "zoom": 1.4,
+    "zoom_fin": 1.5,
+    "foco": [
+     0.5,
+     0.45
+    ],
+    "personajes": [
+     {
+      "id": "TITO",
+      "expresion": "decidido",
+      "accion": "cruzados",
+      "escala": 1.25
+     }
+    ],
+    "onomatopeya": {
+     "texto": "1",
+     "en": 1.4,
+     "sfx": "pop",
+     "y": 0.2,
+     "rot": -4
+    }
+   }
+  },
+  {
+   "texto": "Así que decide intentarlo.",
+   "pausa": 0.3,
+   "plano": {
+    "fondo": "dormitorio",
+    "zoom": 1.3,
+    "foco": [
+     0.5,
+     0.82
+    ],
+    "personajes": [
+     {
+      "id": "TITO",
+      "expresion": "esfuerzo",
+      "accion": "quieto",
+      "rot": 82,
+      "y": 1800,
+      "temblor": true,
+      "sudor": true,
+      "escala": 0.85
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Ni media.",
+   "efecto": [
+    "shake"
+   ],
+   "pausa": 1.3,
+   "sfx": [
+    {
+     "nombre": "fracaso",
+     "en": 0.7,
+     "vol": 0.8
+    }
+   ],
+   "plano": {
+    "fondo": "dormitorio",
+    "zoom": 1.35,
+    "foco": [
+     0.5,
+     0.82
+    ],
+    "personajes": [
+     {
+      "id": "TITO",
+      "expresion": "dolor",
+      "accion": "quieto",
+      "rot": 88,
+      "y": 1800,
+      "estrellas": true,
+      "escala": 0.85
+     }
+    ],
+    "onomatopeya": {
+     "texto": "¡CATACRAC!",
+     "en": 0.0,
+     "sfx": "catacrac",
+     "y": 0.3
+    }
+   }
+  },
+  {
+   "texto": "Esa noche, Tito se mira al espejo.",
+   "plano": {
+    "fondo": "espejo",
+    "zoom": 1.0,
+    "zoom_fin": 1.1,
+    "personajes": [
+     {
+      "id": "TITO",
+      "expresion": "triste",
+      "accion": "quieto",
+      "escala": 1.45,
+      "y": 2050,
+      "lagrimas": true
+     }
+    ]
+   }
+  },
+  {
+   "voz": "TITO",
+   "texto": "Voy a ir a esa boda. Y nadie me va a reconocer.",
+   "plano": {
+    "fondo": "espejo",
+    "zoom": 1.15,
+    "zoom_fin": 1.3,
+    "foco": [
+     0.5,
+     0.42
+    ],
+    "personajes": [
+     {
+      "id": "TITO",
+      "expresion": "decidido",
+      "accion": "cruzados",
+      "habla": true,
+      "escala": 1.45,
+      "y": 2050
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Tiene treinta días. Empieza el reto.",
+   "sfx": [
+    "ding"
+   ],
+   "pausa": 1.2,
+   "plano": {
+    "fondo": "rayos",
+    "variante": 0,
+    "zoom": 1.0,
+    "dia": true,
+    "stats": {
+     "FÍSICO": [
+      0,
+      4
+     ],
+     "ESTILO": [
+      0,
+      2
+     ],
+     "AUTOESTIMA": [
+      0,
+      3
+     ]
+    },
+    "personajes": []
+   }
+  }
+ ],
+ "eleccion": {
+  "titulo": "¿Por dónde empieza Tito?",
+  "pregunta": "¿Por dónde empieza Tito?",
+  "A": "Se apunta al gimnasio",
+  "B": "Se corta esas greñas",
+  "cta": "Comenta A o B. Lo más votado pasa mañana."
+ },
+ "portada_plano": {
+  "fondo": "rayos",
+  "variante": 2,
+  "personajes": [
+   {
+    "id": "TITO",
+    "expresion": "sorpresa",
+    "accion": "arriba",
+    "escala": 1.3,
+    "y": 1500,
+    "olor": true
+   }
+  ]
+ },
+ "publicar": {
+  "titulo_youtube": "Su ex se casa en 30 días… y él está invitado 😳 Día 1/30 #shorts",
+  "titulo_tiktok": "Día 1/30: su ex se casa con un tío de 120 kg de músculo 💀 Tú decides qué hace Tito ¿A o B?",
+  "descripcion": "Tito tiene 30 días para llegar irreconocible a la boda de su ex. Cada día TÚ decides qué hace: comenta A o B y lo más votado pasa en el siguiente episodio. Sígueme para ver el glow up completo.",
+  "hashtags": [
+   "#glowup",
+   "#tudecides",
+   "#animacion",
+   "#humor",
+   "#reto30dias",
+   "#labodademiex",
+   "#fyp",
+   "#parati"
+  ],
+  "comentario_fijado": "🅰️ gimnasio · 🅱️ peluquería. Mañana sale el DÍA 2 con lo más votado 👀"
+ }
+}

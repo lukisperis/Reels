@@ -1,0 +1,51 @@
+[OK ] 100%
+  guion: Tito acaba de recibir esto.
+  oído:  Tito acaba de recibir esto.
+[OK ] 100%
+  guion: Es la invitación a la boda de su ex.
+  oído:  es la invitación a la boda de su ex.
+[OK ] 100%
+  guion: ¿¡Que se casa!?
+  oído:  ¡Que se casa!
+[OK ] 100%
+  guion: Y el novio es Brandon.
+  oído:  y el novio es Brandon.
+[OK ] 100%
+  guion: Entrenador personal. Ciento veinte kilos de puro músculo.
+  oído:  entrenador personal ciento veinte kilos de puro músculo
+[OK ] 100%
+  guion: Tito, en cambio, lleva cuatro días sin ducharse.
+  oído:  Tito, en cambio, lleva cuatro días sin ducharse.
+[OK ] 100%
+  guion: Su dieta: pizza fría y bebidas energéticas.
+  oído:  su dieta, pizza fría y bebidas energéticas.
+[OK ] 100%
+  guion: Y su récord de flexiones es… una.
+  oído:  y su record de flexiones es una.
+[OK ] 100%
+  guion: Así que decide intentarlo.
+  oído:  Así que decide intentarlo.
+[OK ] 100%
+  guion: Ni media.
+  oído:  ni media.
+[OK ] 100%
+  guion: Esa noche, Tito se mira al espejo.
+  oído:  Esa noche, Tito, se mira al espejo.
+[OK ] 100%
+  guion: Voy a ir a esa boda. Y nadie me va a reconocer.
+  oído:  Voy a ir a esa boda y nadie me va a reconocer.
+[OK ] 100%
+  guion: Tiene treinta días. Empieza el reto.
+  oído:  Tiene treinta días, empieza el reto.
+[OK ] 100%
+  guion: ¿Por dónde empieza Tito?
+  oído:  por donde empieza Tito.
+[OK ] 87%
+  guion: A: Se apunta al gimnasio
+  oído:  Hacia punta al gimnasio.
+[OK ] 94%
+  guion: B: Se corta esas greñas
+  oído:  P. se corta esas greñas.
+[OK ] 94%
+  guion: Comenta A o B. Lo más votado pasa mañana.
+  oído:  Comenta o ve lo más votado pasa mañana.

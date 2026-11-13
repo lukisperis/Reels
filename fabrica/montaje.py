@@ -102,9 +102,10 @@ def agrupar(palabras, max_pal=3, max_car=16):
 
 
 class Subtitulos:
-    def __init__(self):
+    def __init__(self, ruta=FUENTE, tam=96, y=None):
         self.grupos = []   # (t_ini, t_fin, palabras[(w,t0,t1)], color)
         self.cache = {}
+        self.ruta, self.tam, self.y = ruta, tam, y or Y_SUB
 
     def anadir(self, palabras, color):
         gs = agrupar(palabras)
@@ -119,10 +120,10 @@ class Subtitulos:
                 clave = (gi, actual)
                 if clave not in self.cache:
                     ws = [re.sub(r"[.,;:]+$", "", p[0]).upper() for p in g]
-                    lineas = partir_lineas(ws, 96)
-                    self.cache[clave] = texto_img(lineas, 96, {actual: color})
+                    lineas = partir_lineas(ws, self.tam, 940, self.ruta)
+                    self.cache[clave] = texto_img(lineas, self.tam, {actual: color}, ruta=self.ruta)
                 pop = 0.82 + 0.18 * facil((t - a) / 0.09)
-                pegar_centrado(frame, self.cache[clave], W / 2, Y_SUB, pop)
+                pegar_centrado(frame, self.cache[clave], W / 2, self.y, pop)
                 return
 
 
@@ -146,6 +147,9 @@ def _mezclar(pista, clip, t, gan=1.0):
 def construir(ep, carpeta, rapido=False):
     carpeta.mkdir(parents=True, exist_ok=True)
     revision = []   # control de calidad: lo que Whisper oyó vs. el guion
+    cartoon = ep.get("estilo") == "cartoon"
+    for nombre_voz, cfg in ep.get("voces", {}).items():
+        voz.VOCES[nombre_voz] = {"efecto": None, **cfg}
     print("1/4 Voces…")
     bloques, t = [], 0.0
     for esc in ep["escenas"]:
@@ -170,7 +174,15 @@ def construir(ep, carpeta, rapido=False):
     print("2/4 Imágenes…")
     clips = []
     k = 0
-    for b in bloques:
+    cache = {}
+    if cartoon:
+        from . import caricatura
+        for i, b in enumerate(bloques):
+            clips.append(dict(plano=b["esc"]["plano"], t0=b["t0"], t1=b["t0"] + b["dur"], bloque=b, i=i))
+        ult = clips[-1]
+        img_final = caricatura.componer(ult["plano"], ep["personajes"], 1.0, 1.0, False, cache).convert("RGB")
+        fondo_final = imagenes.desenfocar_oscuro(img_final.resize((int(W * imagenes.MARGEN), int(H * imagenes.MARGEN))))
+    for b in ([] if cartoon else bloques):
         ims = b["esc"].get("imagenes", [])
         if not ims:
             ims = [clips[-1]["fuente"]] if clips else ["dark cinematic room"]
@@ -182,7 +194,8 @@ def construir(ep, carpeta, rapido=False):
             clips.append(dict(fuente=spec, img=img, t0=b["t0"] + b["dur"] * i / n,
                               t1=b["t0"] + b["dur"] * (i + 1) / n, mov=k % 4))
             k += 1
-    fondo_final = imagenes.desenfocar_oscuro(clips[-1]["img"])
+    if not cartoon:
+        fondo_final = imagenes.desenfocar_oscuro(clips[-1]["img"])
 
     print("3/4 Audio…")
     n = int(total * SR) + SR
@@ -195,6 +208,11 @@ def construir(ep, carpeta, rapido=False):
             _mezclar(pista_sfx, sonido.SFX[nombre](), b["t0"] + en, g)
     for c in clips[1:]:
         _mezclar(pista_sfx, sonido.whoosh(0.35), c["t0"] - 0.12, 0.22)
+    if cartoon:
+        for c in clips:
+            o = c["plano"].get("onomatopeya")
+            if o:
+                _mezclar(pista_sfx, sonido.SFX[o.get("sfx", "golpe")](), c["t0"] + o.get("en", 0), 0.9)
     for p in partes_final.values():
         _mezclar(pista_voz, p["audio"], p["t0"])
     _mezclar(pista_sfx, sonido.riser(1.6), t_final - 1.6, 0.5)
@@ -214,13 +232,17 @@ def construir(ep, carpeta, rapido=False):
     sf.write(wav, mezcla, SR)
 
     print("4/4 Vídeo…")
-    subs = Subtitulos()
+    if cartoon:
+        from . import caricatura
+        subs = Subtitulos(caricatura.F_TITULAR, 110, 1330)
+        sobres = _sobres_voz(bloques)
+    else:
+        subs = Subtitulos()
     for b in bloques:
         subs.anadir(b["pal"], COLOR_VOZ.get(b["esc"].get("voz", "narrador"), (255, 225, 77)))
     subs_final = Subtitulos()
     subs_final.anadir(partes_final["cta"]["pal"], COLOR_VOZ["narrador"])
-    capas = imagenes.capas_pelicula()
-    cache = {}
+    capas = [] if cartoon else imagenes.capas_pelicula()
     titulo = ep.get("serie_titulo", "").upper()
     insignia = texto_img([[f"DÍA {ep['episodio']}/{ep['total']}"]], 46, {0: (255, 225, 77)}, borde=5, ruta=FUENTE_2)
     nombre_serie = texto_img([[titulo]], 34, borde=4, ruta=FUENTE_2) if titulo else None
@@ -240,16 +262,20 @@ def construir(ep, carpeta, rapido=False):
         t = fi / FPS
         if t < t_final:
             c = next((c for c in clips if c["t0"] <= t < c["t1"]), clips[-1])
-            frame = _encuadre(c, t, bloques, rng)
+            if cartoon:
+                frame = _plano_cartoon(c, t, ep, sobres, cache, rng)
+            else:
+                frame = _encuadre(c, t, bloques, rng)
         else:
             frame = _final(fondo_final, t - t_final, total - t_final)
         frame = frame.convert("RGBA")
-        frame.alpha_composite(capas[fi % len(capas)])
+        if capas:
+            frame.alpha_composite(capas[fi % len(capas)])
         if t < t_final:
             _superposiciones(frame, t, bloques, cache)
             subs.dibujar(frame, t)
             if gancho_img is not None and t < 2.6:
-                pegar_centrado(frame, gancho_img, W / 2, 600, 0.8 + 0.2 * facil(t / 0.15), min(1, (2.6 - t) / 0.25))
+                pegar_centrado(frame, gancho_img, W / 2, 1600 if cartoon else 600, 0.8 + 0.2 * facil(t / 0.15), min(1, (2.6 - t) / 0.25))
         else:
             _tarjeta_final(frame, t, ep, partes_final, cache)
         # destello
@@ -272,7 +298,12 @@ def construir(ep, carpeta, rapido=False):
     ff.stdin.close()
     ff.wait()
     wav.unlink(missing_ok=True)
-    _portada(clips[0]["img"], ep, carpeta / "portada.jpg")
+    if cartoon:
+        pp = ep.get("portada_plano", clips[0]["plano"])
+        img_p = caricatura.componer(pp, ep["personajes"], 1.0, 1.0, False, {}).convert("RGB")
+        _portada(img_p, ep, carpeta / "portada.jpg")
+    else:
+        _portada(clips[0]["img"], ep, carpeta / "portada.jpg")
     _informe_voz(revision, carpeta / "_revision_voz.txt")
     return salida, total
 
@@ -289,6 +320,67 @@ def _informe_voz(revision, ruta):
         lineas.append(f"[{marca}] {r:.0%}\n  guion: {guion}\n  oído:  {oido}")
     ruta.write_text("\n".join(lineas) + "\n", encoding="utf-8")
     print(f"   Control de voz: {len(lineas) - malas}/{len(lineas)} frases entendidas bien por Whisper")
+
+
+def _sobres_voz(bloques):
+    """Para cada bloque, volumen de la voz por fotograma (para mover la boca)."""
+    out = []
+    for b in bloques:
+        a = np.abs(b["audio"])
+        paso = SR // FPS
+        n = len(a) // paso + 1
+        env = np.array([a[i * paso:(i + 1) * paso].mean() if i * paso < len(a) else 0 for i in range(n)])
+        out.append(env / (env.max() + 1e-6))
+    return out
+
+
+def _plano_cartoon(c, t, ep, sobres, cache, rng):
+    from . import caricatura
+    pl = c["plano"]
+    b = c["bloque"]
+    tl = t - c["t0"]
+    idx = int(tl * FPS)
+    env = sobres[c["i"]]
+    hablando = bool(env is not None and idx < len(env) and env[idx] > 0.18 and (idx // 2) % 2 == 0)
+    img = caricatura.componer(pl, ep["personajes"], tl, t, hablando, cache)
+    # cámara
+    z0 = pl.get("zoom", 1.0)
+    z1 = pl.get("zoom_fin", z0 * 1.06)
+    p = min(1, tl / max(0.1, c["t1"] - c["t0"]))
+    z = z0 + (z1 - z0) * facil(p) + 0.07 * math.exp(-tl / 0.12)
+    fx, fy = pl.get("foco", (0.5, 0.5))
+    if "shake" in b["esc"].get("efecto", []) and tl < 0.6:
+        amp = 22 * (1 - tl / 0.6)
+        fx += rng.uniform(-amp, amp) / W
+        fy += rng.uniform(-amp, amp) / H
+    rw, rh = W / z, H / z
+    cx = min(max(fx * W, rw / 2), W - rw / 2)
+    cy = min(max(fy * H, rh / 2), H - rh / 2)
+    frame = img.transform((W, H), Image.AFFINE, (rw / W, 0, cx - rw / 2, 0, rh / H, cy - rh / 2), Image.BILINEAR)
+    # elementos de interfaz (no se mueven con la cámara)
+    o = pl.get("onomatopeya")
+    if o and tl >= o.get("en", 0):
+        k = ("ono", o["texto"])
+        if k not in cache:
+            cache[k] = caricatura.onomatopeya(o["texto"], tuple(o.get("color", (255, 220, 40))))
+        dt = tl - o.get("en", 0)
+        esc = (0.4 + 0.6 * facil(dt / 0.12)) * (1 + 0.04 * math.sin(dt * 12))
+        capa = cache[k].rotate(o.get("rot", -8), resample=Image.BICUBIC, expand=True)
+        if capa.width * esc > 1040:
+            esc *= 1040 / (capa.width * esc)
+        pegar_centrado(frame, capa, W * o.get("x", 0.5), H * o.get("y", 0.2), esc)
+    st = pl.get("stats")
+    if st:
+        prog = facil(max(0, tl - 0.3) / 1.2)
+        pan = caricatura.panel_stats(st, prog)
+        pegar_centrado(frame, pan, W / 2, 900, 0.85 + 0.15 * facil(tl / 0.2))
+    if pl.get("dia"):
+        k = ("dia",)
+        if k not in cache:
+            cache[k] = caricatura.letrero_dia(ep["episodio"], ep["total"])
+        pegar_centrado(frame, cache[k], W / 2, 420,
+                       (0.5 + 0.5 * facil(tl / 0.15)) * (1 + 0.03 * math.sin(tl * 7)))
+    return frame
 
 
 def _encuadre(c, t, bloques, rng):
