@@ -43,3 +43,6 @@
 [OK ] 94%
   guion: Comenta A o B. Lo más votado pasa mañana.
   oído:  Comenta o ve lo más votado pasa mañana.
+[OK ] 100%
+  guion: Mañana, día dos. Y Don Ramiro ya sabe lo que vais a elegir.
+  oído:  Mañana día dos y Don Ramiro ya sabe lo que vais a elegir.

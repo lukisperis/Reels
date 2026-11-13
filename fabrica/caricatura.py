@@ -108,7 +108,11 @@ def _cabeza(L, p, expr, boca_abierta, parpadeo, mirada):
     if parpadeo and ojos not in ("x", "corazon"):
         ojos = "cerrados"
     if boca_abierta:
-        boca = "habla"
+        boca = "habla" if boca_abierta == 1 else "o"
+        if boca_abierta == 2 and cejas == "planas":
+            cejas = "arriba"
+        elif boca_abierta == 2 and cejas == "arriba":
+            cejas = "muy_arriba"
     # orejas
     for ox in (cx - 140, cx + 140):
         L.elipse((ox - 28, cy - 5, ox + 28, cy + 55), piel)
@@ -261,8 +265,12 @@ def _destello(L, x, y, r):
     L.poli(pts, (255, 255, 255), ol=False)
 
 
-def _brazos(accion, p, sl, sr, grosor):
+def _brazos(accion, p, sl, sr, grosor, fase=0.0):
     """Devuelve [(puntos_brazo_izq), (puntos_brazo_der)] y si lleva objeto."""
+    if accion == "gesto":
+        a = math.sin(fase * 2 * math.pi)
+        return [[sl, (sl[0] - 15, 690), (sl[0] - 8, 800)],
+                [sr, (sr[0] + 100, 610 - 20 * a), (sr[0] + 85 + 30 * a, 500 - 50 * a)]]
     if accion == "jugar":
         return [[sl, (sl[0] - 20, 690), (260, 725)], [sr, (sr[0] + 20, 690), (340, 725)]]
     if accion == "movil":
@@ -306,7 +314,7 @@ def dibujar_personaje(p, expr="neutro", accion="quieto", boca_abierta=False, par
         L.rect((x - 55, y + 28, x + 55, y + 45), p["suela"], r=8)
     # brazos (detrás del torso en los hombros)
     sl, sr = (cx - ta / 2 + 18, top + 40), (cx + ta / 2 - 18, top + 40)
-    brazos = _brazos(accion, p, sl, sr, gb)
+    brazos = _brazos(accion, p, sl, sr, gb, fase)
     manga = p["camiseta"] if not p["tirantes"] else p["piel"]
     delante = accion in ("jugar", "cruzados", "manos_cara", "movil")
 
@@ -670,7 +678,7 @@ _spr_cache = {}
 
 def sprite(pid, p, expr, accion, boca, parp, mirada, fase):
     k = (pid, tuple(sorted((a, str(b)) for a, b in p.items())), expr, accion, boca, parp, mirada,
-         round(fase * 8) / 8 if accion == "correr" else 0)
+         round((fase % 1.0) * 8) / 8 if accion in ("correr", "gesto") else 0)
     if k not in _spr_cache:
         if len(_spr_cache) > 400:
             _spr_cache.clear()
@@ -678,7 +686,7 @@ def sprite(pid, p, expr, accion, boca, parp, mirada, fase):
     return _spr_cache[k]
 
 
-def componer(plano, personajes, t_local, t_abs, hablando, cache):
+def componer(plano, personajes, t_local, t_abs, hablando, cache, energia=0.0):
     """Dibuja el plano completo (sin cámara) y devuelve imagen RGBA 1080x1920."""
     nombre = plano.get("fondo", "dormitorio")
     base = fondo(nombre, plano.get("variante", 0)).convert("RGBA")
@@ -686,22 +694,46 @@ def componer(plano, personajes, t_local, t_abs, hablando, cache):
         base = ImageEnhance.Brightness(base.filter(ImageFilter.GaussianBlur(10))).enhance(0.55)
     frame = base.copy()
     suelo = plano.get("suelo", SUELO.get(nombre, 1720))
-    for c in plano.get("personajes", []):
+    chars = plano.get("personajes", [])
+    for c in chars:
         pid = c["id"]
         p = {**personajes[pid], **c.get("cambios", {})}
-        habla = c.get("habla") and hablando
+        nivel = int(hablando) if c.get("habla") else 0
+        en_s = energia if c.get("habla") else 0.0
+        expr = c.get("expresion", "neutro")
+        accion = c.get("accion", "quieto")
+        if accion == "quieto" and c.get("habla") and en_s > 0.15:
+            accion = "gesto"          # gesticula con la mano mientras habla
         parp = (t_abs * 1.0 + hash(pid) % 7) % 3.7 < 0.12
-        mirada = tuple(c.get("mirada", (0, 0)))
-        spr = sprite(pid, p, c.get("expresion", "neutro"), c.get("accion", "quieto"), bool(habla), parp, mirada,
-                     t_local * 1.8)
+        mirada = c.get("mirada")
+        if mirada is None:            # mira al otro personaje; si está triste, mira al suelo
+            otros = [o for o in chars if o is not c]
+            dx = (otros[0].get("x", 0.5) - c.get("x", 0.5)) if otros else 0
+            mirada = (1.0 if dx > 0.05 else -1.0 if dx < -0.05 else 0.0, 0.8 if expr in ("triste", "llorar") else 0.0)
+        mirada = tuple(mirada)
+        spr = sprite(pid, p, expr, accion, nivel, parp, mirada, t_local * 1.8)
         esc = c.get("escala", 1.0)
-        # respiración / rebote
-        rebote = 1 + 0.015 * math.sin(t_abs * 3 + hash(pid) % 5)
+        # --- movimiento expresivo ---
+        rot = c.get("rot", 0)
+        rebote = 1 + 0.015 * math.sin(t_abs * 3 + hash(pid) % 5)          # respiración
         if c.get("salto"):
             rebote += 0.05 * abs(math.sin(t_local * 9))
-        sw, sh = int(SW * esc), int(SH * esc * rebote)
+        elif expr in ("sorpresa", "euforia") and not rot:
+            rebote += 0.06 * abs(math.sin(t_local * 10)) * math.exp(-t_local / 0.9)
+        if not rot:
+            if expr in ("enfadado", "esfuerzo"):
+                rot += 1.6 * math.sin(t_abs * 38)
+            elif expr in ("triste", "llorar"):
+                rot += -2.5 + 0.8 * math.sin(t_abs * 2)
+                rebote -= 0.02
+            elif expr in ("feliz", "enamorado", "chulo", "euforia"):
+                rot += 2.5 * math.sin(t_abs * 4 + hash(pid) % 5)
+            rot += 2.2 * en_s * math.sin(t_abs * 7)                         # vaivén al hablar
+        rebote += 0.035 * en_s * abs(math.sin(t_abs * 13))                  # golpe de énfasis
+        rebote += 0.09 * math.exp(-t_local / 0.12) * math.cos(t_local * 26)  # "pop" al entrar en plano
+        ancho = 1 - (rebote - 1) * 0.6                                      # estirar y encoger
+        sw, sh = int(SW * esc * ancho), int(SH * esc * rebote)
         spr2 = spr.resize((sw, sh), Image.BILINEAR)
-        rot = c.get("rot", 0)
         if c.get("temblor"):
             rot += 3 * math.sin(t_abs * 40)
         if rot:

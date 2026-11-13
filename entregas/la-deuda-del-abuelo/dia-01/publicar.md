@@ -1,6 +1,6 @@
 # La deuda del abuelo — Día 1/30
 
-Duración: 41 s · Formato 1080x1920 · Listo para YouTube Shorts, TikTok e Instagram Reels.
+Duración: 45 s · Formato 1080x1920 · Listo para YouTube Shorts, TikTok e Instagram Reels.
 
 ## YouTube Shorts
 **Título:** Su abuelo debe 10.000 € y solo tiene 30 días 😰 Día 1/30 #shorts

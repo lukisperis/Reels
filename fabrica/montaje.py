@@ -4,7 +4,7 @@ import re
 import subprocess
 import numpy as np
 import soundfile as sf
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from . import SR, W, H, FPS
 from . import voz, sonido, imagenes
 
@@ -163,8 +163,13 @@ def construir(ep, carpeta, rapido=False):
     t_final = t
     partes_final = {}
     t += 0.25
-    for clave in ("pregunta", "A", "B", "cta"):
-        texto = el[clave] if clave in ("pregunta", "cta") else f"{clave}: {el[clave]}"
+    claves = ["pregunta", "A", "B", "cta"] + (["avance"] if ep.get("avance") else [])
+    for clave in claves:
+        if clave == "avance":
+            texto = ep["avance"]["texto"]
+            t += 0.35                       # pausa antes del avance
+        else:
+            texto = el[clave] if clave in ("pregunta", "cta") else f"{clave}: {el[clave]}"
         audio, pal, oido = voz.sintetizar(texto, "narrador")
         revision.append((texto, oido))
         partes_final[clave] = dict(audio=audio, t0=t, pal=[(w, a + t, b + t) for w, a, b in pal])
@@ -219,6 +224,9 @@ def construir(ep, carpeta, rapido=False):
     _mezclar(pista_sfx, sonido.boom(), t_final, 0.9)
     _mezclar(pista_sfx, sonido.golpe(), partes_final["A"]["t0"], 0.6)
     _mezclar(pista_sfx, sonido.golpe(), partes_final["B"]["t0"], 0.6)
+    if "avance" in partes_final:
+        _mezclar(pista_sfx, sonido.whoosh(0.5), partes_final["avance"]["t0"] - 0.35, 0.6)
+        _mezclar(pista_sfx, sonido.ding(), partes_final["avance"]["t0"] - 0.1, 0.5)
     mus = sonido.musica(total + 1, ep.get("musica", "misterio"), ep.get("latido_bpm", 72))
     mus = np.pad(mus, (0, max(0, n - len(mus))))[:n]
     curva = np.where(np.arange(n) / SR < t_final, 0.16, 0.26).astype(np.float32)
@@ -323,14 +331,17 @@ def _informe_voz(revision, ruta):
 
 
 def _sobres_voz(bloques):
-    """Para cada bloque, volumen de la voz por fotograma (para mover la boca)."""
+    """Por bloque: (volumen por fotograma, volumen suavizado) para mover boca y cuerpo."""
     out = []
     for b in bloques:
         a = np.abs(b["audio"])
         paso = SR // FPS
         n = len(a) // paso + 1
         env = np.array([a[i * paso:(i + 1) * paso].mean() if i * paso < len(a) else 0 for i in range(n)])
-        out.append(env / (env.max() + 1e-6))
+        env = env / (env.max() + 1e-6)
+        suave = np.convolve(env, np.ones(7) / 7, mode="same")
+        suave = np.clip(suave / (suave.max() + 1e-6) * 1.3, 0, 1)
+        out.append((env, suave))
     return out
 
 
@@ -340,9 +351,12 @@ def _plano_cartoon(c, t, ep, sobres, cache, rng):
     b = c["bloque"]
     tl = t - c["t0"]
     idx = int(tl * FPS)
-    env = sobres[c["i"]]
-    hablando = bool(env is not None and idx < len(env) and env[idx] > 0.18 and (idx // 2) % 2 == 0)
-    img = caricatura.componer(pl, ep["personajes"], tl, t, hablando, cache)
+    crudo, suave = sobres[c["i"]]
+    nivel = 0
+    if idx < len(crudo):
+        nivel = 2 if crudo[idx] > 0.6 else 1 if crudo[idx] > 0.2 else 0
+    energia = float(suave[idx]) if idx < len(suave) else 0.0
+    img = caricatura.componer(pl, ep["personajes"], tl, t, nivel, cache, energia)
     # cámara
     z0 = pl.get("zoom", 1.0)
     z1 = pl.get("zoom_fin", z0 * 1.06)
@@ -460,7 +474,44 @@ def _final(fondo, dt, dur):
     return fondo.transform((W, H), Image.AFFINE, coef, Image.BILINEAR)
 
 
+def _avance(frame, t, ep, partes, cache):
+    """Cierre: 'MAÑANA · DÍA N' con silueta misteriosa y una pregunta que engancha."""
+    from . import caricatura
+    av = ep["avance"]
+    dt = t - (partes["avance"]["t0"] - 0.3)
+    frame.alpha_composite(Image.new("RGBA", (W, H), (14, 8, 28, int(238 * min(1, dt / 0.3)))))
+    if "av_sil" not in cache:
+        spr = caricatura.dibujar_personaje(ep["personajes"][av.get("personaje", "LEO")], "neutro")
+        al = spr.getchannel("A")
+        sil = Image.new("RGBA", spr.size, (0, 0, 0, 255))
+        sil.putalpha(al)
+        glow = Image.new("RGBA", spr.size, (255, 225, 77, 255))
+        glow.putalpha(al.filter(ImageFilter.MaxFilter(15)).filter(ImageFilter.GaussianBlur(10)))
+        base = Image.new("RGBA", spr.size, (0, 0, 0, 0))
+        base.alpha_composite(glow)
+        base.alpha_composite(sil)
+        cache["av_sil"] = base
+        cache["av_q"] = texto_img([["?"]], 380, {0: (255, 225, 77)}, borde=14, ruta=caricatura.F_CARTOON)
+        cache["av_m"] = texto_img([["MAÑANA"]], 100, {0: (255, 255, 255)}, borde=10, ruta=caricatura.F_CARTOON)
+        cache["av_d"] = caricatura.letrero_dia(ep["episodio"] + 1, ep["total"])
+        if av.get("pregunta"):
+            cache["av_p"] = texto_img(partir_lineas(av["pregunta"].upper().split(), 84, 900), 84, {}, borde=9)
+    sil = cache["av_sil"]
+    esc = 0.72
+    pegar_centrado(frame, sil, W / 2, 1790 - sil.height * esc / 2, esc, min(1, dt / 0.4))
+    pegar_centrado(frame, cache["av_q"], W / 2, 1370, (1 + 0.06 * math.sin(dt * 6)) * (0.6 + 0.4 * facil(dt / 0.3)),
+                   min(1, dt / 0.3))
+    pegar_centrado(frame, cache["av_m"], W / 2, 350, 0.7 + 0.3 * facil(dt / 0.25), min(1, dt / 0.2))
+    pegar_centrado(frame, cache["av_d"], W / 2, 600,
+                   0.9 * (0.7 + 0.3 * facil((dt - 0.1) / 0.25)) * (1 + 0.03 * math.sin(dt * 7)), min(1, dt / 0.2))
+    if "av_p" in cache and dt > 0.35:
+        pegar_centrado(frame, cache["av_p"], W / 2, 900, 0.8 + 0.2 * facil((dt - 0.35) / 0.15))
+
+
 def _tarjeta_final(frame, t, ep, partes, cache):
+    if "avance" in partes and t >= partes["avance"]["t0"] - 0.3:
+        _avance(frame, t, ep, partes, cache)
+        return
     el = ep["eleccion"]
     p = partes["pregunta"]
     if t >= p["t0"] - 0.1:

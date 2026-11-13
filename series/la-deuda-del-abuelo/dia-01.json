@@ -468,5 +468,10 @@
    "#parati"
   ],
   "comentario_fijado": "🅰️ vende todo · 🅱️ trabaja para Don Ramiro. Mañana sale el DÍA 2 con lo más votado 👀"
+ },
+ "avance": {
+  "texto": "Mañana, día dos. Y Don Ramiro ya sabe lo que vais a elegir.",
+  "pregunta": "Don Ramiro ya lo sabe…",
+  "personaje": "RAMIRO"
  }
 }
