@@ -1,0 +1,63 @@
+{
+  "serie": "cartas-del-futuro",
+  "serie_titulo": "Cartas del futuro",
+  "episodio": 1,
+  "total": 10,
+  "titulo": "La primera carta",
+  "gancho": "Me llegó una carta escrita por mí… del futuro",
+  "portada": "Una carta de mi yo del futuro",
+  "musica": "misterio",
+  "latido_bpm": 74,
+  "estilo_visual": "cinematic film still, moody dramatic lighting, realistic photo, 35mm, shallow depth of field, night blue tones",
+  "personajes": {
+    "LEO": "a 19 year old young man with messy dark hair wearing a grey hoodie",
+    "ALBA": "a 19 year old young woman with long wavy brown hair wearing a yellow raincoat"
+  },
+  "escenas": [
+    {"texto": "Esta mañana encontré una carta debajo de mi puerta.", "efecto": ["flash"], "sfx": ["golpe"],
+     "imagenes": ["a white envelope on the floor slid under a dark apartment door, morning light beam"]},
+    {"texto": "Tenía mi letra.",
+     "imagenes": ["close up of a handwritten letter on a wooden table, dramatic light"]},
+    {"texto": "Y estaba fechada el veintitrés de noviembre. Dentro de diez días.", "pantalla": "23 NOV", "sfx": ["golpe"],
+     "imagenes": ["a paper wall calendar with the date 23 circled in red ink, dark room"]},
+    {"voz": "futuro", "texto": "Leo. Soy tú. El tú de dentro de diez días.",
+     "imagenes": ["{LEO} sitting on his bed reading a letter, shocked face, dark bedroom"]},
+    {"voz": "futuro", "texto": "Escúchame bien. El día veintitrés vas a perder a la persona que más quieres.", "efecto": ["shake"], "sfx": ["boom"],
+     "imagenes": ["silhouette of a young man alone in the rain at night under a street lamp"]},
+    {"voz": "futuro", "texto": "Cada mañana te llegará una carta. Haz exactamente lo que diga.",
+     "imagenes": ["a stack of old sealed envelopes on a desk, candle light"]},
+    {"texto": "Pensé que era una broma de mi hermano. Hasta que leí la última línea.",
+     "imagenes": ["extreme close up of the eyes of {LEO}, worried, blue light"]},
+    {"voz": "futuro", "texto": "Hoy, a las nueve y cuarenta y siete, Alba te escribirá. No contestes. Pase lo que pase.", "pantalla": "21:47", "sfx": ["golpe"],
+     "imagenes": ["a smartphone lying on a bed in a dark room, screen off"]},
+    {"texto": "Alba. La chica del cuarto piso. Llevo dos años sin atreverme a decirle hola.",
+     "imagenes": ["{ALBA} on apartment building stairs looking back over her shoulder, soft smile",
+                  "{ALBA} standing inside an old elevator, warm light"]},
+    {"texto": "Me pasé el día entero mirando el reloj.", "sfx": [{"nombre": "tic", "en": 0.2}, {"nombre": "tic", "en": 1.0}, {"nombre": "tic", "en": 1.8}],
+     "imagenes": ["a round wall clock in a dark room close up", "{LEO} lying on his bed staring at his phone at night"]},
+    {"texto": "Nueve y cuarenta y cinco.", "pantalla": "21:45", "sfx": ["tic"], "pausa": 0.1,
+     "imagenes": ["a digital alarm clock glowing red in the dark"]},
+    {"texto": "Nueve y cuarenta y seis.", "pantalla": "21:46", "sfx": ["tic"], "pausa": 0.1,
+     "imagenes": ["{LEO} biting his nails in a dark bedroom, phone light on his face"]},
+    {"texto": "Nueve y cuarenta y siete.", "pantalla": "21:47", "sfx": [{"nombre": "zumbido", "en": 0.9, "vol": 0.9}], "efecto": ["shake"], "pausa": 0.9,
+     "imagenes": ["a smartphone screen lighting up on a bed in a dark room"]},
+    {"texto": "Era ella.", "mensaje": {"de": "Alba", "hora": "21:47", "texto": "¿Puedes bajar al portal? Necesito contarte algo. Solo a ti."}, "pausa": 1.6,
+     "imagenes": ["a hand holding a glowing smartphone in a dark room, close up"]},
+    {"texto": "La carta dice que no conteste. Pero ella nunca me había escrito. Nunca.",
+     "imagenes": ["{LEO} standing by his apartment door at night, hand on the door handle, hesitating"]}
+  ],
+  "eleccion": {
+    "titulo": "¿Qué hace Leo?",
+    "pregunta": "¿Qué hace Leo?",
+    "A": "Hace caso a la carta y no contesta",
+    "B": "Baja al portal a ver a Alba",
+    "cta": "Comenta A o B. Lo más votado pasará mañana, en el día dos."
+  },
+  "publicar": {
+    "titulo_youtube": "Me llegó una carta de mi yo del futuro 😨 Día 1/10 #shorts",
+    "titulo_tiktok": "Día 1/10: una carta con MI letra… fechada dentro de 10 días 😨 ¿A o B?",
+    "descripcion": "Cada día, una carta. Cada día, TÚ decides qué hace Leo. Comenta A o B: lo más votado pasa en el siguiente episodio. Sígueme para no perderte el día 2.",
+    "hashtags": ["#historias", "#misterio", "#tudecides", "#serie", "#storytime", "#cartasdelfuturo", "#fyp", "#parati"],
+    "comentario_fijado": "🅰️ = no contesta · 🅱️ = baja al portal. Mañana sale el DÍA 2 con lo más votado 👀"
+  }
+}

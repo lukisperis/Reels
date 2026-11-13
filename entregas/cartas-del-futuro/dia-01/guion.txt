@@ -1,0 +1,22 @@
+Cartas del futuro — Día 1: La primera carta
+
+[01] (narrador) Esta mañana encontré una carta debajo de mi puerta.
+[02] (narrador) Tenía mi letra.
+[03] (narrador) Y estaba fechada el veintitrés de noviembre. Dentro de diez días.
+[04] (futuro) Leo. Soy tú. El tú de dentro de diez días.
+[05] (futuro) Escúchame bien. El día veintitrés vas a perder a la persona que más quieres.
+[06] (futuro) Cada mañana te llegará una carta. Haz exactamente lo que diga.
+[07] (narrador) Pensé que era una broma de mi hermano. Hasta que leí la última línea.
+[08] (futuro) Hoy, a las nueve y cuarenta y siete, Alba te escribirá. No contestes. Pase lo que pase.
+[09] (narrador) Alba. La chica del cuarto piso. Llevo dos años sin atreverme a decirle hola.
+[10] (narrador) Me pasé el día entero mirando el reloj.
+[11] (narrador) Nueve y cuarenta y cinco.
+[12] (narrador) Nueve y cuarenta y seis.
+[13] (narrador) Nueve y cuarenta y siete.
+[14] (narrador) Era ella.
+[15] (narrador) La carta dice que no conteste. Pero ella nunca me había escrito. Nunca.
+
+FINAL: ¿Qué hace Leo?
+  A) Hace caso a la carta y no contesta
+  B) Baja al portal a ver a Alba
+  Comenta A o B. Lo más votado pasará mañana, en el día dos.
