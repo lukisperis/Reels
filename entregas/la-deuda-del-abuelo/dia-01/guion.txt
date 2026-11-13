@@ -1,0 +1,18 @@
+La deuda del abuelo — Día 1: Treinta días
+
+[01] (narrador) El abuelo de Leo debe diez mil euros.
+[02] (narrador) Y se los debe a Don Ramiro, el hombre más rico del barrio.
+[03] (RAMIRO) Treinta días, Paco. Si no me pagas, el bar es mío.
+[04] (narrador) El bar del abuelo lleva cuarenta años abierto.
+[05] (narrador) Es toda su vida.
+[06] (narrador) Leo, su nieto, tiene diecisiete años.
+[07] (narrador) En el banco tiene… tres euros. Y veinte céntimos.
+[08] (LEO) Abuelo, tranquilo. Yo consigo ese dinero.
+[09] (ABUELO) ¿Tú? ¿Y de dónde vas a sacar diez mil euros?
+[10] (narrador) Leo no tiene ni idea.
+[11] (narrador) Pero tiene treinta días.
+
+FINAL: ¿Cómo empieza Leo?
+  A) Vende todo lo que tiene
+  B) Le pide trabajo a Don Ramiro
+  Comenta A o B. Lo más votado pasa mañana.

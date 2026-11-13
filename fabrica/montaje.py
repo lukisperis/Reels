@@ -169,7 +169,7 @@ def construir(ep, carpeta, rapido=False):
         revision.append((texto, oido))
         partes_final[clave] = dict(audio=audio, t0=t, pal=[(w, a + t, b + t) for w, a, b in pal])
         t += len(audio) / SR + 0.35
-    total = t + 2.2
+    total = t + 1.6
 
     print("2/4 Imágenes…")
     clips = []
@@ -374,6 +374,12 @@ def _plano_cartoon(c, t, ep, sobres, cache, rng):
         prog = facil(max(0, tl - 0.3) / 1.2)
         pan = caricatura.panel_stats(st, prog)
         pegar_centrado(frame, pan, W / 2, 900, 0.85 + 0.15 * facil(tl / 0.2))
+    dn = pl.get("dinero")
+    if dn:
+        prog = facil(max(0, tl - 0.3) / 1.0)
+        pan = caricatura.panel_dinero(dn[0], dn[1], ep.get("meta", 10000), prog)
+        pegar_centrado(frame, pan, W / 2, pl.get("dinero_y", 900 if pl.get("dia") else 560),
+                       0.85 + 0.15 * facil(tl / 0.2))
     if pl.get("dia"):
         k = ("dia",)
         if k not in cache:

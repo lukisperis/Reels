@@ -19,8 +19,8 @@ que el usuario lo pida.
 
 ## 2. Leer el estado de la serie
 - `series/<serie>/biblia.md` (personajes, glow up, arco, reglas).
-- `series/<serie>/decisiones.md` → qué ganó ayer. Si está _pendiente_, elige la opción más divertida,
-  márcala "(elegida por defecto)" y avísalo en el resumen.
+- `series/<serie>/decisiones.md` → apunta lo que ha dicho el usuario que ganó. Si no lo ha dicho,
+  pregúntaselo antes de escribir el episodio.
 - El último `dia-XX.json`: copia `personajes`, `voces` y aplica los cambios de glow up acumulados.
 
 ## 3. Escribir `series/<serie>/dia-XX.json`
@@ -28,17 +28,21 @@ Mismo esquema que `dia-01.json`. 11–16 escenas, 35–60 s. Empieza con "Votast
 
 **Escena (estilo cartoon):** `texto`, `voz` (`narrador` o el id de un personaje con voz en `voces`),
 `efecto` (`shake`, `flash`), `sfx`, `pausa` y un `plano`:
-- `fondo`: `dormitorio`, `movil`, `rayos` (+`variante` 0–3 = amarillo/azul/rosa/verde), `espejo`,
+- `fondo`: `bar`, `dormitorio`, `movil`, `rayos` (+`variante` 0–3 = amarillo/azul/rosa/verde), `espejo`,
   `gimnasio`, `parque`, `calle`, `plano`.
 - `zoom`, `zoom_fin`, `foco` [x, y] (0–1): cámara. Cambia de encuadre en cada escena.
 - `personajes`: lista de `{id, x, y, escala, expresion, accion, habla, rot, cambios, …}`
   - `expresion`: neutro, feliz, triste, sorpresa, decidido, enfadado, cansado, asco, enamorado, dolor,
     chulo, llorar, esfuerzo, euforia.
   - `accion`: quieto, jugar, movil, arriba, celebrar, musculo, cruzados, señalar, manos_cara, correr.
+  - personajes: `bigote`, `gafas`, `arrugas`, `traje` (color), `corbata`, `cadena`, `botones`,
+    `bolsillo`, `barba`, `granos`, `ojeras`, `mancha`; peinados: greñas, corto, degradado, tupe,
+    largo, calvo, engominado, rizos, rapado.
   - extras: `habla` (mueve la boca con su voz), `salto`, `temblor`, `entra` (izquierda/derecha),
     `olor`, `moscas`, `sudor`, `lagrimas`, `estrellas`, `rot` (82–88 = tumbado; usa `escala` 0.85).
 - `onomatopeya`: `{texto, en, sfx, x, y, rot}` · `movil`: `{de, titulo, avatares, lineas}` ·
-  `stats`: `{"FÍSICO": [antes, después], …}` · `dia`: true (letrero DÍA X/30). En el plano de `stats`
+  `stats`: `{"FÍSICO": [antes, después], …}` · `dinero`: [antes, después] (+`dinero_y`; la meta va en
+  `meta` del episodio) · `dia`: true (letrero DÍA X/30). En el plano de `stats`
   no pongas personajes (se taparían).
 - `sfx` disponibles: `pop`, `ding`, `boing`, `catacrac`, `fracaso`, `golpe`, `boom`, `whoosh`,
   `riser`, `tic`, `zumbido`.

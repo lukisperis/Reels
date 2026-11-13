@@ -82,7 +82,8 @@ class Lienzo:
 BASE = dict(piel=(246, 196, 150), pelo=(70, 45, 30), estilo_pelo="corto", barba=0.0, barba_completa=False,
             camiseta=(80, 140, 230), pantalon=(50, 60, 110), zapatos=(240, 240, 240), suela=(230, 120, 40),
             cuerpo="normal", ojeras=False, mancha=False, chica=False, labios=(220, 80, 110), gafas=False,
-            tirantes=False, granos=0)
+            tirantes=False, granos=0, bigote=False, traje=None, corbata=(200, 40, 50), cadena=False,
+            botones=False, bolsillo=False, arrugas=False)
 
 CUERPOS = {  # ancho torso arriba, ancho cintura, grosor brazo, grosor pierna
     "flaco": (170, 165, 32, 40), "normal": (220, 215, 42, 50), "gordo": (270, 330, 50, 60),
@@ -177,6 +178,9 @@ def _cabeza(L, p, expr, boca_abierta, parpadeo, mirada):
         L.linea([(cx + a[0], cy + a[1]), (cx + b[0], cy + b[1])], _osc(p["pelo"], 0.7) if p["pelo"] != OUT else OUT, 13)
     # nariz
     L.d.arc([(cx - 18) * K, (cy + 30) * K, (cx + 18) * K, (cy + 62) * K], 200, 340, fill=_osc(piel, 0.65), width=7 * K)
+    if p["arrugas"]:
+        for dy in (-125, -108):
+            L.d.arc([(cx - 70) * K, (cy + dy) * K, (cx + 70) * K, (cy + dy + 30) * K], 200, 340, fill=_osc(piel, 0.7), width=5 * K)
     # boca
     by = cy + 105
     roja = (150, 30, 50)
@@ -201,6 +205,10 @@ def _cabeza(L, p, expr, boca_abierta, parpadeo, mirada):
         for dx in (-25, 0, 25):
             L.linea([(cx + dx, by - 14), (cx + dx, by + 16)], OUT, 4, redondo=False)
         L.linea([(cx - 48, by + 1), (cx + 48, by + 1)], OUT, 4, redondo=False)
+    if p["bigote"]:
+        bc = p.get("color_bigote", p["pelo"])
+        L.poli([(cx - 75, by - 12), (cx - 55, by - 38), (cx - 10, by - 42), (cx, by - 32), (cx + 10, by - 42),
+                (cx + 55, by - 38), (cx + 75, by - 12), (cx + 35, by - 22), (cx, by - 18), (cx - 35, by - 22)], bc)
     if p["chica"] and boca in ("neutro", "apretada"):
         L.elipse((cx - 26, by - 10, cx + 26, by + 10), p["labios"])
     # pelo delante
@@ -225,6 +233,21 @@ def _cabeza(L, p, expr, boca_abierta, parpadeo, mirada):
     elif est in ("largo", "melena"):
         L.poli([(160, 330), (165, 225), (220, 165), (300, 150), (380, 165), (440, 225), (440, 330), (400, 240),
                 (330, 215), (300, 250), (260, 215), (200, 245)], pc)
+    elif est == "calvo":
+        for lado in (-1, 1):
+            x0 = cx + lado * 140
+            L.poli([(x0, cy - 80), (x0 + lado * 18, cy - 40), (x0 + lado * 10, cy + 10), (x0 - lado * 22, cy + 20),
+                    (x0 - lado * 25, cy - 60)], pc)
+        L.d.arc([(cx - 60) * K, (cy - 150) * K, (cx - 10) * K, (cy - 110) * K], 200, 300, fill=(255, 255, 255), width=6 * K)
+    elif est == "engominado":
+        L.poli([(160, 300), (162, 220), (200, 165), (300, 140), (400, 165), (440, 220), (440, 300), (420, 240),
+                (300, 215), (180, 240)], pc)
+        for dx in (-50, 0, 50):
+            L.linea([(cx + dx - 30, 175), (cx + dx + 30, 170)], _osc(pc, 1.6) if max(pc) < 150 else (255, 255, 255), 5)
+    elif est == "rizos":
+        for i, (x, y) in enumerate(((175, 260), (200, 195), (255, 160), (320, 150), (385, 170), (425, 220), (430, 285),
+                                    (300, 175), (230, 215), (360, 210))):
+            L.elipse((x - 48, y - 45, x + 48, y + 45), pc)
     elif est == "rapado":
         L.d.chord([(cx - 140) * K, (cy - 165) * K, (cx + 140) * K, (cy + 60) * K], 180, 360, fill=pc + (110,))
 
@@ -316,12 +339,29 @@ def dibujar_personaje(p, expr="neutro", accion="quieto", boca_abierta=False, par
             L.linea([(cx - 35, yy), (cx + 35, yy)], _osc(p["camiseta"], 0.75), 5)
     if p["cuerpo"] == "gordo":
         L.d.arc([(cx - 110) * K, (bajo - 140) * K, (cx + 110) * K, (bajo + 10) * K], 30, 150, fill=_osc(p["camiseta"], 0.75), width=6 * K)
+    if p["traje"]:
+        tc_ = p["traje"]
+        L.poli([(cx - 45, top), (cx, top + 170), (cx + 45, top)], (250, 250, 250))
+        L.poli([(cx - 14, top + 25), (cx + 14, top + 25), (cx + 10, top + 150), (cx, top + 175), (cx - 10, top + 150)],
+               p["corbata"])
+        L.poli([(cx - 45, top), (cx - 5, top + 175), (cx - 70, top + 60)], tc_)
+        L.poli([(cx + 45, top), (cx + 5, top + 175), (cx + 70, top + 60)], tc_)
+    if p["botones"]:
+        L.linea([(cx, top + 30), (cx, bajo)], _osc(p["camiseta"], 0.7), 5, redondo=False)
+        for yy in range(top + 70, int(bajo) - 20, 70):
+            L.elipse((cx + 10, yy - 10, cx + 30, yy + 10), (240, 220, 180))
+    if p["bolsillo"]:
+        L.rect((cx - 70, bajo - 120, cx + 70, bajo - 40), _osc(p["camiseta"], 0.88), r=16)
+    if p["cadena"]:
+        L.d.arc([(cx - 70) * K, (top - 60) * K, (cx + 70) * K, (top + 110) * K], 20, 160, fill=(250, 200, 40), width=10 * K)
+        L.elipse((cx - 16, top + 95, cx + 16, top + 127), (250, 200, 40))
     if p["mancha"]:
         L.elipse((cx + 10, top + 120, cx + 70, top + 165), (170, 120, 60, 200), ol=False)
         L.elipse((cx - 60, top + 190, cx - 25, top + 215), (170, 120, 60, 200), ol=False)
     # cuello de camiseta
-    L.d.chord([(cx - 45) * K, (top - 30) * K, (cx + 45) * K, (top + 40) * K], 0, 180, fill=p["piel"], outline=OUT,
-              width=OL)
+    if not p["traje"]:
+        L.d.chord([(cx - 45) * K, (top - 30) * K, (cx + 45) * K, (top + 40) * K], 0, 180, fill=p["piel"],
+                  outline=OUT, width=OL)
     if delante:
         pintar_brazos()
     # manos y objetos
@@ -344,7 +384,7 @@ def dibujar_personaje(p, expr="neutro", accion="quieto", boca_abierta=False, par
 # ---------------------------------------------------------------------------
 # Fondos
 # ---------------------------------------------------------------------------
-SUELO = {"dormitorio": 1720, "espejo": 1800, "rayos": 1760, "gimnasio": 1720, "parque": 1740, "movil": 1900,
+SUELO = {"bar": 1700, "dormitorio": 1720, "espejo": 1800, "rayos": 1760, "gimnasio": 1720, "parque": 1740, "movil": 1900,
          "calle": 1740, "plano": 1760}
 
 
@@ -405,6 +445,28 @@ def fondo(nombre, variante=0):
         L.rect((870, 1790, 920, 1860), (60, 160, 230), r=10)
         # alfombra
         L.elipse((220, 1620, 860, 1820), (190, 80, 90), ol=False)
+    elif nombre == "bar":
+        L.d.rectangle([0, 0, W * K, H * K], fill=(235, 150, 80))
+        for x in range(0, W, 100):
+            L.d.rectangle([x * K, 0, (x + 50) * K, 1150 * K], fill=(225, 140, 72))
+        L.rect((90, 120, 990, 330), (120, 40, 40), r=24)
+        L.texto((540, 200), "BAR PACO", 120, (255, 220, 120), F_CARTOON, borde=6)
+        L.texto((540, 295), "DESDE 1985", 44, (255, 240, 200), F_TITULAR)
+        for fila, y in enumerate((520, 760)):
+            L.rect((60, y, 1020, y + 30), (120, 75, 45), r=6)
+            for i in range(9):
+                x = 110 + i * 105
+                col = [(70, 140, 70), (150, 50, 50), (230, 190, 80), (60, 90, 160)][(i + fila) % 4]
+                L.rect((x - 22, y - 150, x + 22, y), col, r=10)
+                L.rect((x - 9, y - 195, x + 9, y - 145), col, r=4)
+                L.rect((x - 16, y - 95, x + 16, y - 55), (245, 235, 210), r=3, ol=False)
+        L.d.rectangle([0, 1150 * K, W * K, H * K], fill=(110, 70, 45))
+        for x in range(0, W, 120):
+            L.d.line([x * K, 1150 * K, x * K, H * K], fill=(90, 55, 35), width=5 * K)
+        L.rect((-20, 1500, W + 20, 1560), (150, 95, 60), r=10)
+        L.d.rectangle([0, 1560 * K, W * K, H * K], fill=(95, 60, 40))
+        for x in range(60, W, 240):
+            L.rect((x, 1600, x + 120, 1900), (120, 78, 50), r=12)
     elif nombre == "espejo":
         L.d.rectangle([0, 0, W * K, H * K], fill=(170, 220, 230))
         for x in range(0, W, 120):
@@ -564,6 +626,31 @@ def panel_stats(stats, prog):
         if val > 0:
             L.rect((360, y + 5, 360 + 400 * max(val, 4) / 100, y + 55), colores[i % 4], r=25, ol=False)
         L.texto((830, y + 30), f"{int(round(val))}", 54, (255, 255, 255), F_TITULAR)
+    return L.final()
+
+
+def _euros(v):
+    entero = int(v)
+    cent = int(round((v - entero) * 100))
+    if cent == 100:
+        entero, cent = entero + 1, 0
+    return f"{entero:,}".replace(",", ".") + f",{cent:02d} €"
+
+
+def panel_dinero(desde, hasta, meta, prog):
+    """Contador de dinero tipo videojuego con barra hacia la meta."""
+    val = desde + (hasta - desde) * prog
+    L = Lienzo(900, 330)
+    L.rect((10, 10, 890, 320), (25, 30, 40, 240), r=40)
+    L.elipse((50, 50, 170, 170), (250, 200, 40))
+    L.texto((110, 112), "€", 80, (180, 120, 10), F_CARTOON)
+    color = (110, 230, 120) if val >= 0 else (240, 80, 80)
+    L.texto((530, 112), _euros(val), 104, color, F_CARTOON, borde=4)
+    L.rect((50, 210, 850, 260), (60, 60, 80), r=25, ol=False)
+    frac = max(0.0, min(1.0, val / meta))
+    if frac > 0:
+        L.rect((50, 210, 50 + max(50, 800 * frac), 260), (110, 230, 120), r=25, ol=False)
+    L.texto((450, 293), f"META: {_euros(meta)[:-5]} €", 40, (255, 255, 255), F_TITULAR)
     return L.final()
 
 

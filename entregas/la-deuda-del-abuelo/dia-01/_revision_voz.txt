@@ -1,0 +1,45 @@
+[OK ] 88%
+  guion: El abuelo de Leo debe diez mil euros.
+  oído:  El abuelo de Leo debe diez cero euros.
+[OK ] 99%
+  guion: Y se los debe a Don Ramiro, el hombre más rico del barrio.
+  oído:  Se los debe a Don Ramiro, el hombre más rico del barrio.
+[OK ] 100%
+  guion: Treinta días, Paco. Si no me pagas, el bar es mío.
+  oído:  treinta días, Paco. Si no me pagas, el bar es mío.
+[OK ] 100%
+  guion: El bar del abuelo lleva cuarenta años abierto.
+  oído:  El bar del abuelo lleva cuarenta años abierto.
+[OK ] 100%
+  guion: Es toda su vida.
+  oído:  es toda su vida.
+[OK ] 100%
+  guion: Leo, su nieto, tiene diecisiete años.
+  oído:  Leo su nieto tiene diecisiete años.
+[OK ] 97%
+  guion: En el banco tiene… tres euros. Y veinte céntimos.
+  oído:  El banco tiene tres euros y veinte céntimos.
+[OK ] 95%
+  guion: Abuelo, tranquilo. Yo consigo ese dinero.
+  oído:  Vuelo tranquilo, yo consigo ese dinero.
+[OK ] 85%
+  guion: ¿Tú? ¿Y de dónde vas a sacar diez mil euros?
+  oído:  ¿Y de dónde vas a sacar diez cero euros?
+[OK ] 100%
+  guion: Leo no tiene ni idea.
+  oído:  Leo no tiene ni idea.
+[OK ] 100%
+  guion: Pero tiene treinta días.
+  oído:  pero tiene treinta días.
+[OK ] 100%
+  guion: ¿Cómo empieza Leo?
+  oído:  ¿Cómo empieza Leo?
+[OK ] 98%
+  guion: A: Vende todo lo que tiene
+  oído:  ¡Ah, vende todo lo que tiene!
+[OK ] 94%
+  guion: B: Le pide trabajo a Don Ramiro
+  oído:  Pele pide trabajo a Don Ramiro.
+[OK ] 94%
+  guion: Comenta A o B. Lo más votado pasa mañana.
+  oído:  Comenta o ve lo más votado pasa mañana.

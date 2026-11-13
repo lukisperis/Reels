@@ -11,15 +11,14 @@ dinámicos y un final interactivo A/B que decide el siguiente episodio.
 - `publicar.md` → títulos, descripción, hashtags y comentario fijado para cada red.
 - `guion.txt` → el guion en texto.
 
-## Serie activa: *La boda de mi ex* (30 días, dibujos animados)
-Tito tiene 30 días para llegar irreconocible a la boda de su ex. El público decide cada paso de su
-glow up. Ver `series/la-boda-de-mi-ex/biblia.md`. Los personajes se dibujan por código
-(`fabrica/caricatura.py`), así que son idénticos en todos los episodios.
+## Serie activa: *La deuda del abuelo* (30 días, dibujos animados)
+El abuelo de Leo debe 10.000 € a Don Ramiro y, si no paga en 30 días, pierde su bar. El público decide
+cada paso de Leo. Ver `series/la-deuda-del-abuelo/biblia.md`.
 
-En pausa: *Cartas del futuro* (estilo cine, `series/cartas-del-futuro/`).
+**Cómo funciona:** subes el episodio, miras qué gana en comentarios (A o B) y se lo dices a Claude:
+"Ganó la A" → Claude hace el día siguiente.
 
-**Tu única tarea diaria:** subir el vídeo y apuntar qué ganó (A o B) en
-`series/la-boda-de-mi-ex/decisiones.md` (o decírmelo en el chat).
+En pausa: *La boda de mi ex* y *Cartas del futuro*.
 
 ## Generar a mano
 ```bash
