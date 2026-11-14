@@ -1,6 +1,6 @@
 # La deuda del abuelo — Día 2/30
 
-Duración: 61 s · Formato 1080x1920 · Listo para YouTube Shorts, TikTok e Instagram Reels.
+Duración: 60 s · Formato 1080x1920 · Listo para YouTube Shorts, TikTok e Instagram Reels.
 
 ## YouTube Shorts
 **Título:** Trabaja para el hombre que quiere quitarle el bar a su abuelo 😳 Día 2/30 #shorts
@@ -24,9 +24,9 @@ Votasteis B y Leo acabó lavando los 7 coches de Don Ramiro… para cobrar 10 �
 🅰️ se lo cuenta al abuelo · 🅱️ sigue espiando a Ramiro. Mañana DÍA 3 👀 ¡Suscríbete!
 
 ## Encuesta (Stories de Instagram / comunidad de YouTube)
-¿Qué hace Leo?
-- A) Se lo cuenta al abuelo
-- B) Sigue trabajando para espiar a Ramiro
+¿Qué hace Leo mañana?
+- A) Contárselo al abuelo
+- B) Espiar a Ramiro
 
 ## Checklist al subir
 - [ ] Portada: `portada.jpg` (en TikTok/Reels elige el fotograma de portada o súbela).

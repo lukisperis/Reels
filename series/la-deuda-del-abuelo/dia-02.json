@@ -212,7 +212,7 @@
      "texto": "¡JA, JA!",
      "en": 0.6,
      "sfx": "boing",
-     "y": 0.33,
+     "y": 0.26,
      "rot": 6
     }
    }
@@ -249,7 +249,7 @@
   },
   {
    "voz": "LEO",
-   "texto": "¡Hecho!",
+   "texto": "¡Trato hecho, Don Ramiro!",
    "sfx": [
     "brillo"
    ],
@@ -304,7 +304,7 @@
      "texto": "¡7 COCHES!",
      "en": 1.0,
      "sfx": "bocina",
-     "y": 0.4
+     "y": 0.26
     }
    }
   },
@@ -336,7 +336,7 @@
      "texto": "¡FROTA!",
      "en": 0.2,
      "sfx": "pop",
-     "y": 0.4,
+     "y": 0.26,
      "rot": -6
     }
    }
@@ -370,7 +370,7 @@
      "texto": "¡10/10!",
      "en": 0.8,
      "sfx": "brillo",
-     "y": 0.4,
+     "y": 0.26,
      "color": [
       110,
       230,
@@ -509,7 +509,7 @@
      "texto": "-90 €",
      "en": 0.2,
      "sfx": "golpe",
-     "y": 0.4,
+     "y": 0.26,
      "color": [
       240,
       70,
@@ -599,7 +599,7 @@
      "texto": "¡¿QUÉ?!",
      "en": 0.0,
      "sfx": "golpe",
-     "y": 0.38
+     "y": 0.26
     }
    }
   },
@@ -642,7 +642,7 @@
      "expresion": "decidido",
      "accion": "cruzados",
      "escala": 1.0,
-     "y": 1900
+     "y": 1980
     }
    ]
   }

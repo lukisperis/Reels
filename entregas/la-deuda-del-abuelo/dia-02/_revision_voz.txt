@@ -1,54 +1,57 @@
 [OK ] 100%
-  guion: Ganó la B. Y Leo fue a pedirle trabajo a Don Ramiro.
-  oído:  Ganó la B y Leo fue a pedirle trabajo a Don Ramiro.
-[OK ] 100%
-  guion: Don Ramiro, necesito trabajo. Lo que sea.
-  oído:  Don Ramiro, necesito trabajo, lo que sea.
-[OK ] 100%
-  guion: ¿Trabajo? ¿Para ti?
-  oído:  trabajo para ti
-[OK ] 100%
-  guion: Vale. Te pago cien euros al día. Por lavar mis coches.
-  oído:  Vale, te pago cien euros al día, por lavar mis coches.
-[OK ] 100%
-  guion: ¡Trato hecho!
-  oído:  Trato hecho.
-[OK ] 100%
-  guion: Lo que no le dijo es que tiene siete coches.
-  oído:  lo que no le dijo es que tiene siete coches.
-[OK ] 98%
-  guion: Ocho horas frotando sin parar.
-  oído:  ocho horas rotando sin parar
-[OK ] 100%
-  guion: Muy bien, chaval. Aquí tienes tus cien euros.
-  oído:  Muy bien chaval, aquí tienes tus cien euros.
-[OK ] 100%
-  guion: Menos cincuenta por el agua. Y cuarenta por el jabón.
-  oído:  menos cincuenta por el agua y cuarenta por el jabón.
-[OK ] 100%
-  guion: Pero al salir, Leo vio un papel en la mesa de Ramiro.
-  oído:  Pero al salir, Leo vio un papel en la mesa de Ramiro.
-[OK ] 100%
-  guion: Y le hizo una foto.
-  oído:  y le hizo una foto.
-[OK ] 99%
-  guion: ¿Quiere tirar el bar del abuelo… para hacer un parking?
-  oído:  ¿Quieres tirar el bar del abuelo para hacer un parking?
+  guion: Opción B. Leo va a pedir trabajo… al enemigo.
+  oído:  Opción B Leo va a pedir trabajo al enemigo.
 [OK ] 96%
-  guion: Fin del día dos. Leo tiene trece euros… y un secreto.
-  oído:  fin del día dos Leo tiene tres euros y un secreto.
+  guion: ¿Trabajo? ¿Tú? ¡Ja!
+  oído:  Trabajo tu jar.
 [OK ] 100%
-  guion: ¿Qué hace Leo?
-  oído:  ¿Qué hace Leo?
-[OK ] 92%
-  guion: A: Se lo cuenta al abuelo
-  oído:  Ah, se lo cuenta el abuelo.
-[OK ] 93%
-  guion: B: Sigue trabajando para espiar a Ramiro
-  oído:  Cata sigue trabajando para espiar a Ramiro.
-[OK ] 92%
-  guion: Comenta A o B. Lo más votado pasa en el día tres.
-  oído:  Comentado ver lo más votado pasa en el día tres
+  guion: Cien euros al día. Por lavar mis coches.
+  oído:  cien euros al día, por lavar mis coches.
 [OK ] 100%
-  guion: Mañana, día tres. Suscríbete para no perdértelo.
-  oído:  Mañana día tres Suscríbete para no perdértelo.
+  guion: ¡Trato hecho, Don Ramiro!
+  oído:  Trato hecho don Ramiro.
+[OK ] 100%
+  guion: Pero… tiene siete coches.
+  oído:  Pero tiene siete coches.
+[OK ] 86%
+  guion: Ocho horas. Frota que frota.
+  oído:  ¡Ucho horas, flota que flota!
+[OK ] 100%
+  guion: Coche siete. Brillante.
+  oído:  Coche, siete brillante.
+[OK ] 100%
+  guion: Hora de cobrar.
+  oído:  hora de cobrar.
+[OK ] 100%
+  guion: Cien euros. Menos el agua. Y menos el jabón.
+  oído:  cien euros, menos el agua y menos el jabón.
+[OK ] 100%
+  guion: Diez euros. Ocho horas.
+  oído:  diez euros, ocho horas.
+[OK ] 100%
+  guion: Pero en la mesa… un papel.
+  oído:  pero en la mesa un papel
+[OK ] 100%
+  guion: Foto.
+  oído:  ¡Foto!
+[OK ] 100%
+  guion: ¿Un parking? ¿En el bar del abuelo?
+  oído:  un parking en el bar del abuelo.
+[OK ] 100%
+  guion: ¿Y el abuelo? No sabe nada.
+  oído:  y el abuelo no sabe nada.
+[OK ] 100%
+  guion: ¿Qué hace Leo mañana?
+  oído:  ¿Qué hace Leo mañana?
+[OK ] 100%
+  guion: A: Contárselo al abuelo
+  oído:  a contárselo al abuelo.
+[OK ] 96%
+  guion: B: Espiar a Ramiro
+  oído:  espiar a Ramiro.
+[OK ] 90%
+  guion: Comenta A o B.
+  oído:  Comenta a UB
+[OK ] 100%
+  guion: Mañana, día tres. ¡Suscríbete!
+  oído:  Mañana, día tres suscríbete.

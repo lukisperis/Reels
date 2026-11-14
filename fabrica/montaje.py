@@ -458,7 +458,7 @@ def _plano_cartoon(c, t, ep, sobres, cache, rng):
         if k not in cache:
             cache[k] = caricatura.ticket(tk, n, sello)
         ent = facil(tl / 0.25)
-        pegar_centrado(frame, cache[k], W * tk.get("x", 0.72), H * tk.get("y", 0.42) + 120 * (1 - ent), 0.9)
+        pegar_centrado(frame, cache[k], W * tk.get("x", 0.72), H * tk.get("y", 0.42) + 120 * (1 - ent), tk.get("escala", 1.25))
     if "humo" in b["esc"].get("efecto", []) and tl < 0.7:
         hm = caricatura.humo(tl)
         if hm is not None:
@@ -557,7 +557,7 @@ def _tarjetas_ab(frame, t, ep, partes, cache):
         if "preg" not in cache:
             cache["preg"] = texto_img(partir_lineas(el.get("titulo", el["pregunta"]).upper().split(), 84, 940), 84,
                                       {}, borde=10, ruta=caricatura.F_CARTOON)
-        pegar_centrado(frame, cache["preg"], W / 2, 500, 0.8 + 0.2 * facil((t - p["t0"]) / 0.12))
+        pegar_centrado(frame, cache["preg"], W / 2, 470, 0.8 + 0.2 * facil((t - p["t0"]) / 0.12))
     for clave, color, x in (("A", (230, 60, 70), 0.27), ("B", (40, 120, 255), 0.73)):
         pa = partes[clave]
         if t < pa["t0"] - 0.05:
@@ -569,11 +569,11 @@ def _tarjetas_ab(frame, t, ep, partes, cache):
         rebote = (0.5 + 0.5 * facil(dt / 0.12)) * (1 + 0.1 * math.exp(-dt / 0.1) * math.cos(dt * 30))
         rot = -5 if clave == "A" else 5
         capa = cache[k].rotate(rot + 2 * math.sin(t * 3), resample=Image.BICUBIC, expand=True)
-        pegar_centrado(frame, capa, W * x, 860, rebote)
+        pegar_centrado(frame, capa, W * x, 800, rebote)
     if t >= partes["B"]["t0"]:
         if "vs" not in cache:
             cache["vs"] = texto_img([["VS"]], 120, {0: (255, 220, 40)}, borde=10, ruta=caricatura.F_CARTOON)
-        pegar_centrado(frame, cache["vs"], W / 2, 860, 1 + 0.08 * math.sin(t * 8))
+        pegar_centrado(frame, cache["vs"], W / 2, 800, 1 + 0.08 * math.sin(t * 8))
     c = partes["cta"]
     if t >= c["t0"]:
         if "cta" not in cache:

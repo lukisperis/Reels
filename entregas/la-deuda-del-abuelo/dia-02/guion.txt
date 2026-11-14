@@ -1,20 +1,21 @@
 La deuda del abuelo — Día 2: Trabajando para el enemigo
 
-[01] (narrador) Ganó la B. Y Leo fue a pedirle trabajo a Don Ramiro.
-[02] (LEO) Don Ramiro, necesito trabajo. Lo que sea.
-[03] (RAMIRO) ¿Trabajo? ¿Para ti?
-[04] (RAMIRO) Vale. Te pago cien euros al día. Por lavar mis coches.
-[05] (LEO) ¡Trato hecho!
-[06] (narrador) Lo que no le dijo es que tiene siete coches.
-[07] (narrador) Ocho horas frotando sin parar.
-[08] (RAMIRO) Muy bien, chaval. Aquí tienes tus cien euros.
-[09] (RAMIRO) Menos cincuenta por el agua. Y cuarenta por el jabón.
-[10] (narrador) Pero al salir, Leo vio un papel en la mesa de Ramiro.
-[11] (narrador) Y le hizo una foto.
-[12] (LEO) ¿Quiere tirar el bar del abuelo… para hacer un parking?
-[13] (narrador) Fin del día dos. Leo tiene trece euros… y un secreto.
+[01] (narrador) Opción B. Leo va a pedir trabajo… al enemigo.
+[02] (RAMIRO) ¿Trabajo? ¿Tú? ¡Ja!
+[03] (RAMIRO) Cien euros al día. Por lavar mis coches.
+[04] (LEO) ¡Trato hecho, Don Ramiro!
+[05] (narrador) Pero… tiene siete coches.
+[06] (narrador) Ocho horas. Frota que frota.
+[07] (narrador) Coche siete. Brillante.
+[08] (narrador) Hora de cobrar.
+[09] (RAMIRO) Cien euros. Menos el agua. Y menos el jabón.
+[10] (narrador) Diez euros. Ocho horas.
+[11] (narrador) Pero en la mesa… un papel.
+[12] (narrador) Foto.
+[13] (LEO) ¿Un parking? ¿En el bar del abuelo?
+[14] (narrador) ¿Y el abuelo? No sabe nada.
 
-FINAL: ¿Qué hace Leo?
-  A) Se lo cuenta al abuelo
-  B) Sigue trabajando para espiar a Ramiro
-  Comenta A o B. Lo más votado pasa en el día tres.
+FINAL: ¿Qué hace Leo mañana?
+  A) Contárselo al abuelo
+  B) Espiar a Ramiro
+  Comenta A o B.

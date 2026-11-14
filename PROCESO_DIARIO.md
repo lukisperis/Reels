@@ -29,6 +29,19 @@ Mismo esquema que `dia-01.json`. 11–16 escenas, 35–60 s. Empieza con "Votast
 **Voces:** usa siempre el motor `chatterbox` con las referencias de `fabrica/voces_ref/` (ver la
 biblia de la serie). Generar la voz tarda ~30 s por frase; se guarda en caché (`.cache/tts`).
 
+**Estilo de narración (como el vídeo de referencia):** frases de 1–5 palabras, a golpes: "Día tres.
+Al gimnasio. Todo mal." Nunca líneas de una sola palabra para Chatterbox (se inventa sílabas): mínimo
+3 palabras por escena. Notas "¡2/10!", "¡10/10!", cifras "-90 €" como onomatopeya (y ≈ 0.26).
+
+**Marcador (HUD) automático:** días restantes, barra `barra` (por defecto "DEUDA PAGADA"), dinero
+(empieza en `dinero_inicial` y cambia con `dinero` [antes, después] + `dinero_en`) y `lugar` del plano.
+
+**Elementos nuevos del plano:** `lugar` (texto de la etiqueta), `ticket` `{titulo, lineas:[[concepto,
+precio]], total, tiempos, sello, sello_en, x, y}`, `panel_dinero: true` (panel grande), personajes con
+`brillos` (cambio a mejor) y `piensa: "ID"` (bocadillo con la cara de otro). Efecto de escena `humo`
+(transición con nube). `eleccion.plano` = plano de fondo para las tarjetas A vs B.
+Sonidos: `kaching`, `brillo`, `bocina`, `puf`, `camara` además de los anteriores.
+
 **Escena (estilo cartoon):** `texto`, `voz` (`narrador` o el id de un personaje con voz en `voces`),
 `efecto` (`shake`, `flash`), `sfx`, `pausa` y un `plano`:
 - `fondo`: `bar`, `dormitorio`, `movil`, `rayos` (+`variante` 0–3 = amarillo/azul/rosa/verde), `espejo`,
