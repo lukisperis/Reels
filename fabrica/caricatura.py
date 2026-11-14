@@ -392,7 +392,7 @@ def dibujar_personaje(p, expr="neutro", accion="quieto", boca_abierta=False, par
 # ---------------------------------------------------------------------------
 # Fondos
 # ---------------------------------------------------------------------------
-SUELO = {"bar": 1700, "dormitorio": 1720, "espejo": 1800, "rayos": 1760, "gimnasio": 1720, "parque": 1740, "movil": 1900,
+SUELO = {"despacho": 1700, "garaje": 1780, "bar": 1700, "dormitorio": 1720, "espejo": 1800, "rayos": 1760, "gimnasio": 1720, "parque": 1740, "movil": 1900,
          "calle": 1740, "plano": 1760}
 
 
@@ -475,6 +475,50 @@ def fondo(nombre, variante=0):
         L.d.rectangle([0, 1560 * K, W * K, H * K], fill=(95, 60, 40))
         for x in range(60, W, 240):
             L.rect((x, 1600, x + 120, 1900), (120, 78, 50), r=12)
+    elif nombre == "despacho":
+        L.d.rectangle([0, 0, W * K, H * K], fill=(95, 55, 120))
+        for x in range(0, W, 110):
+            L.d.rectangle([x * K, 0, (x + 55) * K, 1250 * K], fill=(105, 62, 132))
+        # cuadro dorado con la "R"
+        L.rect((340, 200, 740, 640), (230, 180, 50), r=10)
+        L.rect((375, 235, 705, 605), (60, 30, 80), r=6)
+        L.texto((540, 430), "R", 260, (240, 200, 60), F_CARTOON, borde=6)
+        # caja fuerte
+        L.rect((790, 760, 1040, 1150), (130, 135, 150), r=16)
+        L.elipse((860, 880, 970, 990), (90, 95, 110))
+        L.linea([(915, 935), (950, 905)], OUT, 8)
+        L.rect((800, 1150, 1030, 1190), (90, 95, 110), r=6)
+        # billetes
+        for i, (x, y) in enumerate(((80, 1080), (150, 1050), (110, 1010), (200, 1090))):
+            L.rect((x, y, x + 150, y + 60), (90, 180, 90), r=6)
+            L.elipse((x + 55, y + 12, x + 95, y + 48), (60, 140, 60), ol=False)
+        L.d.rectangle([0, 1250 * K, W * K, H * K], fill=(140, 30, 50))
+        for y in range(1250, H, 90):
+            L.d.line([0, y * K, W * K, y * K], fill=(120, 25, 42), width=4 * K)
+        # mesa delante
+        L.rect((-20, 1560, W + 20, 1640), (80, 45, 25), r=10)
+        L.rect((40, 1640, 140, H + 20), (70, 40, 22), r=6)
+        L.rect((940, 1640, 1040, H + 20), (70, 40, 22), r=6)
+        L.rect((700, 1470, 790, 1560), (230, 180, 50), r=8)
+        L.poli([(660, 1480), (830, 1480), (790, 1400), (700, 1400)], (250, 220, 120))
+    elif nombre == "garaje":
+        L.d.rectangle([0, 0, W * K, H * K], fill=(180, 185, 195))
+        for y in range(120, 1100, 160):
+            L.d.line([0, y * K, W * K, y * K], fill=(160, 165, 175), width=6 * K)
+        L.rect((80, 140, 1000, 300), (40, 40, 50), r=20)
+        L.texto((540, 222), "GARAJE RAMIRO", 84, (240, 200, 60), F_CARTOON)
+        L.d.rectangle([0, 1100 * K, W * K, H * K], fill=(110, 112, 120))
+        for x in range(-200, W, 260):
+            L.d.line([x * K, H * K, (x + 400) * K, 1100 * K], fill=(100, 102, 110), width=6 * K)
+        # coche de lujo
+        L.poli([(120, 1080), (300, 900), (720, 890), (900, 1060), (1010, 1090), (1010, 1300), (70, 1300), (70, 1120)],
+               (220, 40, 50))
+        L.poli([(330, 920), (500, 915), (500, 1060), (230, 1065)], (150, 210, 240))
+        L.poli([(530, 915), (700, 912), (840, 1060), (530, 1060)], (150, 210, 240))
+        L.rect((930, 1150, 1010, 1200), (255, 240, 150), r=10)
+        for x in (250, 830):
+            L.elipse((x - 105, 1210, x + 105, 1420), (35, 35, 40))
+            L.elipse((x - 50, 1265, x + 50, 1365), (200, 200, 210))
     elif nombre == "espejo":
         L.d.rectangle([0, 0, W * K, H * K], fill=(170, 220, 230))
         for x in range(0, W, 120):
@@ -659,6 +703,16 @@ def panel_dinero(desde, hasta, meta, prog):
     if frac > 0:
         L.rect((50, 210, 50 + max(50, 800 * frac), 260), (110, 230, 120), r=25, ol=False)
     L.texto((450, 293), f"META: {_euros(meta)[:-5]} €", 40, (255, 255, 255), F_TITULAR)
+    return L.final()
+
+
+def boton_suscribete():
+    L = Lienzo(800, 190)
+    L.rect((10, 10, 790, 180), (230, 30, 40), r=40)
+    L.texto((440, 98), "SUSCRÍBETE", 96, (255, 255, 255), F_CARTOON, borde=4, borde_color=(120, 0, 10))
+    # campana
+    L.poli([(70, 140), (85, 110), (85, 70), (110, 45), (140, 45), (165, 70), (165, 110), (180, 140)], (255, 210, 60))
+    L.elipse((112, 135, 138, 160), (255, 210, 60))
     return L.final()
 
 

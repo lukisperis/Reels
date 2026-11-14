@@ -506,6 +506,20 @@ def _avance(frame, t, ep, partes, cache):
                    0.9 * (0.7 + 0.3 * facil((dt - 0.1) / 0.25)) * (1 + 0.03 * math.sin(dt * 7)), min(1, dt / 0.2))
     if "av_p" in cache and dt > 0.35:
         pegar_centrado(frame, cache["av_p"], W / 2, 900, 0.8 + 0.2 * facil((dt - 0.35) / 0.15))
+    if av.get("suscribete"):
+        t_s = av.get("suscribete_en", 1.2)
+        if dt > t_s:
+            if "av_sub" not in cache:
+                cache["av_sub"] = caricatura.boton_suscribete()
+            ds = dt - t_s
+            pulso = (0.6 + 0.4 * facil(ds / 0.2)) * (1 + 0.06 * abs(math.sin(ds * 5)))
+            pegar_centrado(frame, cache["av_sub"], W / 2, 1640, pulso)
+            # dedo que pulsa (círculo que se encoge al tocar)
+            fase = (ds % 1.2) / 1.2
+            r = int(70 - 35 * min(1, fase / 0.3))
+            a = int(200 * (1 - fase))
+            ImageDraw.Draw(frame).ellipse((W / 2 + 230 - r, 1660 - r, W / 2 + 230 + r, 1660 + r),
+                                          outline=(255, 255, 255, a), width=8)
 
 
 def _tarjeta_final(frame, t, ep, partes, cache):

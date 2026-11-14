@@ -68,10 +68,13 @@ def _piper(texto, cfg):
     if k not in _cache:
         _cache[k] = PiperVoice.load(str(VOCES_DIR / f"{cfg['modelo']}.onnx"))
     v = _cache[k]
-    sc = SynthesisConfig(speaker_id=cfg.get("speaker"), length_scale=cfg.get("ritmo", 0.9))
+    tono = cfg.get("tono", 1.0)          # >1 más agudo (joven), <1 más grave (mayor)
+    sc = SynthesisConfig(speaker_id=cfg.get("speaker"), length_scale=cfg.get("ritmo", 0.9) * tono,
+                         noise_scale=cfg.get("expresividad", 0.75), noise_w_scale=0.85)
     a = np.concatenate([c.audio_float_array for c in v.synthesize(texto, sc)])
     sr = v.config.sample_rate
-    return _remuestrear(_recortar_silencio(a, sr), sr, SR)
+    # cambio de tono manteniendo la duración: se sintetiza más lento y se reproduce más rápido
+    return _remuestrear(_recortar_silencio(a, sr), sr * tono, SR)
 
 
 # ---------------------------------------------------------------------------

@@ -1,0 +1,589 @@
+{
+ "serie": "la-deuda-del-abuelo",
+ "serie_titulo": "La deuda del abuelo",
+ "estilo": "cartoon",
+ "episodio": 2,
+ "total": 30,
+ "meta": 10000,
+ "titulo": "Trabajando para el enemigo",
+ "gancho": "Leo va a trabajar para el enemigo",
+ "portada": "Trabaja para el enemigo",
+ "musica": "comedia",
+ "voces": {
+  "narrador": {
+   "motor": "piper",
+   "modelo": "es_ES-davefx-medium",
+   "ritmo": 0.92
+  },
+  "LEO": {
+   "motor": "piper",
+   "modelo": "es_ES-sharvard-medium",
+   "speaker": 0,
+   "ritmo": 0.9,
+   "tono": 1.12
+  },
+  "RAMIRO": {
+   "motor": "piper",
+   "modelo": "es_ES-davefx-medium",
+   "ritmo": 1.0,
+   "tono": 0.82
+  },
+  "ABUELO": {
+   "motor": "piper",
+   "modelo": "es_ES-sharvard-medium",
+   "speaker": 0,
+   "ritmo": 1.12,
+   "tono": 0.9
+  }
+ },
+ "personajes": {
+  "LEO": {
+   "piel": [
+    240,
+    190,
+    150
+   ],
+   "pelo": [
+    90,
+    55,
+    30
+   ],
+   "estilo_pelo": "rizos",
+   "camiseta": [
+    70,
+    170,
+    120
+   ],
+   "pantalon": [
+    60,
+    70,
+    110
+   ],
+   "cuerpo": "normal",
+   "bolsillo": true
+  },
+  "ABUELO": {
+   "piel": [
+    245,
+    200,
+    170
+   ],
+   "pelo": [
+    225,
+    225,
+    230
+   ],
+   "estilo_pelo": "calvo",
+   "bigote": true,
+   "gafas": true,
+   "arrugas": true,
+   "camiseta": [
+    150,
+    110,
+    80
+   ],
+   "pantalon": [
+    90,
+    80,
+    70
+   ],
+   "botones": true,
+   "cuerpo": "gordo",
+   "zapatos": [
+    80,
+    50,
+    30
+   ],
+   "suela": [
+    50,
+    30,
+    20
+   ]
+  },
+  "RAMIRO": {
+   "piel": [
+    235,
+    185,
+    150
+   ],
+   "pelo": [
+    25,
+    25,
+    30
+   ],
+   "estilo_pelo": "engominado",
+   "bigote": true,
+   "camiseta": [
+    70,
+    40,
+    90
+   ],
+   "traje": [
+    70,
+    40,
+    90
+   ],
+   "corbata": [
+    230,
+    190,
+    40
+   ],
+   "cadena": true,
+   "pantalon": [
+    70,
+    40,
+    90
+   ],
+   "cuerpo": "gordo",
+   "zapatos": [
+    30,
+    30,
+    30
+   ],
+   "suela": [
+    20,
+    20,
+    20
+   ]
+  }
+ },
+ "escenas": [
+  {
+   "texto": "Ganó la B. Y Leo fue a pedirle trabajo a Don Ramiro.",
+   "sfx": [
+    "pop"
+   ],
+   "plano": {
+    "fondo": "despacho",
+    "zoom": 1.05,
+    "zoom_fin": 1.15,
+    "foco": [
+     0.5,
+     0.55
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.28,
+      "expresion": "decidido",
+      "escala": 1.05,
+      "entra": "izquierda"
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.7,
+      "expresion": "chulo",
+      "escala": 1.1
+     }
+    ]
+   }
+  },
+  {
+   "voz": "LEO",
+   "texto": "Don Ramiro, necesito trabajo. Lo que sea.",
+   "plano": {
+    "fondo": "despacho",
+    "zoom": 1.3,
+    "zoom_fin": 1.38,
+    "foco": [
+     0.33,
+     0.48
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.28,
+      "expresion": "decidido",
+      "habla": true,
+      "escala": 1.05
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.7,
+      "expresion": "neutro",
+      "escala": 1.1
+     }
+    ]
+   }
+  },
+  {
+   "voz": "RAMIRO",
+   "texto": "¿Trabajo? ¿Para ti?",
+   "pausa": 0.6,
+   "plano": {
+    "fondo": "despacho",
+    "zoom": 1.3,
+    "zoom_fin": 1.45,
+    "foco": [
+     0.68,
+     0.46
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.28,
+      "expresion": "neutro",
+      "escala": 1.05
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.7,
+      "expresion": "euforia",
+      "habla": true,
+      "escala": 1.1
+     }
+    ],
+    "onomatopeya": {
+     "texto": "¡JA, JA, JA!",
+     "en": 0.9,
+     "sfx": "boing",
+     "y": 0.2,
+     "rot": 6
+    }
+   }
+  },
+  {
+   "voz": "RAMIRO",
+   "texto": "Vale. Te pago cien euros al día. Por lavar mis coches.",
+   "plano": {
+    "fondo": "despacho",
+    "zoom": 1.15,
+    "zoom_fin": 1.25,
+    "foco": [
+     0.55,
+     0.5
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.28,
+      "expresion": "sorpresa",
+      "escala": 1.05
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.7,
+      "expresion": "chulo",
+      "accion": "señalar",
+      "habla": true,
+      "escala": 1.1
+     }
+    ]
+   }
+  },
+  {
+   "voz": "LEO",
+   "texto": "¡Trato hecho!",
+   "sfx": [
+    "ding"
+   ],
+   "pausa": 0.4,
+   "plano": {
+    "fondo": "rayos",
+    "variante": 0,
+    "zoom": 1.2,
+    "foco": [
+     0.5,
+     0.45
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "expresion": "euforia",
+      "accion": "celebrar",
+      "habla": true,
+      "salto": true,
+      "escala": 1.25
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Lo que no le dijo es que tiene siete coches.",
+   "pausa": 0.3,
+   "plano": {
+    "fondo": "garaje",
+    "zoom": 1.0,
+    "zoom_fin": 1.1,
+    "foco": [
+     0.5,
+     0.6
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.5,
+      "expresion": "sorpresa",
+      "accion": "manos_cara",
+      "escala": 0.95,
+      "y": 1850
+     }
+    ],
+    "onomatopeya": {
+     "texto": "¡7 COCHES!",
+     "en": 1.6,
+     "sfx": "boing",
+     "y": 0.33
+    }
+   }
+  },
+  {
+   "texto": "Ocho horas frotando sin parar.",
+   "pausa": 0.4,
+   "plano": {
+    "fondo": "garaje",
+    "zoom": 1.35,
+    "zoom_fin": 1.45,
+    "foco": [
+     0.5,
+     0.62
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.5,
+      "expresion": "esfuerzo",
+      "accion": "gesto",
+      "sudor": true,
+      "temblor": true,
+      "escala": 0.95,
+      "y": 1850
+     }
+    ],
+    "onomatopeya": {
+     "texto": "¡FROTA, FROTA!",
+     "en": 0.3,
+     "sfx": "pop",
+     "y": 0.33,
+     "rot": -6
+    }
+   }
+  },
+  {
+   "voz": "RAMIRO",
+   "texto": "Muy bien, chaval. Aquí tienes tus cien euros.",
+   "sfx": [
+    {
+     "nombre": "ding",
+     "en": 1.4
+    }
+   ],
+   "plano": {
+    "fondo": "despacho",
+    "zoom": 1.0,
+    "dinero": [
+     3.2,
+     103.2
+    ],
+    "dinero_y": 480,
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.28,
+      "expresion": "euforia",
+      "escala": 0.95,
+      "y": 1760
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.72,
+      "expresion": "feliz",
+      "habla": true,
+      "escala": 0.95,
+      "y": 1760
+     }
+    ]
+   }
+  },
+  {
+   "voz": "RAMIRO",
+   "texto": "Menos cincuenta por el agua. Y cuarenta por el jabón.",
+   "sfx": [
+    {
+     "nombre": "fracaso",
+     "en": 3.0,
+     "vol": 0.8
+    }
+   ],
+   "pausa": 1.0,
+   "plano": {
+    "fondo": "despacho",
+    "zoom": 1.0,
+    "dinero": [
+     103.2,
+     13.2
+    ],
+    "dinero_y": 480,
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.28,
+      "expresion": "enfadado",
+      "escala": 0.95,
+      "y": 1760
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.72,
+      "expresion": "chulo",
+      "habla": true,
+      "escala": 0.95,
+      "y": 1760
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Pero al salir, Leo vio un papel en la mesa de Ramiro.",
+   "plano": {
+    "fondo": "despacho",
+    "zoom": 1.15,
+    "zoom_fin": 1.3,
+    "foco": [
+     0.45,
+     0.6
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.35,
+      "expresion": "sorpresa",
+      "mirada": [
+       1,
+       1
+      ],
+      "escala": 1.05
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Y le hizo una foto.",
+   "efecto": [
+    "flash"
+   ],
+   "sfx": [
+    "pop"
+   ],
+   "pausa": 1.2,
+   "plano": {
+    "fondo": "movil",
+    "zoom": 1.0,
+    "zoom_fin": 1.12,
+    "foco": [
+     0.5,
+     0.45
+    ],
+    "movil": {
+     "de": "Fotos",
+     "titulo": "CONFIDENCIAL",
+     "lineas": [
+      "PROYECTO: PARKING",
+      "Demoler el Bar Paco",
+      "14 de diciembre"
+     ]
+    }
+   }
+  },
+  {
+   "voz": "LEO",
+   "texto": "¿Quiere tirar el bar del abuelo… para hacer un parking?",
+   "efecto": [
+    "shake"
+   ],
+   "plano": {
+    "fondo": "rayos",
+    "variante": 2,
+    "zoom": 1.3,
+    "foco": [
+     0.5,
+     0.45
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "expresion": "enfadado",
+      "accion": "manos_cara",
+      "habla": true,
+      "temblor": true,
+      "escala": 1.25
+     }
+    ],
+    "onomatopeya": {
+     "texto": "¡¿QUÉ?!",
+     "en": 0.0,
+     "sfx": "golpe",
+     "y": 0.18
+    }
+   }
+  },
+  {
+   "texto": "Fin del día dos. Leo tiene trece euros… y un secreto.",
+   "sfx": [
+    "ding"
+   ],
+   "pausa": 1.2,
+   "plano": {
+    "fondo": "rayos",
+    "variante": 3,
+    "zoom": 1.0,
+    "dia": true,
+    "dinero": [
+     13.2,
+     13.2
+    ],
+    "dinero_y": 900
+   }
+  }
+ ],
+ "eleccion": {
+  "titulo": "¿Qué hace Leo?",
+  "pregunta": "¿Qué hace Leo?",
+  "A": "Se lo cuenta al abuelo",
+  "B": "Sigue trabajando para espiar a Ramiro",
+  "cta": "Comenta A o B. Lo más votado pasa en el día tres."
+ },
+ "avance": {
+  "texto": "Mañana, día tres. Suscríbete para no perdértelo.",
+  "pregunta": "¿Qué más esconde Ramiro?",
+  "personaje": "RAMIRO",
+  "suscribete": true,
+  "suscribete_en": 1.0
+ },
+ "portada_plano": {
+  "fondo": "despacho",
+  "personajes": [
+   {
+    "id": "LEO",
+    "x": 0.3,
+    "expresion": "sorpresa",
+    "accion": "manos_cara",
+    "escala": 1.0,
+    "y": 1500
+   },
+   {
+    "id": "RAMIRO",
+    "x": 0.72,
+    "expresion": "chulo",
+    "escala": 1.0,
+    "y": 1500
+   }
+  ]
+ },
+ "publicar": {
+  "titulo_youtube": "Trabaja para el hombre que quiere quitarle el bar a su abuelo 😳 Día 2/30 #shorts",
+  "titulo_tiktok": "Día 2/30: Leo trabaja para Don Ramiro… y descubre su plan secreto 😱 ¿A o B?",
+  "descripcion": "Votasteis B y Leo acabó lavando los 7 coches de Don Ramiro… para cobrar 10 €. Pero ha descubierto algo. Comenta A o B: lo más votado pasa en el día 3. Suscríbete para no perderte nada.",
+  "hashtags": [
+   "#tudecides",
+   "#animacion",
+   "#historias",
+   "#reto30dias",
+   "#10000euros",
+   "#ladeudadelabuelo",
+   "#fyp",
+   "#parati"
+  ],
+  "comentario_fijado": "🅰️ se lo cuenta al abuelo · 🅱️ sigue espiando a Ramiro. Mañana DÍA 3 👀 ¡Suscríbete!"
+ }
+}

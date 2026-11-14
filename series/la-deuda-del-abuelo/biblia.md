@@ -8,6 +8,11 @@ resultado de la votación, se produce el siguiente día.
 en 30 días, Ramiro se queda con el **Bar Paco** (abierto desde 1985, la vida del abuelo). Leo, su nieto
 de 17 años, tiene 3,20 € y promete conseguir el dinero.
 
+## Voces (desde el día 2: nativas de España, Piper)
+narrador = davefx · LEO = sharvard (tono 1.12, joven) · RAMIRO = davefx (tono 0.82, grave) ·
+ABUELO = sharvard (tono 0.9, lento). Copiar el bloque `voces` de `dia-02.json`. No usar Kokoro
+(suena con acento extranjero).
+
 ## Personajes (copiar `personajes` y `voces` del día 1 en cada episodio)
 - **LEO** — 17 años, rizos, sudadera verde con bolsillo. Ingenioso, cabezota, buen corazón. Voz `LEO`.
 - **ABUELO (Paco)** — calvo con canas a los lados, bigote, gafas, rebeca marrón. Tierno, orgulloso,
@@ -35,4 +40,5 @@ de 17 años, tiene 3,20 € y promete conseguir el dinero.
 ## Historial
 | Día | Título | Decisión al final | Dinero de Leo |
 |-----|--------|-------------------|---------------|
-| 1 | Treinta días | A vende todo / B trabaja para Ramiro | 3,20 € |
+| 1 | Treinta días | A vende todo / B trabaja para Ramiro → **ganó B** | 3,20 € |
+| 2 | Trabajando para el enemigo | Lava 7 coches por 100 € y Ramiro le descuenta 90 €. Descubre el PROYECTO PARKING: demoler el Bar Paco el 14 de diciembre. A contárselo al abuelo / B seguir espiando | 13,20 € |

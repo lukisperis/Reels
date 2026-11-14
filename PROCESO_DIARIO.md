@@ -50,7 +50,7 @@ Mismo esquema que `dia-01.json`. 11–16 escenas, 35–60 s. Empieza con "Votast
 **Estilo cine** (series con `imagenes`): ver `series/cartas-del-futuro/dia-01.json`.
 
 Termina con `eleccion` (A/B), `avance` (cierre "MAÑANA · DÍA N+1" con silueta y gancho:
-`{"texto": "Mañana, día dos. …", "pregunta": "TEXTO CORTO…", "personaje": "RAMIRO"}`; escribe los
+`{"texto": "Mañana, día tres. Suscríbete para no perdértelo.", "pregunta": "TEXTO CORTO…", "personaje": "RAMIRO", "suscribete": true}`; escribe los
 números en letra en `texto`), `portada_plano` y `publicar`.
 
 **Expresividad automática:** quien tiene `"habla": true` gesticula, se balancea y mueve boca y cejas
