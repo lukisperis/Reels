@@ -229,7 +229,32 @@ def alinear(audio, texto):
     return [(w, t[0], t[1]) for w, t in zip(palabras, tiempos)], oido
 
 
+def _parecido(guion, oido):
+    return difflib.SequenceMatcher(None, _norm(guion), _norm(oido or "")).ratio()
+
+
 def sintetizar(texto, voz="narrador"):
+    """Como _sintetizar, pero con Chatterbox reintenta con otra semilla si Whisper no oye el guion."""
+    cfg = VOCES[voz]
+    if cfg.get("motor") != "chatterbox":
+        return _sintetizar(texto, voz)
+    mejor = None
+    for intento in range(4):
+        VOCES[voz] = {**cfg, "semilla": cfg.get("semilla", 7) + intento * 101}
+        try:
+            r = _sintetizar(texto, voz)
+        finally:
+            VOCES[voz] = cfg
+        nota = _parecido(texto, r[2])
+        if mejor is None or nota > mejor[0]:
+            mejor = (nota, r)
+        if nota >= 0.9:
+            break
+        print(f"  · reintento de voz ({nota:.0%}): {texto[:40]}")
+    return mejor[1]
+
+
+def _sintetizar(texto, voz="narrador"):
     """Devuelve (audio float32 @44.1k, [(palabra, t_ini, t_fin), ...], texto_oido_por_whisper)."""
     cfg = VOCES[voz]
     try:

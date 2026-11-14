@@ -15,29 +15,29 @@
   "narrador": {
    "motor": "chatterbox",
    "ref": "mls_8882",
-   "exageracion": 0.9,
-   "cfg": 0.2,
+   "exageracion": 0.65,
+   "cfg": 0.35,
    "tono": 0.85
   },
   "LEO": {
    "motor": "chatterbox",
    "ref": "mls_8882",
-   "exageracion": 0.9,
-   "cfg": 0.2,
+   "exageracion": 0.65,
+   "cfg": 0.35,
    "tono": 0.85
   },
   "RAMIRO": {
    "motor": "chatterbox",
    "ref": "mls_8882",
-   "exageracion": 0.9,
-   "cfg": 0.2,
+   "exageracion": 0.65,
+   "cfg": 0.35,
    "tono": 0.85
   },
   "ABUELO": {
    "motor": "chatterbox",
    "ref": "mls_8882",
-   "exageracion": 0.9,
-   "cfg": 0.2,
+   "exageracion": 0.65,
+   "cfg": 0.35,
    "tono": 0.85
   }
  },
@@ -548,7 +548,7 @@
    }
   },
   {
-   "texto": "Foto.",
+   "texto": "Clic. Una foto.",
    "efecto": [
     "flash"
    ],
