@@ -169,7 +169,7 @@ def construir(ep, carpeta, rapido=False):
             texto = ep["avance"]["texto"]
             t += 0.35                       # pausa antes del avance
         else:
-            texto = el[clave] if clave in ("pregunta", "cta") else f"{clave}: {el[clave]}"
+            texto = el[clave] if clave in ("pregunta", "cta") else f"Opción {clave}. {el[clave]}."
         audio, pal, oido = voz.sintetizar(texto, "narrador")
         revision.append((texto, oido))
         partes_final[clave] = dict(audio=audio, t0=t, pal=[(w, a + t, b + t) for w, a, b in pal])

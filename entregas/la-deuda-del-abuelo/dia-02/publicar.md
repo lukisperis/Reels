@@ -1,6 +1,6 @@
 # La deuda del abuelo — Día 2/30
 
-Duración: 60 s · Formato 1080x1920 · Listo para YouTube Shorts, TikTok e Instagram Reels.
+Duración: 76 s · Formato 1080x1920 · Listo para YouTube Shorts, TikTok e Instagram Reels.
 
 ## YouTube Shorts
 **Título:** Trabaja para el hombre que quiere quitarle el bar a su abuelo 😳 Día 2/30 #shorts

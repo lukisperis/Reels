@@ -1,57 +1,57 @@
-[OK ] 100%
+[OK ] 89%
   guion: Opción B. Leo va a pedir trabajo… al enemigo.
-  oído:  Opción B Leo va a pedir trabajo al enemigo.
-[OK ] 96%
+  oído:  Apreció un bello, va a pedir trabajo al enemigo.
+[OK ] 100%
   guion: ¿Trabajo? ¿Tú? ¡Ja!
-  oído:  Trabajo tu jar.
+  oído:  Trabajo. Tú. Ja.
 [OK ] 100%
   guion: Cien euros al día. Por lavar mis coches.
-  oído:  cien euros al día, por lavar mis coches.
-[OK ] 100%
+  oído:  cien euros al día por lavar mis coches.
+[OK ] 93%
   guion: ¡Trato hecho, Don Ramiro!
-  oído:  Trato hecho don Ramiro.
+  oído:  Trato hecho, don Ramiro. No. M -
 [OK ] 100%
   guion: Pero… tiene siete coches.
   oído:  Pero tiene siete coches.
-[OK ] 86%
+[OK ] 90%
   guion: Ocho horas. Frota que frota.
-  oído:  ¡Ucho horas, flota que flota!
+  oído:  ocho horas, frota que frota, frota.
 [OK ] 100%
   guion: Coche siete. Brillante.
-  oído:  Coche, siete brillante.
-[OK ] 100%
+  oído:  ¡Coche siete brillante!
+[OK ] 96%
   guion: Hora de cobrar.
-  oído:  hora de cobrar.
-[OK ] 100%
+  oído:  hora de cobrar C
+[OK ] 91%
   guion: Cien euros. Menos el agua. Y menos el jabón.
-  oído:  cien euros, menos el agua y menos el jabón.
+  oído:  cien euros, menos el agua y menos el cabón. ¡Veñe!
 [OK ] 100%
   guion: Diez euros. Ocho horas.
-  oído:  diez euros, ocho horas.
+  oído:  diez euros, ocho horas
 [OK ] 100%
   guion: Pero en la mesa… un papel.
-  oído:  pero en la mesa un papel
-[OK ] 100%
-  guion: Foto.
-  oído:  ¡Foto!
+  oído:  Pero en la mesa, un papel.
+[OK ] 96%
+  guion: Clic. Una foto.
+  oído:  ¡Click una foto!
 [OK ] 100%
   guion: ¿Un parking? ¿En el bar del abuelo?
-  oído:  un parking en el bar del abuelo.
+  oído:  un parking en el bar del abuelo
 [OK ] 100%
   guion: ¿Y el abuelo? No sabe nada.
   oído:  y el abuelo no sabe nada.
-[OK ] 100%
+[OK ] 86%
   guion: ¿Qué hace Leo mañana?
-  oído:  ¿Qué hace Leo mañana?
+  oído:  que hace leo mañana, no hay.
 [OK ] 100%
-  guion: A: Contárselo al abuelo
-  oído:  a contárselo al abuelo.
-[OK ] 96%
-  guion: B: Espiar a Ramiro
-  oído:  espiar a Ramiro.
+  guion: Opción A. Contárselo al abuelo.
+  oído:  Opción A. Contárselo al abuelo.
+[OK ] 90%
+  guion: Opción B. Espiar a Ramiro.
+  oído:  Opción P, espía, arvamíro.
 [OK ] 90%
   guion: Comenta A o B.
-  oído:  Comenta a UB
+  oído:  Comenta a OV.
 [OK ] 100%
   guion: Mañana, día tres. ¡Suscríbete!
   oído:  Mañana, día tres suscríbete.

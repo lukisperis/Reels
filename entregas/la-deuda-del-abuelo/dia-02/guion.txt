@@ -11,7 +11,7 @@ La deuda del abuelo — Día 2: Trabajando para el enemigo
 [09] (RAMIRO) Cien euros. Menos el agua. Y menos el jabón.
 [10] (narrador) Diez euros. Ocho horas.
 [11] (narrador) Pero en la mesa… un papel.
-[12] (narrador) Foto.
+[12] (narrador) Clic. Una foto.
 [13] (LEO) ¿Un parking? ¿En el bar del abuelo?
 [14] (narrador) ¿Y el abuelo? No sabe nada.
 

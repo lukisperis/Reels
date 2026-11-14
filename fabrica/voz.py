@@ -248,7 +248,7 @@ def sintetizar(texto, voz="narrador"):
         nota = _parecido(texto, r[2])
         if mejor is None or nota > mejor[0]:
             mejor = (nota, r)
-        if nota >= 0.9:
+        if nota >= 0.86:
             break
         print(f"  · reintento de voz ({nota:.0%}): {texto[:40]}")
     return mejor[1]
