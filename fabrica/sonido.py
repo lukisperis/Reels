@@ -192,5 +192,46 @@ def trombon_triste():
     return np.concatenate(out)
 
 
-SFX = {"ding": ding, "pop": pop, "boing": boing, "catacrac": catacrac, "fracaso": trombon_triste,
+def kaching():
+    """Caja registradora."""
+    tt = _t(0.9)
+    camp = sum(np.sin(2 * np.pi * f * tt) for f in (2093, 2637, 3136)) / 3 * _env(len(tt), 0.002, 0.3)
+    n = int(0.08 * SR)
+    clic = np.pad(_filtro(rng.standard_normal(n).astype(np.float32), lo=1500) * _env(n, 0.001, 0.02), (0, len(tt) - n))
+    return (np.pad(camp[:-int(0.08 * SR)] * 0.6, (int(0.08 * SR), 0)) + clic * 0.5).astype(np.float32)
+
+
+def brillo():
+    """Destellos ascendentes (cambio a mejor)."""
+    out = np.zeros(int(1.0 * SR), np.float32)
+    for i, f in enumerate((1568, 1976, 2349, 2637, 3136)):
+        tt = _t(0.4)
+        nota = np.sin(2 * np.pi * f * tt) * _env(len(tt), 0.002, 0.12) * 0.35
+        i0 = int(i * 0.07 * SR)
+        out[i0:i0 + len(nota)] += nota[: len(out) - i0]
+    return out
+
+
+def bocina():
+    """Error / nota 0 sobre 10."""
+    tt = _t(0.55)
+    x = np.sign(np.sin(2 * np.pi * 110 * tt)) * 0.5 + np.sign(np.sin(2 * np.pi * 116 * tt)) * 0.5
+    return (_filtro(x.astype(np.float32), hi=1200) * _env(len(tt), 0.005, 0.5) * 0.45).astype(np.float32)
+
+
+def puf():
+    """Nube de humo."""
+    n = int(0.6 * SR)
+    r = _filtro(rng.standard_normal(n).astype(np.float32), lo=150, hi=1800)
+    return (r * _env(n, 0.01, 0.2) * 0.8).astype(np.float32)
+
+
+def flash_camara():
+    n = int(0.25 * SR)
+    r = _filtro(rng.standard_normal(n).astype(np.float32), lo=2000) * _env(n, 0.001, 0.03)
+    return np.concatenate([r, r * 0.6]).astype(np.float32) * 0.7
+
+
+SFX = {"kaching": kaching, "brillo": brillo, "bocina": bocina, "puf": puf, "camara": flash_camara,
+       "ding": ding, "pop": pop, "boing": boing, "catacrac": catacrac, "fracaso": trombon_triste,
        "whoosh": whoosh, "zumbido": zumbido_movil, "tic": tic, "boom": boom, "riser": riser, "golpe": golpe}

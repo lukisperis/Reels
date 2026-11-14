@@ -185,8 +185,11 @@ def construir(ep, carpeta, rapido=False):
         for i, b in enumerate(bloques):
             clips.append(dict(plano=b["esc"]["plano"], t0=b["t0"], t1=b["t0"] + b["dur"], bloque=b, i=i))
         ult = clips[-1]
-        img_final = caricatura.componer(ult["plano"], ep["personajes"], 1.0, 1.0, False, cache).convert("RGB")
-        fondo_final = imagenes.desenfocar_oscuro(img_final.resize((int(W * imagenes.MARGEN), int(H * imagenes.MARGEN))))
+        pl_final = ep["eleccion"].get("plano", ult["plano"])
+        img_final = caricatura.componer(pl_final, ep["personajes"], 1.0, 1.0, False, cache).convert("RGB")
+        from PIL import ImageEnhance
+        fondo_final = ImageEnhance.Brightness(img_final).enhance(0.55).resize(
+            (int(W * imagenes.MARGEN), int(H * imagenes.MARGEN)))
     for b in ([] if cartoon else bloques):
         ims = b["esc"].get("imagenes", [])
         if not ims:
@@ -215,6 +218,14 @@ def construir(ep, carpeta, rapido=False):
         _mezclar(pista_sfx, sonido.whoosh(0.35), c["t0"] - 0.12, 0.22)
     if cartoon:
         for c in clips:
+            if "humo" in c["bloque"]["esc"].get("efecto", []):
+                _mezclar(pista_sfx, sonido.puf(), c["t0"], 0.8)
+            tk = c["plano"].get("ticket")
+            if tk:
+                for tt_ in tk.get("tiempos", []):
+                    _mezclar(pista_sfx, sonido.pop(), c["t0"] + tt_, 0.6)
+                if tk.get("sello"):
+                    _mezclar(pista_sfx, sonido.golpe(), c["t0"] + tk.get("sello_en", 0), 0.8)
             o = c["plano"].get("onomatopeya")
             if o:
                 _mezclar(pista_sfx, sonido.SFX[o.get("sfx", "golpe")](), c["t0"] + o.get("en", 0), 0.9)
@@ -293,6 +304,13 @@ def construir(ep, carpeta, rapido=False):
                 frame.alpha_composite(Image.new("RGBA", (W, H), (255, 255, 255, a)))
         if 0 <= t - t_final < 0.3:
             frame.alpha_composite(Image.new("RGBA", (W, H), (255, 255, 255, int(255 * (1 - (t - t_final) / 0.3)))))
+        if cartoon:
+            if not ("avance" in partes_final and t >= partes_final["avance"]["t0"] - 0.3):
+                _hud(frame, t, ep, clips, cache)
+            ff.stdin.write(frame.convert("RGB").tobytes())
+            if fi % (FPS * 5) == 0:
+                print(f"   {t:5.1f}s / {total:.1f}s")
+            continue
         # cabecera: insignia + barra de progreso
         frame.alpha_composite(insignia, (40, 200))
         if nombre_serie:
@@ -345,6 +363,49 @@ def _sobres_voz(bloques):
     return out
 
 
+def _dinero_en(t, ep, clips):
+    v = ep.get("dinero_inicial", 0.0)
+    delta = 0.0
+    for c in clips:
+        dn = c["plano"].get("dinero")
+        if not dn:
+            continue
+        if t < c["t0"]:
+            break
+        a, b = dn
+        p = facil(max(0.0, min(1.0, (t - c["t0"] - c["plano"].get("dinero_en", 0.3)) / 0.8)))
+        v = a + (b - a) * p
+        if 0 < p < 1 or (t - c["t0"] - c["plano"].get("dinero_en", 0.3)) < 1.2:
+            delta = (1 if b > a else -1) if p > 0 else 0
+    return v, delta
+
+
+def _hud(frame, t, ep, clips, cache):
+    from . import caricatura
+    dias = ep["total"] - ep["episodio"] + 1
+    pop_d = 0.0
+    if t < 1.2:   # el contador de días baja al empezar
+        if t < 0.5:
+            dias += 1
+        else:
+            pop_d = math.exp(-(t - 0.5) / 0.15)
+    dinero, delta = _dinero_en(t, ep, clips)
+    lugar = ""
+    for c in clips:
+        if c["t0"] <= t:
+            lugar = c["plano"].get("lugar", lugar)
+    meta = ep.get("meta", 10000)
+    pct = max(0.0, dinero) / meta * 100
+    etiqueta = ep.get("barra", "DEUDA PAGADA")
+    k = ("hud", dias, round(pop_d, 1), round(dinero, 2), round(pct, 1), lugar, delta)
+    if k not in cache:
+        if len([x for x in cache if isinstance(x, tuple) and x and x[0] == "hud"]) > 300:
+            for x in [x for x in cache if isinstance(x, tuple) and x and x[0] == "hud"]:
+                del cache[x]
+        cache[k] = caricatura.hud(dias, etiqueta, pct, dinero, lugar, pop_d, delta)
+    frame.alpha_composite(cache[k], (0, 100))
+
+
 def _plano_cartoon(c, t, ep, sobres, cache, rng):
     from . import caricatura
     pl = c["plano"]
@@ -388,7 +449,21 @@ def _plano_cartoon(c, t, ep, sobres, cache, rng):
         prog = facil(max(0, tl - 0.3) / 1.2)
         pan = caricatura.panel_stats(st, prog)
         pegar_centrado(frame, pan, W / 2, 900, 0.85 + 0.15 * facil(tl / 0.2))
-    dn = pl.get("dinero")
+    tk = pl.get("ticket")
+    if tk:
+        tiempos = tk.get("tiempos", [0.2 * (i + 1) for i in range(len(tk["lineas"]))])
+        n = sum(1 for x in tiempos if tl >= x)
+        sello = tk.get("sello") if tk.get("sello") and tl >= tk.get("sello_en", 99) else None
+        k = ("ticket", id(tk), n, sello)
+        if k not in cache:
+            cache[k] = caricatura.ticket(tk, n, sello)
+        ent = facil(tl / 0.25)
+        pegar_centrado(frame, cache[k], W * tk.get("x", 0.72), H * tk.get("y", 0.42) + 120 * (1 - ent), 0.9)
+    if "humo" in b["esc"].get("efecto", []) and tl < 0.7:
+        hm = caricatura.humo(tl)
+        if hm is not None:
+            frame.alpha_composite(hm)
+    dn = pl.get("dinero") if pl.get("panel_dinero") else None
     if dn:
         prog = facil(max(0, tl - 0.3) / 1.0)
         pan = caricatura.panel_dinero(dn[0], dn[1], ep.get("meta", 10000), prog)
@@ -474,6 +549,39 @@ def _final(fondo, dt, dur):
     return fondo.transform((W, H), Image.AFFINE, coef, Image.BILINEAR)
 
 
+def _tarjetas_ab(frame, t, ep, partes, cache):
+    from . import caricatura
+    el = ep["eleccion"]
+    p = partes["pregunta"]
+    if t >= p["t0"] - 0.1:
+        if "preg" not in cache:
+            cache["preg"] = texto_img(partir_lineas(el.get("titulo", el["pregunta"]).upper().split(), 84, 940), 84,
+                                      {}, borde=10, ruta=caricatura.F_CARTOON)
+        pegar_centrado(frame, cache["preg"], W / 2, 500, 0.8 + 0.2 * facil((t - p["t0"]) / 0.12))
+    for clave, color, x in (("A", (230, 60, 70), 0.27), ("B", (40, 120, 255), 0.73)):
+        pa = partes[clave]
+        if t < pa["t0"] - 0.05:
+            continue
+        k = ("opc", clave)
+        if k not in cache:
+            cache[k] = caricatura.tarjeta_opcion(clave, el[clave], color)
+        dt = t - pa["t0"]
+        rebote = (0.5 + 0.5 * facil(dt / 0.12)) * (1 + 0.1 * math.exp(-dt / 0.1) * math.cos(dt * 30))
+        rot = -5 if clave == "A" else 5
+        capa = cache[k].rotate(rot + 2 * math.sin(t * 3), resample=Image.BICUBIC, expand=True)
+        pegar_centrado(frame, capa, W * x, 860, rebote)
+    if t >= partes["B"]["t0"]:
+        if "vs" not in cache:
+            cache["vs"] = texto_img([["VS"]], 120, {0: (255, 220, 40)}, borde=10, ruta=caricatura.F_CARTOON)
+        pegar_centrado(frame, cache["vs"], W / 2, 860, 1 + 0.08 * math.sin(t * 8))
+    c = partes["cta"]
+    if t >= c["t0"]:
+        if "cta" not in cache:
+            cache["cta"] = texto_img([["COMENTA", "A", "O", "B"]], 104, {1: (230, 60, 70), 3: (40, 120, 255)},
+                                     borde=10, ruta=caricatura.F_CARTOON)
+        pegar_centrado(frame, cache["cta"], W / 2, 1300, 1 + 0.05 * math.sin((t - c["t0"]) * 8))
+
+
 def _avance(frame, t, ep, partes, cache):
     """Cierre: 'MAÑANA · DÍA N' con silueta misteriosa y una pregunta que engancha."""
     from . import caricatura
@@ -525,6 +633,9 @@ def _avance(frame, t, ep, partes, cache):
 def _tarjeta_final(frame, t, ep, partes, cache):
     if "avance" in partes and t >= partes["avance"]["t0"] - 0.3:
         _avance(frame, t, ep, partes, cache)
+        return
+    if ep.get("estilo") == "cartoon":
+        _tarjetas_ab(frame, t, ep, partes, cache)
         return
     el = ep["eleccion"]
     p = partes["pregunta"]

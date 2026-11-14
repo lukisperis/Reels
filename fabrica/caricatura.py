@@ -716,6 +716,141 @@ def boton_suscribete():
     return L.final()
 
 
+# ---------------------------------------------------------------------------
+# Interfaz tipo videojuego (marcador superior) y elementos de estilo
+# ---------------------------------------------------------------------------
+def hud(dias, etiqueta_barra, porcentaje, dinero, lugar, pop_dias=0.0, pop_dinero=0.0):
+    """Marcador fijo arriba: días restantes, barra de progreso, dinero y lugar."""
+    L = Lienzo(W, 300)
+    # calendario
+    L.rect((30, 20, 170, 160), (30, 30, 42, 235), r=24)
+    L.rect((30, 20, 170, 62), (230, 60, 70), r=24, ol=False)
+    L.d.rectangle([30 * K, 44 * K, 170 * K, 62 * K], fill=(230, 60, 70))
+    L.texto((100, 42), "DÍAS", 30, (255, 255, 255), F_TITULAR)
+    L.texto((100, 112), str(dias), int(70 * (1 + 0.25 * pop_dias)), (255, 255, 255), F_CARTOON)
+    # barra de progreso
+    L.rect((190, 20, 1050, 120), (30, 30, 42, 235), r=24)
+    L.texto((220, 52), etiqueta_barra, 36, (255, 255, 255), F_CARTOON, anchor="lm")
+    pct = f"{porcentaje:.1f}%" if porcentaje < 10 else f"{int(porcentaje)}%"
+    L.texto((1025, 52), pct, 40, (255, 120, 140), F_CARTOON, anchor="rm")
+    L.rect((220, 82, 1020, 104), (70, 70, 90), r=11, ol=False)
+    if porcentaje > 0:
+        L.rect((220, 82, 220 + max(22, 800 * min(1, porcentaje / 100)), 104), (255, 90, 120), r=11, ol=False)
+    # dinero
+    L.rect((30, 180, 400, 260), (30, 30, 42, 235), r=40)
+    L.elipse((44, 192, 100, 248), (250, 200, 40))
+    L.texto((72, 221), "€", 36, (170, 110, 10), F_CARTOON)
+    col = (255, 255, 255) if pop_dinero == 0 else ((120, 240, 130) if pop_dinero > 0 else (255, 90, 90))
+    L.texto((250, 221), _euros(dinero), int(46 * (1 + 0.2 * abs(pop_dinero))), col, F_CARTOON)
+    # lugar
+    if lugar:
+        f = fuente(F_CARTOON, 46 * K)
+        ancho = int(f.getlength(lugar) / K) + 60
+        L.rect((1050 - ancho, 180, 1050, 260), (30, 30, 42, 235), r=20)
+        L.texto((1050 - ancho / 2, 222), lugar, 46, (255, 210, 60), F_CARTOON)
+    return L.final()
+
+
+def ticket(datos, n_lineas, sello):
+    """Ticket de compra/pago con líneas que van apareciendo y sello opcional."""
+    lineas = datos["lineas"][:n_lineas]
+    alto = 200 + 62 * len(datos["lineas"]) + 120
+    L = Lienzo(470, alto + 30)
+    pts = [(10, 10), (460, 10), (460, alto)]
+    for i in range(12):
+        x = 460 - i * 37.5
+        pts += [(x - 18.75, alto + 18), (x - 37.5, alto)]
+    pts += [(10, alto)]
+    L.poli(pts, (252, 250, 244))
+    L.rect((10, 10, 460, 80), (230, 60, 70), r=0, ol=False)
+    L.texto((235, 47), datos.get("titulo", "TICKET"), 40, (255, 255, 255), F_CARTOON)
+    y = 125
+    for nombre, precio in lineas:
+        L.texto((40, y), nombre, 36, (60, 60, 70), F_TITULAR, anchor="lm")
+        col = (220, 50, 60) if precio.strip().startswith("-") else (40, 40, 50)
+        L.texto((430, y), precio, 36, col, F_TITULAR, anchor="rm")
+        y += 62
+    if n_lineas >= len(datos["lineas"]) and datos.get("total"):
+        L.linea([(40, y - 20), (430, y - 20)], (150, 150, 160), 3)
+        L.texto((40, y + 25), "TOTAL", 44, OUT, F_CARTOON, anchor="lm")
+        L.texto((430, y + 25), datos["total"], 48, OUT, F_CARTOON, anchor="rm")
+    img = L.final()
+    if sello:
+        S = Lienzo(360, 140)
+        S.d.rounded_rectangle([10 * K, 10 * K, 350 * K, 130 * K], 18 * K, outline=(220, 40, 50), width=10 * K)
+        S.texto((180, 72), sello, 64, (220, 40, 50), F_CARTOON)
+        st = S.final().rotate(14, expand=True, resample=Image.BICUBIC)
+        img.alpha_composite(st, (int(img.width / 2 - st.width / 2), int(alto * 0.12)))
+    return img
+
+
+def humo(t):
+    """Nube de humo que tapa el centro y se disipa (transición de cambio)."""
+    L = Lienzo(W, H)
+    rnd = random.Random(3)
+    alfa = int(255 * max(0, 1 - t / 0.7))
+    if alfa <= 0:
+        return None
+    for i in range(16):
+        a = rnd.uniform(0, 2 * math.pi)
+        r0 = rnd.uniform(0, 320)
+        r = rnd.uniform(130, 230) * (1 + t * 1.2)
+        x = W / 2 + math.cos(a) * (r0 + t * 260)
+        y = H * 0.55 + math.sin(a) * (r0 * 1.3 + t * 260)
+        tono = rnd.choice([(215, 210, 200), (190, 185, 175), (235, 232, 225)])
+        L.elipse((x - r, y - r, x + r, y + r), tono + (alfa,), ol=False)
+    return L.final()
+
+
+def brillos(t, ancho=600, alto=900):
+    L = Lienzo(ancho, alto)
+    rnd = random.Random(5)
+    for i in range(7):
+        x, y = rnd.uniform(40, ancho - 40), rnd.uniform(40, alto - 200)
+        fase = (t * 2.2 + i / 7) % 1
+        r = 26 * math.sin(fase * math.pi)
+        if r > 2:
+            pts = [(x + math.cos(j * math.pi / 4) * (r if j % 2 == 0 else r * 0.3),
+                    y + math.sin(j * math.pi / 4) * (r if j % 2 == 0 else r * 0.3)) for j in range(8)]
+            L.poli(pts, (255, 255, 255), ol=False)
+    return L.final()
+
+
+def pensamiento(cabeza_img):
+    """Bocadillo de pensamiento con la cabeza de otro personaje dentro."""
+    L = Lienzo(460, 420)
+    for (x, y, r) in ((60, 390, 16), (100, 345, 26)):
+        L.elipse((x - r, y - r, x + r, y + r), (255, 255, 255))
+    for (x, y, r) in ((170, 170, 110), (290, 140, 120), (340, 230, 95), (200, 250, 100), (260, 210, 130)):
+        L.elipse((x - r, y - r, x + r, y + r), (255, 255, 255), ol=False)
+    img = L.final()
+    cab = cabeza_img.resize((230, 280), Image.LANCZOS)
+    img.alpha_composite(cab, (140, 40))
+    return img
+
+
+def tarjeta_opcion(letra, texto, color):
+    L = Lienzo(420, 440)
+    L.rect((10, 10, 410, 430), color, r=40)
+    L.elipse((150, 40, 270, 160), (255, 255, 255))
+    L.texto((210, 102), letra, 90, color, F_CARTOON)
+    palabras = texto.upper().split()
+    lineas, act = [], ""
+    for w in palabras:
+        if len(act + " " + w) > 13 and act:
+            lineas.append(act)
+            act = w
+        else:
+            act = (act + " " + w).strip()
+    lineas.append(act)
+    y = 230 - (len(lineas) - 1) * 25
+    for l in lineas[:3]:
+        L.texto((210, y), l, 46, (255, 255, 255), F_CARTOON, borde=3)
+        y += 52
+    L.texto((210, 395), "¿MAÑANA?", 34, (255, 255, 255), F_TITULAR)
+    return L.final()
+
+
 def letrero_dia(dia, total):
     L = Lienzo(700, 330)
     L.rect((20, 20, 680, 310), (255, 220, 40), r=50)
@@ -812,6 +947,18 @@ def componer(plano, personajes, t_local, t_abs, hablando, cache, energia=0.0):
         if c.get("lagrimas"):
             g = lagrimas(t_abs).resize((int(360 * esc), int(400 * esc)))
             frame.alpha_composite(g, (int(cabeza[0] - g.width / 2), int(cabeza[1] + 30 * esc)))
+        if c.get("brillos"):
+            b = brillos(t_abs).resize((int(600 * esc), int(900 * esc)))
+            frame.alpha_composite(b, (int(x + spr2.width / 2 - b.width / 2), int(y + 40 * esc)))
+        if c.get("piensa"):
+            k = ("piensa", c["piensa"])
+            if k not in cache:
+                otro = dibujar_personaje(personajes[c["piensa"]], "feliz")
+                cache[k] = pensamiento(otro.crop((120, 120, 480, 560)))
+            pb = cache[k]
+            e2 = min(1, t_local / 0.25)
+            pb2 = pb.resize((max(1, int(pb.width * e2)), max(1, int(pb.height * e2))))
+            frame.alpha_composite(pb2, (int(min(W - pb2.width, cabeza[0] + 60 * esc)), int(max(0, cabeza[1] - 330 * esc - pb2.height / 2))))
         if c.get("estrellas"):
             e = estrellas(t_abs)
             frame.alpha_composite(e, (int(cabeza[0] - 200), int(cabeza[1] - 280 * esc)))

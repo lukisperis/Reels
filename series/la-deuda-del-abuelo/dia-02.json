@@ -5,30 +5,36 @@
  "episodio": 2,
  "total": 30,
  "meta": 10000,
+ "dinero_inicial": 3.2,
+ "barra": "DEUDA PAGADA",
  "titulo": "Trabajando para el enemigo",
- "gancho": "Leo va a trabajar para el enemigo",
+ "gancho": "Leo trabaja para el enemigo",
  "portada": "Trabaja para el enemigo",
  "musica": "comedia",
  "voces": {
   "narrador": {
    "motor": "chatterbox",
-   "ref": "mls_2262",
-   "exageracion": 0.5
+   "ref": "mls_12428",
+   "exageracion": 0.7,
+   "cfg": 0.3
   },
   "LEO": {
    "motor": "chatterbox",
    "ref": "mls_8881",
-   "exageracion": 0.65
+   "exageracion": 0.7,
+   "cfg": 0.3
   },
   "RAMIRO": {
    "motor": "chatterbox",
    "ref": "mls_10982",
-   "exageracion": 0.7
+   "exageracion": 0.75,
+   "cfg": 0.3
   },
   "ABUELO": {
    "motor": "chatterbox",
    "ref": "mls_6156",
-   "exageracion": 0.55
+   "exageracion": 0.6,
+   "cfg": 0.3
   }
  },
  "personajes": {
@@ -144,12 +150,13 @@
  },
  "escenas": [
   {
-   "texto": "Ganó la B. Y Leo fue a pedirle trabajo a Don Ramiro.",
+   "texto": "Opción B. Leo va a pedir trabajo… al enemigo.",
    "sfx": [
     "pop"
    ],
    "plano": {
     "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
     "zoom": 1.05,
     "zoom_fin": 1.15,
     "foco": [
@@ -174,39 +181,12 @@
    }
   },
   {
-   "voz": "LEO",
-   "texto": "Don Ramiro, necesito trabajo. Lo que sea.",
-   "plano": {
-    "fondo": "despacho",
-    "zoom": 1.3,
-    "zoom_fin": 1.38,
-    "foco": [
-     0.33,
-     0.48
-    ],
-    "personajes": [
-     {
-      "id": "LEO",
-      "x": 0.28,
-      "expresion": "decidido",
-      "habla": true,
-      "escala": 1.05
-     },
-     {
-      "id": "RAMIRO",
-      "x": 0.7,
-      "expresion": "neutro",
-      "escala": 1.1
-     }
-    ]
-   }
-  },
-  {
    "voz": "RAMIRO",
-   "texto": "¿Trabajo? ¿Para ti?",
-   "pausa": 0.6,
+   "texto": "¿Trabajo? ¿Tú? ¡Ja!",
+   "pausa": 0.4,
    "plano": {
     "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
     "zoom": 1.3,
     "zoom_fin": 1.45,
     "foco": [
@@ -229,24 +209,25 @@
      }
     ],
     "onomatopeya": {
-     "texto": "¡JA, JA, JA!",
-     "en": 0.9,
+     "texto": "¡JA, JA!",
+     "en": 0.6,
      "sfx": "boing",
-     "y": 0.2,
+     "y": 0.33,
      "rot": 6
     }
    }
   },
   {
    "voz": "RAMIRO",
-   "texto": "Vale. Te pago cien euros al día. Por lavar mis coches.",
+   "texto": "Cien euros al día. Por lavar mis coches.",
    "plano": {
     "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
     "zoom": 1.15,
     "zoom_fin": 1.25,
     "foco": [
      0.55,
-     0.5
+     0.52
     ],
     "personajes": [
      {
@@ -268,9 +249,9 @@
   },
   {
    "voz": "LEO",
-   "texto": "¡Trato hecho!",
+   "texto": "¡Hecho!",
    "sfx": [
-    "ding"
+    "brillo"
    ],
    "pausa": 0.4,
    "plano": {
@@ -279,7 +260,7 @@
     "zoom": 1.2,
     "foco": [
      0.5,
-     0.45
+     0.5
     ],
     "personajes": [
      {
@@ -288,16 +269,21 @@
       "accion": "celebrar",
       "habla": true,
       "salto": true,
-      "escala": 1.25
+      "brillos": true,
+      "escala": 1.2
      }
     ]
    }
   },
   {
-   "texto": "Lo que no le dijo es que tiene siete coches.",
+   "texto": "Pero… tiene siete coches.",
+   "efecto": [
+    "humo"
+   ],
    "pausa": 0.3,
    "plano": {
     "fondo": "garaje",
+    "lugar": "GARAJE RAMIRO",
     "zoom": 1.0,
     "zoom_fin": 1.1,
     "foco": [
@@ -316,17 +302,18 @@
     ],
     "onomatopeya": {
      "texto": "¡7 COCHES!",
-     "en": 1.6,
-     "sfx": "boing",
-     "y": 0.33
+     "en": 1.0,
+     "sfx": "bocina",
+     "y": 0.4
     }
    }
   },
   {
-   "texto": "Ocho horas frotando sin parar.",
-   "pausa": 0.4,
+   "texto": "Ocho horas. Frota que frota.",
+   "pausa": 0.3,
    "plano": {
     "fondo": "garaje",
+    "lugar": "GARAJE RAMIRO",
     "zoom": 1.35,
     "zoom_fin": 1.45,
     "foco": [
@@ -346,74 +333,70 @@
      }
     ],
     "onomatopeya": {
-     "texto": "¡FROTA, FROTA!",
-     "en": 0.3,
+     "texto": "¡FROTA!",
+     "en": 0.2,
      "sfx": "pop",
-     "y": 0.33,
+     "y": 0.4,
      "rot": -6
     }
    }
   },
   {
-   "voz": "RAMIRO",
-   "texto": "Muy bien, chaval. Aquí tienes tus cien euros.",
-   "sfx": [
-    {
-     "nombre": "ding",
-     "en": 1.4
-    }
+   "texto": "Coche siete. Brillante.",
+   "efecto": [
+    "humo"
    ],
+   "pausa": 0.4,
    "plano": {
-    "fondo": "despacho",
-    "zoom": 1.0,
-    "dinero": [
-     3.2,
-     103.2
+    "fondo": "garaje",
+    "lugar": "GARAJE RAMIRO",
+    "zoom": 1.1,
+    "foco": [
+     0.5,
+     0.6
     ],
-    "dinero_y": 480,
     "personajes": [
      {
       "id": "LEO",
-      "x": 0.28,
+      "x": 0.5,
       "expresion": "euforia",
+      "accion": "celebrar",
+      "brillos": true,
       "escala": 0.95,
-      "y": 1760
-     },
-     {
-      "id": "RAMIRO",
-      "x": 0.72,
-      "expresion": "feliz",
-      "habla": true,
-      "escala": 0.95,
-      "y": 1760
+      "y": 1850
      }
-    ]
+    ],
+    "onomatopeya": {
+     "texto": "¡10/10!",
+     "en": 0.8,
+     "sfx": "brillo",
+     "y": 0.4,
+     "color": [
+      110,
+      230,
+      120
+     ]
+    }
    }
   },
   {
-   "voz": "RAMIRO",
-   "texto": "Menos cincuenta por el agua. Y cuarenta por el jabón.",
+   "texto": "Hora de cobrar.",
    "sfx": [
-    {
-     "nombre": "fracaso",
-     "en": 3.0,
-     "vol": 0.8
-    }
+    "pop"
    ],
-   "pausa": 1.0,
    "plano": {
     "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
     "zoom": 1.0,
-    "dinero": [
-     103.2,
-     13.2
+    "foco": [
+     0.5,
+     0.55
     ],
-    "dinero_y": 480,
     "personajes": [
      {
       "id": "LEO",
       "x": 0.28,
-      "expresion": "enfadado",
+      "expresion": "feliz",
       "escala": 0.95,
       "y": 1760
      },
@@ -421,7 +404,6 @@
       "id": "RAMIRO",
       "x": 0.72,
       "expresion": "chulo",
-      "habla": true,
       "escala": 0.95,
       "y": 1760
      }
@@ -429,9 +411,118 @@
    }
   },
   {
-   "texto": "Pero al salir, Leo vio un papel en la mesa de Ramiro.",
+   "voz": "RAMIRO",
+   "texto": "Cien euros. Menos el agua. Y menos el jabón.",
+   "pausa": 1.0,
+   "sfx": [
+    {
+     "nombre": "kaching",
+     "en": 0.5
+    },
+    {
+     "nombre": "bocina",
+     "en": 3.6
+    }
+   ],
    "plano": {
     "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
+    "zoom": 1.0,
+    "dinero": [
+     3.2,
+     13.2
+    ],
+    "dinero_en": 3.6,
+    "ticket": {
+     "titulo": "RAMIRO S.L.",
+     "lineas": [
+      [
+       "Lavar 7 coches",
+       "100,00 €"
+      ],
+      [
+       "Agua",
+       "-50,00 €"
+      ],
+      [
+       "Jabón",
+       "-40,00 €"
+      ]
+     ],
+     "total": "10,00 €",
+     "tiempos": [
+      0.5,
+      1.6,
+      2.7
+     ],
+     "sello": "PAGADO",
+     "sello_en": 3.6,
+     "x": 0.5,
+     "y": 0.42
+    },
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.2,
+      "expresion": "sorpresa",
+      "escala": 0.8,
+      "y": 1820
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.8,
+      "expresion": "chulo",
+      "habla": true,
+      "escala": 0.8,
+      "y": 1820
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Diez euros. Ocho horas.",
+   "sfx": [
+    {
+     "nombre": "fracaso",
+     "en": 0.9,
+     "vol": 0.8
+    }
+   ],
+   "pausa": 0.9,
+   "plano": {
+    "fondo": "rayos",
+    "variante": 2,
+    "zoom": 1.3,
+    "foco": [
+     0.5,
+     0.48
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "expresion": "enfadado",
+      "temblor": true,
+      "escala": 1.2
+     }
+    ],
+    "onomatopeya": {
+     "texto": "-90 €",
+     "en": 0.2,
+     "sfx": "golpe",
+     "y": 0.4,
+     "color": [
+      240,
+      70,
+      70
+     ]
+    }
+   }
+  },
+  {
+   "texto": "Pero en la mesa… un papel.",
+   "plano": {
+    "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
     "zoom": 1.15,
     "zoom_fin": 1.3,
     "foco": [
@@ -453,21 +544,21 @@
    }
   },
   {
-   "texto": "Y le hizo una foto.",
+   "texto": "Foto.",
    "efecto": [
     "flash"
    ],
    "sfx": [
-    "pop"
+    "camara"
    ],
-   "pausa": 1.2,
+   "pausa": 1.6,
    "plano": {
     "fondo": "movil",
     "zoom": 1.0,
     "zoom_fin": 1.12,
     "foco": [
      0.5,
-     0.45
+     0.5
     ],
     "movil": {
      "de": "Fotos",
@@ -482,7 +573,7 @@
   },
   {
    "voz": "LEO",
-   "texto": "¿Quiere tirar el bar del abuelo… para hacer un parking?",
+   "texto": "¿Un parking? ¿En el bar del abuelo?",
    "efecto": [
     "shake"
    ],
@@ -492,7 +583,7 @@
     "zoom": 1.3,
     "foco": [
      0.5,
-     0.45
+     0.48
     ],
     "personajes": [
      {
@@ -501,49 +592,67 @@
       "accion": "manos_cara",
       "habla": true,
       "temblor": true,
-      "escala": 1.25
+      "escala": 1.2
      }
     ],
     "onomatopeya": {
      "texto": "¡¿QUÉ?!",
      "en": 0.0,
      "sfx": "golpe",
-     "y": 0.18
+     "y": 0.38
     }
    }
   },
   {
-   "texto": "Fin del día dos. Leo tiene trece euros… y un secreto.",
-   "sfx": [
-    "ding"
-   ],
-   "pausa": 1.2,
+   "texto": "¿Y el abuelo? No sabe nada.",
+   "pausa": 0.5,
    "plano": {
-    "fondo": "rayos",
-    "variante": 3,
-    "zoom": 1.0,
-    "dia": true,
-    "dinero": [
-     13.2,
-     13.2
+    "fondo": "calle",
+    "lugar": "CALLE",
+    "zoom": 1.1,
+    "foco": [
+     0.5,
+     0.55
     ],
-    "dinero_y": 900
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.42,
+      "expresion": "triste",
+      "piensa": "ABUELO",
+      "escala": 1.0,
+      "y": 1800
+     }
+    ]
    }
   }
  ],
  "eleccion": {
   "titulo": "¿Qué hace Leo?",
-  "pregunta": "¿Qué hace Leo?",
-  "A": "Se lo cuenta al abuelo",
-  "B": "Sigue trabajando para espiar a Ramiro",
-  "cta": "Comenta A o B. Lo más votado pasa en el día tres."
+  "pregunta": "¿Qué hace Leo mañana?",
+  "A": "Contárselo al abuelo",
+  "B": "Espiar a Ramiro",
+  "cta": "Comenta A o B.",
+  "plano": {
+   "fondo": "calle",
+   "personajes": [
+    {
+     "id": "LEO",
+     "x": 0.5,
+     "expresion": "decidido",
+     "accion": "cruzados",
+     "escala": 1.0,
+     "y": 1900
+    }
+   ]
+  }
  },
  "avance": {
-  "texto": "Mañana, día tres. Suscríbete para no perdértelo.",
+  "texto": "Mañana, día tres. ¡Suscríbete!",
   "pregunta": "¿Qué más esconde Ramiro?",
   "personaje": "RAMIRO",
   "suscribete": true,
-  "suscribete_en": 1.0
+  "suscribete_en": 0.4
  },
  "portada_plano": {
   "fondo": "despacho",
