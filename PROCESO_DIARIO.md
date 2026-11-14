@@ -26,6 +26,9 @@ que el usuario lo pida.
 ## 3. Escribir `series/<serie>/dia-XX.json`
 Mismo esquema que `dia-01.json`. 11–16 escenas, 35–60 s. Empieza con "Votasteis X." + consecuencia.
 
+**Voces:** usa siempre el motor `chatterbox` con las referencias de `fabrica/voces_ref/` (ver la
+biblia de la serie). Generar la voz tarda ~30 s por frase; se guarda en caché (`.cache/tts`).
+
 **Escena (estilo cartoon):** `texto`, `voz` (`narrador` o el id de un personaje con voz en `voces`),
 `efecto` (`shake`, `flash`), `sfx`, `pausa` y un `plano`:
 - `fondo`: `bar`, `dormitorio`, `movil`, `rayos` (+`variante` 0–3 = amarillo/azul/rosa/verde), `espejo`,

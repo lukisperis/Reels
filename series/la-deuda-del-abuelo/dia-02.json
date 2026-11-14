@@ -11,29 +11,24 @@
  "musica": "comedia",
  "voces": {
   "narrador": {
-   "motor": "piper",
-   "modelo": "es_ES-davefx-medium",
-   "ritmo": 0.92
+   "motor": "chatterbox",
+   "ref": "mls_2262",
+   "exageracion": 0.5
   },
   "LEO": {
-   "motor": "piper",
-   "modelo": "es_ES-sharvard-medium",
-   "speaker": 0,
-   "ritmo": 0.9,
-   "tono": 1.12
+   "motor": "chatterbox",
+   "ref": "mls_8881",
+   "exageracion": 0.65
   },
   "RAMIRO": {
-   "motor": "piper",
-   "modelo": "es_ES-davefx-medium",
-   "ritmo": 1.0,
-   "tono": 0.82
+   "motor": "chatterbox",
+   "ref": "mls_10982",
+   "exageracion": 0.7
   },
   "ABUELO": {
-   "motor": "piper",
-   "modelo": "es_ES-sharvard-medium",
-   "speaker": 0,
-   "ritmo": 1.12,
-   "tono": 0.9
+   "motor": "chatterbox",
+   "ref": "mls_6156",
+   "exageracion": 0.55
   }
  },
  "personajes": {

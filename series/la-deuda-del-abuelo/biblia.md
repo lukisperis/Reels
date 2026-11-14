@@ -8,10 +8,10 @@ resultado de la votación, se produce el siguiente día.
 en 30 días, Ramiro se queda con el **Bar Paco** (abierto desde 1985, la vida del abuelo). Leo, su nieto
 de 17 años, tiene 3,20 € y promete conseguir el dinero.
 
-## Voces (desde el día 2: nativas de España, Piper)
-narrador = davefx · LEO = sharvard (tono 1.12, joven) · RAMIRO = davefx (tono 0.82, grave) ·
-ABUELO = sharvard (tono 0.9, lento). Copiar el bloque `voces` de `dia-02.json`. No usar Kokoro
-(suena con acento extranjero).
+## Voces (desde el día 2: Chatterbox, muy naturales)
+Copiar el bloque `voces` de `dia-02.json`: narrador = `mls_2262` · LEO = `mls_8881` (joven) ·
+RAMIRO = `mls_10982` (grave) · ABUELO = `mls_6156`. Las referencias están en `fabrica/voces_ref/`.
+No usar Kokoro (acento extranjero) ni Piper (robótica).
 
 ## Personajes (copiar `personajes` y `voces` del día 1 en cada episodio)
 - **LEO** — 17 años, rizos, sudadera verde con bolsillo. Ingenioso, cabezota, buen corazón. Voz `LEO`.

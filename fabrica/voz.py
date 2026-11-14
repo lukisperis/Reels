@@ -62,6 +62,47 @@ def _kokoro(texto, cfg):
     return _remuestrear(_recortar_silencio(np.asarray(a, np.float32), sr), sr, SR)
 
 
+def _chatterbox(texto, cfg):
+    """Voz Chatterbox Multilingual (muy natural). Corre en .venv-voz como proceso aparte; guarda caché."""
+    import hashlib
+    import json
+    import subprocess
+    import soundfile as sf
+    from . import CACHE, RAIZ
+    ref = cfg.get("ref")
+    ref_path = str(RAIZ / "fabrica" / "voces_ref" / f"{ref}.wav") if ref else None
+    clave = json.dumps([texto, ref, cfg.get("exageracion", 0.5), cfg.get("cfg", 0.5), cfg.get("semilla", 7)])
+    destino = CACHE / "tts" / (hashlib.sha1(clave.encode()).hexdigest()[:20] + ".wav")
+    if not destino.exists():
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        if "chatterbox" not in _cache:
+            proc = subprocess.Popen([str(RAIZ / ".venv-voz" / "bin" / "python"), str(RAIZ / "fabrica" / "chatterbox_worker.py")],
+                                    stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
+            while True:
+                linea = proc.stdout.readline()
+                if not linea:
+                    raise RuntimeError("Chatterbox no arrancó (¿falta .venv-voz? ejecuta ./setup.sh)")
+                if linea.startswith("{") and json.loads(linea).get("listo"):
+                    break
+            _cache["chatterbox"] = proc
+        proc = _cache["chatterbox"]
+        proc.stdin.write(json.dumps({"texto": texto, "ref": ref_path, "salida": str(destino),
+                                     "exageracion": cfg.get("exageracion", 0.5), "cfg": cfg.get("cfg", 0.5),
+                                     "semilla": cfg.get("semilla", 7)}) + "\n")
+        proc.stdin.flush()
+        while True:
+            r = proc.stdout.readline()
+            if not r:
+                raise RuntimeError("Chatterbox se cerró")
+            if r.startswith("{"):
+                r = json.loads(r)
+                break
+        if not r.get("ok"):
+            raise RuntimeError(r.get("error"))
+    a, sr = sf.read(str(destino), dtype="float32")
+    return _remuestrear(_recortar_silencio(a, sr), sr, SR)
+
+
 def _piper(texto, cfg):
     from piper import PiperVoice, SynthesisConfig
     k = "piper:" + cfg["modelo"]
@@ -185,7 +226,8 @@ def sintetizar(texto, voz="narrador"):
     """Devuelve (audio float32 @44.1k, [(palabra, t_ini, t_fin), ...], texto_oido_por_whisper)."""
     cfg = VOCES[voz]
     try:
-        audio = _kokoro(texto, cfg) if cfg["motor"] == "kokoro" else _piper(texto, cfg)
+        motor = {"kokoro": _kokoro, "piper": _piper, "chatterbox": _chatterbox}[cfg["motor"]]
+        audio = motor(texto, cfg)
     except Exception as e:  # noqa: BLE001
         print(f"  ! {cfg['motor']} falló ({e}); uso Piper")
         audio = _piper(texto, dict(modelo="es_ES-davefx-medium", ritmo=0.86))

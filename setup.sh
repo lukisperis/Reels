@@ -18,5 +18,11 @@ done
 # Modelo de faster-whisper (Hugging Face); si no hay acceso, la fábrica usa tiempos estimados.
 python3 -c "from faster_whisper import WhisperModel; WhisperModel('small', device='cpu', compute_type='int8', download_root='.voces/whisper')" \
   || echo "Aviso: no se pudo descargar el modelo de Whisper."
+# Voz Chatterbox (la buena): entorno aparte con Python 3.11 y PyTorch
+if [ ! -x .venv-voz/bin/python ]; then
+  command -v uv >/dev/null || pip install -q uv
+  uv venv -q -p python3.11 .venv-voz || uv venv -q -p 3.11 .venv-voz
+  UV_HTTP_TIMEOUT=600 uv pip install -q -p .venv-voz/bin/python chatterbox-tts soundfile "setuptools<81"
+fi
 command -v ffmpeg >/dev/null || (apt-get update -qq && apt-get install -y -qq ffmpeg)
 echo "Listo."
