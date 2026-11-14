@@ -1,24 +1,24 @@
-[OK ] 89%
+[OK ] 100%
   guion: Ganó la B. Y Leo fue a pedirle trabajo a Don Ramiro.
-  oído:  que no la ve y le fue a pedirle trabajo a Don Ramiro.
+  oído:  Ganó la B y Leo fue a pedirle trabajo a Don Ramiro.
 [OK ] 100%
   guion: Don Ramiro, necesito trabajo. Lo que sea.
   oído:  Don Ramiro, necesito trabajo, lo que sea.
 [OK ] 100%
   guion: ¿Trabajo? ¿Para ti?
-  oído:  ¿Trabajo? ¿Para ti?
-[OK ] 95%
+  oído:  trabajo para ti
+[OK ] 100%
   guion: Vale. Te pago cien euros al día. Por lavar mis coches.
-  oído:  Te pago cien euros al día, por lavar mis coches.
+  oído:  Vale, te pago cien euros al día, por lavar mis coches.
 [OK ] 100%
   guion: ¡Trato hecho!
   oído:  Trato hecho.
 [OK ] 100%
   guion: Lo que no le dijo es que tiene siete coches.
-  oído:  Lo que no le dijo es que tiene siete coches.
-[OK ] 100%
+  oído:  lo que no le dijo es que tiene siete coches.
+[OK ] 98%
   guion: Ocho horas frotando sin parar.
-  oído:  ocho horas frotando sin parar.
+  oído:  ocho horas rotando sin parar
 [OK ] 100%
   guion: Muy bien, chaval. Aquí tienes tus cien euros.
   oído:  Muy bien chaval, aquí tienes tus cien euros.
@@ -31,24 +31,24 @@
 [OK ] 100%
   guion: Y le hizo una foto.
   oído:  y le hizo una foto.
-[OK ] 100%
+[OK ] 99%
   guion: ¿Quiere tirar el bar del abuelo… para hacer un parking?
-  oído:  quiere tirar el bar del abuelo para hacer un parking.
-[OK ] 100%
+  oído:  ¿Quieres tirar el bar del abuelo para hacer un parking?
+[OK ] 96%
   guion: Fin del día dos. Leo tiene trece euros… y un secreto.
-  oído:  Fin del día dos Leo tiene trece euros y un secreto.
+  oído:  fin del día dos Leo tiene tres euros y un secreto.
 [OK ] 100%
   guion: ¿Qué hace Leo?
   oído:  ¿Qué hace Leo?
-[OK ] 97%
+[OK ] 92%
   guion: A: Se lo cuenta al abuelo
-  oído:  se lo cuenta al abuelo.
-[OK ] 100%
+  oído:  Ah, se lo cuenta el abuelo.
+[OK ] 93%
   guion: B: Sigue trabajando para espiar a Ramiro
-  oído:  B. Sigue trabajando para espiar a Ramiro.
-[OK ] 97%
+  oído:  Cata sigue trabajando para espiar a Ramiro.
+[OK ] 92%
   guion: Comenta A o B. Lo más votado pasa en el día tres.
-  oído:  Comenta a OV. Lo más votado pasa en el día tres
+  oído:  Comentado ver lo más votado pasa en el día tres
 [OK ] 100%
   guion: Mañana, día tres. Suscríbete para no perdértelo.
-  oído:  Mañana, día tres Suscríbete para no perdértelo.
+  oído:  Mañana día tres Suscríbete para no perdértelo.
