@@ -14,27 +14,31 @@
  "voces": {
   "narrador": {
    "motor": "chatterbox",
-   "ref": "mls_12428",
-   "exageracion": 0.7,
-   "cfg": 0.3
+   "ref": "mls_8882",
+   "exageracion": 0.9,
+   "cfg": 0.2,
+   "tono": 0.85
   },
   "LEO": {
    "motor": "chatterbox",
-   "ref": "mls_8881",
-   "exageracion": 0.7,
-   "cfg": 0.3
+   "ref": "mls_8882",
+   "exageracion": 0.9,
+   "cfg": 0.2,
+   "tono": 0.85
   },
   "RAMIRO": {
    "motor": "chatterbox",
-   "ref": "mls_10982",
-   "exageracion": 0.75,
-   "cfg": 0.3
+   "ref": "mls_8882",
+   "exageracion": 0.9,
+   "cfg": 0.2,
+   "tono": 0.85
   },
   "ABUELO": {
    "motor": "chatterbox",
-   "ref": "mls_6156",
-   "exageracion": 0.6,
-   "cfg": 0.3
+   "ref": "mls_8882",
+   "exageracion": 0.9,
+   "cfg": 0.2,
+   "tono": 0.85
   }
  },
  "personajes": {

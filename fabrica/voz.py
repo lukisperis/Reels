@@ -100,6 +100,13 @@ def _chatterbox(texto, cfg):
         if not r.get("ok"):
             raise RuntimeError(r.get("error"))
     a, sr = sf.read(str(destino), dtype="float32")
+    tono = cfg.get("tono", 1.0)
+    if tono != 1.0:   # bajar/subir el tono sin cambiar la duración (ffmpeg asetrate + atempo)
+        ajustado = destino.with_name(destino.stem + f"_t{tono}.wav")
+        if not ajustado.exists():
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(destino), "-af",
+                            f"asetrate={sr}*{tono},aresample={sr},atempo={1 / tono:.5f}", str(ajustado)], check=True)
+        a, sr = sf.read(str(ajustado), dtype="float32")
     return _remuestrear(_recortar_silencio(a, sr), sr, SR)
 
 
