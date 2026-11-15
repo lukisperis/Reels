@@ -148,6 +148,8 @@ def construir(ep, carpeta, rapido=False):
     carpeta.mkdir(parents=True, exist_ok=True)
     revision = []   # control de calidad: lo que Whisper oyó vs. el guion
     cartoon = ep.get("estilo") == "cartoon"
+    misterio = ep.get("estilo") == "misterio"
+    dibujo = cartoon or misterio
     for nombre_voz, cfg in ep.get("voces", {}).items():
         voz.VOCES[nombre_voz] = {"efecto": None, **cfg}
     print("1/4 Voces…")
@@ -180,17 +182,20 @@ def construir(ep, carpeta, rapido=False):
     clips = []
     k = 0
     cache = {}
-    if cartoon:
-        from . import caricatura
+    if dibujo:
+        from . import caricatura, misterio as mist
         for i, b in enumerate(bloques):
             clips.append(dict(plano=b["esc"]["plano"], t0=b["t0"], t1=b["t0"] + b["dur"], bloque=b, i=i))
         ult = clips[-1]
         pl_final = ep["eleccion"].get("plano", ult["plano"])
-        img_final = caricatura.componer(pl_final, ep["personajes"], 1.0, 1.0, False, cache).convert("RGB")
+        if misterio:
+            img_final = mist.acabado(mist.componer(pl_final, 1.0, 1.0, cache)).convert("RGB")
+        else:
+            img_final = caricatura.componer(pl_final, ep["personajes"], 1.0, 1.0, False, cache).convert("RGB")
         from PIL import ImageEnhance
         fondo_final = ImageEnhance.Brightness(img_final).enhance(0.55).resize(
             (int(W * imagenes.MARGEN), int(H * imagenes.MARGEN)))
-    for b in ([] if cartoon else bloques):
+    for b in ([] if dibujo else bloques):
         ims = b["esc"].get("imagenes", [])
         if not ims:
             ims = [clips[-1]["fuente"]] if clips else ["dark cinematic room"]
@@ -202,7 +207,7 @@ def construir(ep, carpeta, rapido=False):
             clips.append(dict(fuente=spec, img=img, t0=b["t0"] + b["dur"] * i / n,
                               t1=b["t0"] + b["dur"] * (i + 1) / n, mov=k % 4))
             k += 1
-    if not cartoon:
+    if not dibujo:
         fondo_final = imagenes.desenfocar_oscuro(clips[-1]["img"])
 
     print("3/4 Audio…")
@@ -215,7 +220,11 @@ def construir(ep, carpeta, rapido=False):
             nombre, en, g = (s, 0, 0.7) if isinstance(s, str) else (s["nombre"], s.get("en", 0), s.get("vol", 0.7))
             _mezclar(pista_sfx, sonido.SFX[nombre](), b["t0"] + en, g)
     for c in clips[1:]:
-        _mezclar(pista_sfx, sonido.whoosh(0.35), c["t0"] - 0.12, 0.22)
+        _mezclar(pista_sfx, sonido.whoosh(0.35), c["t0"] - 0.12, 0.12 if misterio else 0.22)
+    if misterio:
+        for c in clips:
+            if c["plano"].get("glitch"):
+                _mezclar(pista_sfx, sonido.estatica(0.45), c["t0"], 0.7)
     if cartoon:
         for c in clips:
             if "humo" in c["bloque"]["esc"].get("efecto", []):
@@ -237,7 +246,7 @@ def construir(ep, carpeta, rapido=False):
     _mezclar(pista_sfx, sonido.golpe(), partes_final["B"]["t0"], 0.6)
     if "avance" in partes_final:
         _mezclar(pista_sfx, sonido.whoosh(0.5), partes_final["avance"]["t0"] - 0.35, 0.6)
-        _mezclar(pista_sfx, sonido.ding(), partes_final["avance"]["t0"] - 0.1, 0.5)
+        _mezclar(pista_sfx, sonido.latido() if misterio else sonido.ding(), partes_final["avance"]["t0"] - 0.1, 0.6)
     mus = sonido.musica(total + 1, ep.get("musica", "misterio"), ep.get("latido_bpm", 72))
     mus = np.pad(mus, (0, max(0, n - len(mus))))[:n]
     curva = np.where(np.arange(n) / SR < t_final, 0.16, 0.26).astype(np.float32)
@@ -251,17 +260,20 @@ def construir(ep, carpeta, rapido=False):
     sf.write(wav, mezcla, SR)
 
     print("4/4 Vídeo…")
-    if cartoon:
+    if misterio:
+        from . import misterio as mist
+        subs = Subtitulos(mist.F_MAQ, 68, 1560)
+    elif cartoon:
         from . import caricatura
         subs = Subtitulos(caricatura.F_TITULAR, 110, 1330)
         sobres = _sobres_voz(bloques)
     else:
         subs = Subtitulos()
     for b in bloques:
-        subs.anadir(b["pal"], COLOR_VOZ.get(b["esc"].get("voz", "narrador"), (255, 225, 77)))
+        subs.anadir(b["pal"], (230, 40, 48) if misterio else COLOR_VOZ.get(b["esc"].get("voz", "narrador"), (255, 225, 77)))
     subs_final = Subtitulos()
     subs_final.anadir(partes_final["cta"]["pal"], COLOR_VOZ["narrador"])
-    capas = [] if cartoon else imagenes.capas_pelicula()
+    capas = [] if dibujo else imagenes.capas_pelicula()
     titulo = ep.get("serie_titulo", "").upper()
     insignia = texto_img([[f"DÍA {ep['episodio']}/{ep['total']}"]], 46, {0: (255, 225, 77)}, borde=5, ruta=FUENTE_2)
     nombre_serie = texto_img([[titulo]], 34, borde=4, ruta=FUENTE_2) if titulo else None
@@ -281,7 +293,9 @@ def construir(ep, carpeta, rapido=False):
         t = fi / FPS
         if t < t_final:
             c = next((c for c in clips if c["t0"] <= t < c["t1"]), clips[-1])
-            if cartoon:
+            if misterio:
+                frame = _plano_misterio(c, t, ep, cache, rng)
+            elif cartoon:
                 frame = _plano_cartoon(c, t, ep, sobres, cache, rng)
             else:
                 frame = _encuadre(c, t, bloques, rng)
@@ -294,7 +308,7 @@ def construir(ep, carpeta, rapido=False):
             _superposiciones(frame, t, bloques, cache)
             subs.dibujar(frame, t)
             if gancho_img is not None and t < 2.6:
-                pegar_centrado(frame, gancho_img, W / 2, 1600 if cartoon else 600, 0.8 + 0.2 * facil(t / 0.15), min(1, (2.6 - t) / 0.25))
+                pegar_centrado(frame, gancho_img, W / 2, 1300 if misterio else 1600 if cartoon else 600, 0.8 + 0.2 * facil(t / 0.15), min(1, (2.6 - t) / 0.25))
         else:
             _tarjeta_final(frame, t, ep, partes_final, cache)
         # destello
@@ -302,11 +316,14 @@ def construir(ep, carpeta, rapido=False):
             if "flash" in b["esc"].get("efecto", []) and 0 <= t - b["t0"] < 0.25:
                 a = int(220 * (1 - (t - b["t0"]) / 0.25))
                 frame.alpha_composite(Image.new("RGBA", (W, H), (255, 255, 255, a)))
-        if 0 <= t - t_final < 0.3:
+        if 0 <= t - t_final < 0.3 and not misterio:
             frame.alpha_composite(Image.new("RGBA", (W, H), (255, 255, 255, int(255 * (1 - (t - t_final) / 0.3)))))
-        if cartoon:
+        if dibujo:
             if not ("avance" in partes_final and t >= partes_final["avance"]["t0"] - 0.3):
-                _hud(frame, t, ep, clips, cache)
+                if misterio:
+                    _sello_misterio(frame, t, ep, clips, cache)
+                else:
+                    _hud(frame, t, ep, clips, cache)
             ff.stdin.write(frame.convert("RGB").tobytes())
             if fi % (FPS * 5) == 0:
                 print(f"   {t:5.1f}s / {total:.1f}s")
@@ -324,7 +341,11 @@ def construir(ep, carpeta, rapido=False):
     ff.stdin.close()
     ff.wait()
     wav.unlink(missing_ok=True)
-    if cartoon:
+    if misterio:
+        pp = ep.get("portada_plano", clips[0]["plano"])
+        img_p = mist.acabado(mist.componer(pp, 1.0, 1.0, {})).convert("RGB")
+        _portada(img_p, ep, carpeta / "portada.jpg")
+    elif cartoon:
         pp = ep.get("portada_plano", clips[0]["plano"])
         img_p = caricatura.componer(pp, ep["personajes"], 1.0, 1.0, False, {}).convert("RGB")
         _portada(img_p, ep, carpeta / "portada.jpg")
@@ -403,6 +424,43 @@ def _hud(frame, t, ep, clips, cache):
             for x in [x for x in cache if isinstance(x, tuple) and x and x[0] == "hud"]:
                 del cache[x]
         cache[k] = caricatura.hud(dias, etiqueta, pct, dinero, lugar, pop_d, delta)
+    frame.alpha_composite(cache[k], (0, 100))
+
+
+def _plano_misterio(c, t, ep, cache, rng):
+    from . import misterio as mist
+    pl = c["plano"]
+    b = c["bloque"]
+    tl = t - c["t0"]
+    img = mist.componer(pl, tl, t, cache)
+    z0 = pl.get("zoom", 1.0)
+    z1 = pl.get("zoom_fin", z0 * 1.06)
+    p = min(1, tl / max(0.1, c["t1"] - c["t0"]))
+    z = z0 + (z1 - z0) * p
+    fx, fy = pl.get("foco", (0.5, 0.5))
+    if "shake" in b["esc"].get("efecto", []) and tl < 0.8:
+        amp = 16 * (1 - tl / 0.8)
+        fx += rng.uniform(-amp, amp) / W
+        fy += rng.uniform(-amp, amp) / H
+    rw, rh = W / z, H / z
+    cx = min(max(fx * W, rw / 2), W - rw / 2)
+    cy = min(max(fy * H, rh / 2), H - rh / 2)
+    frame = img.transform((W, H), Image.AFFINE, (rw / W, 0, cx - rw / 2, 0, rh / H, cy - rh / 2), Image.BILINEAR)
+    return mist.acabado(frame)
+
+
+def _sello_misterio(frame, t, ep, clips, cache):
+    from . import misterio as mist
+    val, pop = ep.get("contador_inicial", 0), 0.0
+    for c in clips:
+        if c["t0"] <= t and "contador" in c["plano"]:
+            if c["plano"]["contador"] != val:
+                pop = math.exp(-(t - c["t0"]) / 0.2)
+            val = c["plano"]["contador"]
+    k = ("sello", val, round(pop, 1))
+    if k not in cache:
+        cache[k] = mist.sello(ep["serie_titulo"], ep["episodio"], ep.get("contador_txt", ""), val,
+                              ep.get("contador_total", 7), pop)
     frame.alpha_composite(cache[k], (0, 100))
 
 
@@ -631,6 +689,21 @@ def _avance(frame, t, ep, partes, cache):
 
 
 def _tarjeta_final(frame, t, ep, partes, cache):
+    if ep.get("estilo") == "misterio":
+        from . import misterio as mist
+        if "avance" in partes and t >= partes["avance"]["t0"] - 0.3:
+            frame.alpha_composite(mist.cierre(ep["episodio"] + 1, t))
+            return
+        el = ep["eleccion"]
+        fa = 1 if t >= partes["A"]["t0"] - 0.05 else 0
+        fb = 1 if t >= partes["B"]["t0"] - 0.05 else 0
+        fc = 1 if t >= partes["cta"]["t0"] - 0.05 else 0
+        k = ("finm", fa, fb, fc)
+        if k not in cache:
+            cache[k] = mist.tarjeta_final(ep["serie_titulo"], ep["episodio"], el["pregunta"], el["A"], el["B"],
+                                          el.get("sub_A", ""), el.get("sub_B", ""), fa, fb, fc)
+        frame.alpha_composite(cache[k])
+        return
     if "avance" in partes and t >= partes["avance"]["t0"] - 0.3:
         _avance(frame, t, ep, partes, cache)
         return

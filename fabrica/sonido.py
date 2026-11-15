@@ -232,6 +232,48 @@ def flash_camara():
     return np.concatenate([r, r * 0.6]).astype(np.float32) * 0.7
 
 
-SFX = {"kaching": kaching, "brillo": brillo, "bocina": bocina, "puf": puf, "camara": flash_camara,
+def golpes(n=3, sep=0.55):
+    """Golpes en una puerta de madera."""
+    out = np.zeros(int((n * sep + 0.5) * SR), np.float32)
+    for i in range(n):
+        tt = _t(0.3)
+        g = (np.sin(2 * np.pi * 95 * tt) * 0.8 + np.sin(2 * np.pi * 180 * tt) * 0.3) * _env(len(tt), 0.001, 0.06)
+        r = _filtro(rng.standard_normal(len(tt)).astype(np.float32), hi=900) * _env(len(tt), 0.001, 0.02)
+        i0 = int(i * sep * SR)
+        out[i0:i0 + len(tt)] += (g + r * 0.6).astype(np.float32)
+    return out / (np.abs(out).max() + 1e-6) * 0.9
+
+
+def papel():
+    n = int(1.2 * SR)
+    r = _filtro(rng.standard_normal(n).astype(np.float32), lo=1500, hi=7000)
+    env = np.sin(np.linspace(0, np.pi, n)) ** 0.5
+    return (r * env * 0.35).astype(np.float32)
+
+
+def estatica(dur=0.8):
+    n = int(dur * SR)
+    r = rng.standard_normal(n).astype(np.float32) * (0.5 + 0.5 * (rng.random(n) > 0.97))
+    return (_filtro(r, lo=800) * 0.3).astype(np.float32)
+
+
+def latido():
+    tt = _t(0.9)
+    out = np.zeros_like(tt, dtype=np.float32)
+    for off, g in ((0, 1.0), (0.24, 0.7)):
+        i0 = int(off * SR)
+        x = np.sin(2 * np.pi * 48 * tt[: len(tt) - i0]) * _env(len(tt) - i0, 0.004, 0.09)
+        out[i0:] += (x * g).astype(np.float32)
+    return out * 0.9
+
+
+def drone(dur=3.0):
+    tt = _t(dur)
+    x = np.sin(2 * np.pi * 41 * tt) + 0.5 * np.sin(2 * np.pi * 61.5 * tt + np.sin(tt * 0.7))
+    return (_filtro(x.astype(np.float32), hi=300) * np.minimum(1, tt / 0.8) * np.minimum(1, (dur - tt) / 0.8) * 0.5).astype(np.float32)
+
+
+SFX = {"golpes": golpes, "papel": papel, "estatica": estatica, "latido": latido, "drone": drone,
+       "kaching": kaching, "brillo": brillo, "bocina": bocina, "puf": puf, "camara": flash_camara,
        "ding": ding, "pop": pop, "boing": boing, "catacrac": catacrac, "fracaso": trombon_triste,
        "whoosh": whoosh, "zumbido": zumbido_movil, "tic": tic, "boom": boom, "riser": riser, "golpe": golpe}

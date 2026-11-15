@@ -39,6 +39,22 @@ def _recortar_silencio(a, sr, umbral=0.01, margen=0.03):
     return a[max(0, idx[0] - m): idx[-1] + m]
 
 
+def _siniestro(a):
+    """Reverberación de habitación oscura + graves reforzados + agudos apagados."""
+    rnd = np.random.default_rng(3)
+    n = int(0.9 * SR)
+    ir = rnd.standard_normal(n).astype(np.float32) * np.exp(-np.arange(n) / SR / 0.28).astype(np.float32)
+    ir[0] = 1.0
+    ir[1:] *= 0.05
+    m = len(a) + n - 1
+    hum = np.fft.irfft(np.fft.rfft(a, m) * np.fft.rfft(ir, m), m)[: len(a) + n // 2].astype(np.float32)
+    f = np.fft.rfft(hum)
+    fr = np.fft.rfftfreq(len(hum), 1 / SR)
+    f *= np.where(fr < 250, 1.6, 1.0) / (1 + (fr / 6500) ** 4)
+    out = np.fft.irfft(f, len(hum)).astype(np.float32)
+    return out / (np.max(np.abs(out)) + 1e-6) * 0.92
+
+
 def _eco(a):
     out = np.copy(a)
     for ms, g in ((70, 0.32), (150, 0.2), (260, 0.12)):
@@ -265,6 +281,8 @@ def _sintetizar(texto, voz="narrador"):
         audio = _piper(texto, dict(modelo="es_ES-davefx-medium", ritmo=0.86))
     audio = audio / (np.max(np.abs(audio)) + 1e-6) * 0.92
     palabras, oido = alinear(audio, texto)   # alinear antes del eco: Whisper oye mejor la voz limpia
-    if cfg["efecto"] == "eco":
+    if cfg.get("efecto") == "eco":
         audio = _eco(audio)
+    elif cfg.get("efecto") == "siniestro":
+        audio = _siniestro(audio)
     return audio.astype(np.float32), palabras, oido

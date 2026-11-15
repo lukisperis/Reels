@@ -14,7 +14,8 @@ def publicar_md(ep, dur):
     p = ep["publicar"]
     tags = " ".join(p["hashtags"])
     el = ep["eleccion"]
-    return f"""# {ep['serie_titulo']} — Día {ep['episodio']}/{ep['total']}
+    unidad = "Parte" if ep.get("estilo") == "misterio" else "Día"
+    return f"""# {ep['serie_titulo']} — {unidad} {ep['episodio']}/{ep['total']}
 
 Duración: {dur:.0f} s · Formato 1080x1920 · Listo para YouTube Shorts, TikTok e Instagram Reels.
 
@@ -65,7 +66,8 @@ def main():
     ruta = Path(sys.argv[1])
     rapido = "--rapido" in sys.argv
     ep = json.loads(ruta.read_text(encoding="utf-8"))
-    carpeta = RAIZ / "entregas" / ep["serie"] / f"dia-{ep['episodio']:02d}"
+    prefijo = "parte" if ep.get("estilo") == "misterio" else "dia"
+    carpeta = RAIZ / "entregas" / ep["serie"] / f"{prefijo}-{ep['episodio']:02d}"
     t = time.time()
     video, dur = construir(ep, carpeta, rapido)
     (carpeta / "publicar.md").write_text(publicar_md(ep, dur), encoding="utf-8")
