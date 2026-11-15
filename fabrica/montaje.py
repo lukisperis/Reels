@@ -253,7 +253,12 @@ def construir(ep, carpeta, rapido=False):
     # silencio dramático antes del final
     hueco = (np.arange(n) / SR > t_final - 1.7) & (np.arange(n) / SR < t_final)
     curva[hueco] = 0.05
-    mezcla = pista_voz * 1.0 + pista_sfx + mus * curva
+    # la música baja cuando hay voz (ducking)
+    env_voz = np.convolve(np.abs(pista_voz), np.ones(4410) / 4410, mode="same")
+    duck = 1.0 - 0.6 * np.clip(env_voz / (env_voz.max() * 0.25 + 1e-6), 0, 1)
+    if misterio:
+        curva = curva * 0.7
+    mezcla = pista_voz * 1.0 + pista_sfx * (0.8 if misterio else 1.0) + mus * curva * duck.astype(np.float32)
     mezcla = mezcla[: int(total * SR)]
     mezcla = mezcla / (np.max(np.abs(mezcla)) + 1e-6) * 0.95
     wav = carpeta / "_audio.wav"

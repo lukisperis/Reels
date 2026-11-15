@@ -17,7 +17,7 @@ se denunció. Quien envía la lista es alguien relacionado con la víctima. Las 
 asesinatos: les obliga a esconderse y confesar. Final según votos: confesar / huir / enfrentarle.
 
 ## Voz
-UNA voz siniestra: Chatterbox `mls_8882`, exageración 0.35, cfg 0.5, tono 0.8, efecto `siniestro`.
+UNA voz siniestra: Chatterbox `mls_8882`, exageración 0.35, cfg 0.5, tono 0.88, efecto `siniestro` (eco al 20 %).
 
 ## Vistas disponibles (fabrica/misterio.py)
 `portal`, `papel` (lista con `revelar`, `tachar`, `tachados`), `periodico`, `camara` (CCTV con figura),

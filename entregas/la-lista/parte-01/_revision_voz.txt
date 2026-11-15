@@ -3,19 +3,19 @@
   oído:  Esta mañana había un sobre en tu buzón, sin sello, sin remitente.
 [OK ] 100%
   guion: Dentro, una lista. Siete nombres. Escritos a máquina.
-  oído:  Dentro, una lista, siete nombres, escritos a máquina.
+  oído:  Dentro una lista, siete nombres, escritos a máquina.
 [OK ] 100%
   guion: El último… es el tuyo.
   oído:  El último es el tuyo.
 [OK ] 100%
   guion: Y el primero está tachado. En rojo.
-  oído:  y el primero está tachado en rojo
+  oído:  y el primero está tachado en rojo.
 [OK ] 91%
   guion: Por la tarde, lo ves en el periódico. Marta Ruiz. Desaparecida.
   oído:  Por la tarde lo ves en el periódico. Marta Ruiz. Desaparecida. Barbindión.
-[OK ] 89%
+[OK ] 93%
   guion: La última cámara que la grabó… está en tu calle.
-  oído:  La última cámara que le agravó está en tu casa.
+  oído:  La última cámara que la grabó está en tu casa.
 [OK ] 96%
   guion: A las tres y catorce, tu móvil vibra. Número oculto.
   oído:  A las trece y catorce tu móvil vibra. Número oculto.
@@ -27,7 +27,7 @@
   oído:  Entonces, alguien llama a tu puerta.
 [OK ] 97%
   guion: Miras por la mirilla.
-  oído:  ¡Mira por la mirilla!
+  oído:  Mira por la mirilla.
 [OK ] 100%
   guion: No hay nadie.
   oído:  No hay nadie.
@@ -36,7 +36,7 @@
   oído:  Pero por debajo de la puerta aparece una foto.
 [OK ] 100%
   guion: Es tu ventana. Desde fuera. Esta misma noche.
-  oído:  Es tu ventana, desde fuera, esta misma noche
+  oído:  es tu ventana, desde fuera, esta misma noche
 [OK ] 100%
   guion: ¿Qué haces?
   oído:  ¿Qué haces?
@@ -45,10 +45,10 @@
   oído:  Opción A, ir a la policía, voto.
 [OK ] 86%
   guion: Opción B. Buscar a Andrés.
-  oído:  Opción, Bo, Bucara, Andrés, Foxy,
-[OK ] 86%
+  oído:  Opción Bo, bucara Andrés, Foxy
+[OK ] 90%
   guion: Comenta A o B.
-  oído:  Comenta a o ve
+  oído:  Comenta U o B
 [OK ] 100%
   guion: Suscríbete para ver la parte dos.
   oído:  Suscríbete para ver la parte dos

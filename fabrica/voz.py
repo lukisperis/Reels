@@ -44,8 +44,9 @@ def _siniestro(a):
     rnd = np.random.default_rng(3)
     n = int(0.9 * SR)
     ir = rnd.standard_normal(n).astype(np.float32) * np.exp(-np.arange(n) / SR / 0.28).astype(np.float32)
+    ir[0] = 0.0
+    ir *= np.sqrt(0.2 / (np.sum(ir ** 2) + 1e-9))   # cola de reverberación = 20 % de la energía de la voz
     ir[0] = 1.0
-    ir[1:] *= 0.05
     m = len(a) + n - 1
     hum = np.fft.irfft(np.fft.rfft(a, m) * np.fft.rfft(ir, m), m)[: len(a) + n // 2].astype(np.float32)
     f = np.fft.rfft(hum)
