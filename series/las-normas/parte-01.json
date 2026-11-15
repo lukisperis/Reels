@@ -1,0 +1,440 @@
+{
+ "serie": "las-normas",
+ "serie_titulo": "Las normas",
+ "estilo": "misterio",
+ "episodio": 1,
+ "total": 5,
+ "titulo": "Tres golpes",
+ "gancho": "Si oyes la voz del casero… no es él",
+ "portada": "Si oyes su voz, no es él",
+ "musica": "misterio",
+ "latido_bpm": 62,
+ "contador_txt": "NORMAS ROTAS",
+ "contador_total": 5,
+ "contador_inicial": 0,
+ "voces": {
+  "narrador": {
+   "motor": "chatterbox",
+   "ref": "mls_8882",
+   "exageracion": 0.4,
+   "cfg": 0.5,
+   "tono": 0.88
+  }
+ },
+ "escenas": [
+  {
+   "texto": "El piso costaba trescientos euros al mes. Demasiado barato.",
+   "plano": {
+    "vista": "portal",
+    "zoom": 1.0,
+    "zoom_fin": 1.15,
+    "foco": [
+     0.5,
+     0.52
+    ]
+   }
+  },
+  {
+   "texto": "El casero te dio las llaves. Y una hoja doblada.",
+   "sfx": [
+    {
+     "nombre": "papel",
+     "en": 1.6
+    }
+   ],
+   "plano": {
+    "vista": "normas",
+    "zoom": 1.0,
+    "zoom_fin": 1.06,
+    "normas": {
+     "titulo": "Normas del edificio",
+     "lista": [
+      [
+       1,
+       "Nunca abras la puerta después de las 3:00."
+      ],
+      [
+       2,
+       "El edificio tiene 12 plantas. Si el ascensor marca la 13, no salgas."
+      ],
+      [
+       3,
+       "Si la vecina del 4ºB te pide sal, no se la des."
+      ],
+      [
+       4,
+       "Si llaman tres veces, no mires por la mirilla."
+      ],
+      [
+       5,
+       "El casero nunca viene de noche. Si oyes su voz, no es él."
+      ]
+     ],
+     "revelar": [
+      1.8,
+      0.35
+     ]
+    }
+   }
+  },
+  {
+   "texto": "Norma uno. Nunca abras la puerta después de las tres.",
+   "plano": {
+    "vista": "normas",
+    "zoom": 1.45,
+    "zoom_fin": 1.55,
+    "foco": [
+     0.5,
+     0.36
+    ],
+    "normas": {
+     "titulo": "Normas del edificio",
+     "lista": [
+      [
+       1,
+       "Nunca abras la puerta después de las 3:00."
+      ],
+      [
+       2,
+       "El edificio tiene 12 plantas. Si el ascensor marca la 13, no salgas."
+      ],
+      [
+       3,
+       "Si la vecina del 4ºB te pide sal, no se la des."
+      ],
+      [
+       4,
+       "Si llaman tres veces, no mires por la mirilla."
+      ],
+      [
+       5,
+       "El casero nunca viene de noche. Si oyes su voz, no es él."
+      ]
+     ],
+     "resaltar": 0
+    }
+   }
+  },
+  {
+   "texto": "Norma cuatro. Si llaman tres veces, no mires por la mirilla.",
+   "plano": {
+    "vista": "normas",
+    "zoom": 1.45,
+    "zoom_fin": 1.55,
+    "foco": [
+     0.5,
+     0.56
+    ],
+    "normas": {
+     "titulo": "Normas del edificio",
+     "lista": [
+      [
+       1,
+       "Nunca abras la puerta después de las 3:00."
+      ],
+      [
+       2,
+       "El edificio tiene 12 plantas. Si el ascensor marca la 13, no salgas."
+      ],
+      [
+       3,
+       "Si la vecina del 4ºB te pide sal, no se la des."
+      ],
+      [
+       4,
+       "Si llaman tres veces, no mires por la mirilla."
+      ],
+      [
+       5,
+       "El casero nunca viene de noche. Si oyes su voz, no es él."
+      ]
+     ],
+     "resaltar": 3
+    }
+   }
+  },
+  {
+   "texto": "Y la última. El casero nunca viene de noche. Si oyes su voz… no es él.",
+   "sfx": [
+    {
+     "nombre": "boom",
+     "en": 4.0,
+     "vol": 0.7
+    }
+   ],
+   "pausa": 0.6,
+   "plano": {
+    "vista": "normas",
+    "zoom": 1.45,
+    "zoom_fin": 1.6,
+    "foco": [
+     0.5,
+     0.66
+    ],
+    "glitch": true,
+    "normas": {
+     "titulo": "Normas del edificio",
+     "lista": [
+      [
+       1,
+       "Nunca abras la puerta después de las 3:00."
+      ],
+      [
+       2,
+       "El edificio tiene 12 plantas. Si el ascensor marca la 13, no salgas."
+      ],
+      [
+       3,
+       "Si la vecina del 4ºB te pide sal, no se la des."
+      ],
+      [
+       4,
+       "Si llaman tres veces, no mires por la mirilla."
+      ],
+      [
+       5,
+       "El casero nunca viene de noche. Si oyes su voz, no es él."
+      ]
+     ],
+     "resaltar": 4
+    }
+   }
+  },
+  {
+   "texto": "Esa tarde, el casero te escribe.",
+   "sfx": [
+    {
+     "nombre": "zumbido",
+     "en": 1.2,
+     "vol": 0.7
+    }
+   ],
+   "plano": {
+    "vista": "movil",
+    "zoom": 1.0,
+    "zoom_fin": 1.06,
+    "movil": {
+     "de": "Sr. Ortega (casero)",
+     "hora": "19:02",
+     "mensajes": [],
+     "escribiendo": 0.8
+    }
+   }
+  },
+  {
+   "texto": "Me vuelvo a Valencia. No nos veremos. Cumple las normas.",
+   "pausa": 0.5,
+   "plano": {
+    "vista": "movil",
+    "zoom": 1.06,
+    "zoom_fin": 1.14,
+    "foco": [
+     0.5,
+     0.42
+    ],
+    "movil": {
+     "de": "Sr. Ortega (casero)",
+     "hora": "19:02",
+     "mensajes": [
+      [
+       "Me vuelvo a Valencia. No nos veremos.",
+       0.1
+      ],
+      [
+       "Cumple las normas.",
+       2.6
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "texto": "A las tres y siete de la madrugada… llaman a tu puerta.",
+   "sfx": [
+    {
+     "nombre": "golpes",
+     "en": 3.6,
+     "vol": 1.0
+    }
+   ],
+   "efecto": [
+    "shake"
+   ],
+   "pausa": 1.9,
+   "plano": {
+    "vista": "puerta",
+    "zoom": 1.0,
+    "zoom_fin": 1.12,
+    "foco": [
+     0.5,
+     0.55
+    ]
+   }
+  },
+  {
+   "texto": "Tres veces.",
+   "sfx": [
+    {
+     "nombre": "latido",
+     "en": 0.4
+    }
+   ],
+   "pausa": 0.8,
+   "plano": {
+    "vista": "puerta",
+    "zoom": 1.2,
+    "zoom_fin": 1.3,
+    "foco": [
+     0.5,
+     0.72
+    ],
+    "pies": true
+   }
+  },
+  {
+   "texto": "Y al otro lado, una voz que conoces. Es el casero.",
+   "pausa": 0.3,
+   "plano": {
+    "vista": "puerta",
+    "zoom": 1.35,
+    "zoom_fin": 1.5,
+    "foco": [
+     0.5,
+     0.78
+    ],
+    "pies": true
+   }
+  },
+  {
+   "texto": "Abre. Se me olvidó darte una cosa.",
+   "pausa": 0.8,
+   "plano": {
+    "vista": "puerta",
+    "zoom": 1.15,
+    "zoom_fin": 1.2,
+    "foco": [
+     0.5,
+     0.45
+    ],
+    "pies": true,
+    "glitch": true
+   }
+  },
+  {
+   "texto": "Justo entonces, tu móvil vibra. Es el casero.",
+   "sfx": [
+    {
+     "nombre": "zumbido",
+     "en": 0.6,
+     "vol": 0.8
+    }
+   ],
+   "plano": {
+    "vista": "movil",
+    "zoom": 1.0,
+    "zoom_fin": 1.06,
+    "movil": {
+     "de": "Sr. Ortega (casero)",
+     "hora": "03:08",
+     "mensajes": [],
+     "escribiendo": 1.0
+    }
+   }
+  },
+  {
+   "texto": "Ya estoy en Valencia. ¿Todo bien por ahí?",
+   "sfx": [
+    {
+     "nombre": "boom",
+     "en": 2.6,
+     "vol": 0.8
+    }
+   ],
+   "pausa": 1.0,
+   "plano": {
+    "vista": "movil",
+    "zoom": 1.06,
+    "zoom_fin": 1.2,
+    "foco": [
+     0.5,
+     0.42
+    ],
+    "glitch": true,
+    "movil": {
+     "de": "Sr. Ortega (casero)",
+     "hora": "03:08",
+     "mensajes": [
+      [
+       "Ya estoy en Valencia.",
+       0.1
+      ],
+      [
+       "¿Todo bien por ahí?",
+       1.5
+      ]
+     ]
+    }
+   }
+  }
+ ],
+ "eleccion": {
+  "pregunta": "¿Qué haces?",
+  "A": "Abrir la puerta",
+  "sub_A": "rompes la norma 1",
+  "B": "Mirar por la mirilla",
+  "sub_B": "rompes la norma 4",
+  "cta": "Las dos rompen una norma. Comenta A o B.",
+  "plano": {
+   "vista": "puerta",
+   "pies": true
+  }
+ },
+ "avance": {
+  "texto": "Suscríbete para ver la parte dos."
+ },
+ "portada_plano": {
+  "vista": "normas",
+  "normas": {
+   "titulo": "Normas del edificio",
+   "lista": [
+    [
+     1,
+     "Nunca abras la puerta después de las 3:00."
+    ],
+    [
+     2,
+     "El edificio tiene 12 plantas. Si el ascensor marca la 13, no salgas."
+    ],
+    [
+     3,
+     "Si la vecina del 4ºB te pide sal, no se la des."
+    ],
+    [
+     4,
+     "Si llaman tres veces, no mires por la mirilla."
+    ],
+    [
+     5,
+     "El casero nunca viene de noche. Si oyes su voz, no es él."
+    ]
+   ],
+   "resaltar": 4
+  }
+ },
+ "publicar": {
+  "titulo_youtube": "Las normas de mi edificio: si oyes la voz del casero… NO es él 😨 Parte 1 #shorts",
+  "titulo_tiktok": "Parte 1: alquilé un piso barato y me dieron estas normas 😰 A las 3:07 llamaron tres veces… ¿Qué harías? A o B 👇",
+  "descripcion": "Un piso por 300 €. Cinco normas. A las 3:07 llaman a tu puerta con la voz del casero… pero el casero está en Valencia. ¿Abres o miras por la mirilla? Las dos rompen una norma. Comenta A o B y suscríbete para ver la parte 2.",
+  "hashtags": [
+   "#misterio",
+   "#terror",
+   "#lasnormas",
+   "#historiasdeterror",
+   "#tudecides",
+   "#suspense",
+   "#fyp",
+   "#parati"
+  ],
+  "comentario_fijado": "🅰️ abrir la puerta · 🅱️ mirar por la mirilla. Las dos rompen una norma… Lo más votado decide la PARTE 2 👀 ¡Suscríbete!"
+ }
+}

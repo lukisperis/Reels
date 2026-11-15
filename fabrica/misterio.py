@@ -99,7 +99,7 @@ def escenario(vista):
         R(L, (x + 30, y - 70, x + 230, y + 80), PAPEL, 3)
         P(L, [(x + 30, y - 70), (x + 130, y + 5), (x + 230, y - 70)], PAPEL2)
         E(L, (x + 112, y - 5, x + 148, y + 31), ROJO)       # lacre
-    elif vista == "papel":
+    elif vista in ("papel", "normas"):
         R(L, (0, 0, W, H), (34, 28, 26))
         rnd = random.Random(1)
         for _ in range(30):
@@ -162,6 +162,29 @@ def _hoja_lista(nombres, tachados, revelados, ultimo_rojo, titulo="LISTA"):
     for i, p in tachados:
         y = 260 + i * 118
         Lin(L, [(85, y + 6), (85 + 650 * p, y - 4)], ROJO, 13)
+    return L.final()
+
+
+def _hoja_normas(titulo, normas, revelados, resaltar, rotas):
+    L = Lienzo(880, 1240)
+    P(L, [(16, 26), (866, 14), (872, 1226), (10, 1236)], PAPEL)
+    for i, l in enumerate(_partir(titulo.upper(), 22)):
+        T(L, (440, 100 + i * 64), l, 54, TINTA, F_MAQ)
+    y = 120 + 64 * len(_partir(titulo, 22)) + 40
+    Lin(L, [(70, y - 30), (810, y - 30)], TINTA, 4)
+    for i, (num, texto) in enumerate(normas[:revelados]):
+        lineas = _partir(texto, 27)
+        rojo = i == resaltar
+        col = ROJO if rojo else TINTA
+        T(L, (70, y + 24), f"{num}.", 40, col, F_NEGRA, "lm")
+        for j, l in enumerate(lineas):
+            T(L, (130, y + 24 + j * 50), l, 38, col, F_MAQ, "lm")
+        alto = 50 * len(lineas)
+        if rojo:
+            Lin(L, [(125, y + alto + 6), (125 + 640, y + alto + 2)], ROJO, 6)
+        if i in rotas:
+            Lin(L, [(60, y + alto / 2), (820, y + alto / 2 - 10)], ROJO, 10)
+        y += alto + 38
     return L.final()
 
 
@@ -311,6 +334,20 @@ def componer(pl, tl, t, cache):
             cache[k] = _hoja_lista(nombres, tach, revelados, lista.get("ultimo_rojo", True))
         h = cache[k]
         frame.alpha_composite(h, (int(W / 2 - h.width / 2), 480))
+    elif vista == "normas":
+        n = pl["normas"]
+        lista = n["lista"]
+        if "revelar" in n:
+            ini, paso = n["revelar"]
+            revelados = int(max(0, min(len(lista), (tl - ini) / paso + 1)))
+        else:
+            revelados = len(lista)
+        k = ("normas", id(pl), revelados)
+        if k not in cache:
+            cache[k] = _hoja_normas(n.get("titulo", "Normas del edificio"), lista, revelados, n.get("resaltar", -1),
+                                    tuple(n.get("rotas", [])))
+        h = cache[k]
+        frame.alpha_composite(h, (int(W / 2 - h.width / 2), 420))
     elif vista == "periodico":
         k = ("periodico", id(pl))
         if k not in cache:
