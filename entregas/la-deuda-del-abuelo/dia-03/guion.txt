@@ -1,0 +1,17 @@
+La deuda del abuelo — Día 3: El espía
+
+[01] (narrador) Opción B. Leo vuelve al despacho… como espía.
+[02] (RAMIRO) Hoy limpias mi despacho, chaval. Cincuenta euros.
+[03] (narrador) Leo limpia. Y escucha.
+[04] (RAMIRO) Tranquilo, concejal. El día catorce tiramos el bar.
+[05] (RAMIRO) Y si el viejo paga… lo tiramos igual.
+[06] (narrador) Es una trampa. Ni con diez mil euros.
+[07] (narrador) Leo saca el móvil. Y graba.
+[08] (RAMIRO) Cincuenta euros. Menos cinco por el papel higiénico.
+[09] (narrador) Cuarenta y cinco euros. Y una prueba.
+[10] (RAMIRO) Eh, chaval. ¿Qué haces con ese móvil?
+
+FINAL: ¿Qué hace Leo?
+  A) Borrar el vídeo delante de él
+  B) Salir corriendo con la prueba
+  Comenta A o B.

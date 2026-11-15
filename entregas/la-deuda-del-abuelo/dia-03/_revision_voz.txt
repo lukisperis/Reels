@@ -1,0 +1,45 @@
+[OK ] 92%
+  guion: Opción B. Leo vuelve al despacho… como espía.
+  oído:  Opción, BES, CIR vuelve al despacho como espía.
+[OK ] 100%
+  guion: Hoy limpias mi despacho, chaval. Cincuenta euros.
+  oído:  Hoy limpias mi despacho, chaval, cincuenta euros.
+[OK ] 100%
+  guion: Leo limpia. Y escucha.
+  oído:  Leo limpia y escucha.
+[OK ] 96%
+  guion: Tranquilo, concejal. El día catorce tiramos el bar.
+  oído:  Tranquilo, concejal, el día catorce tiramos el vara.
+[OK ] 89%
+  guion: Y si el viejo paga… lo tiramos igual.
+  oído:  Si el viejo paga, lo tiramos igual. ¿Lo cabe?
+[OK ] 88%
+  guion: Es una trampa. Ni con diez mil euros.
+  oído:  Es una trampa, ni con diez cero euros
+[OK ] 88%
+  guion: Leo saca el móvil. Y graba.
+  oído:  Miro, saca el móvil y graba.
+[OK ] 90%
+  guion: Cincuenta euros. Menos cinco por el papel higiénico.
+  oído:  cincuenta euros, menos cinco por el papel higiénico, B, higiénico
+[OK ] 94%
+  guion: Cuarenta y cinco euros. Y una prueba.
+  oído:  cuarenta y cinco euros y una prueba E y un
+[OK ] 95%
+  guion: Eh, chaval. ¿Qué haces con ese móvil?
+  oído:  Eh, chaval, ¿qué haces con ese móvil? Y es...
+[OK ] 91%
+  guion: ¿Qué hace Leo?
+  oído:  ¿Qué hace Leo? Sí...
+[OK ] 97%
+  guion: Opción A. Borrar el vídeo delante de él.
+  oído:  opción a borrar el vídeo delante de
+[OK ] 94%
+  guion: Opción B. Salir corriendo con la prueba.
+  oído:  Opción P es salir corriendo con la prueba.
+[OK ] 90%
+  guion: Comenta A o B.
+  oído:  Comenta a OV.
+[OK ] 100%
+  guion: Mañana, día cuatro. ¡Suscríbete!
+  oído:  mañana día cuatro suscríbete
