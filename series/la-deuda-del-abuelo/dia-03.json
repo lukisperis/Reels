@@ -1,0 +1,628 @@
+{
+ "serie": "la-deuda-del-abuelo",
+ "serie_titulo": "La deuda del abuelo",
+ "estilo": "cartoon",
+ "total": 30,
+ "meta": 10000,
+ "barra": "DEUDA PAGADA",
+ "musica": "comedia",
+ "voces": {
+  "narrador": {
+   "motor": "chatterbox",
+   "ref": "mls_8882",
+   "exageracion": 0.65,
+   "cfg": 0.35,
+   "tono": 0.85
+  },
+  "LEO": {
+   "motor": "chatterbox",
+   "ref": "mls_8882",
+   "exageracion": 0.65,
+   "cfg": 0.35,
+   "tono": 0.85
+  },
+  "RAMIRO": {
+   "motor": "chatterbox",
+   "ref": "mls_8882",
+   "exageracion": 0.65,
+   "cfg": 0.35,
+   "tono": 0.85
+  },
+  "ABUELO": {
+   "motor": "chatterbox",
+   "ref": "mls_8882",
+   "exageracion": 0.65,
+   "cfg": 0.35,
+   "tono": 0.85
+  }
+ },
+ "personajes": {
+  "LEO": {
+   "piel": [
+    240,
+    190,
+    150
+   ],
+   "pelo": [
+    90,
+    55,
+    30
+   ],
+   "estilo_pelo": "rizos",
+   "camiseta": [
+    70,
+    170,
+    120
+   ],
+   "pantalon": [
+    60,
+    70,
+    110
+   ],
+   "cuerpo": "normal",
+   "bolsillo": true
+  },
+  "ABUELO": {
+   "piel": [
+    245,
+    200,
+    170
+   ],
+   "pelo": [
+    225,
+    225,
+    230
+   ],
+   "estilo_pelo": "calvo",
+   "bigote": true,
+   "gafas": true,
+   "arrugas": true,
+   "camiseta": [
+    150,
+    110,
+    80
+   ],
+   "pantalon": [
+    90,
+    80,
+    70
+   ],
+   "botones": true,
+   "cuerpo": "gordo",
+   "zapatos": [
+    80,
+    50,
+    30
+   ],
+   "suela": [
+    50,
+    30,
+    20
+   ]
+  },
+  "RAMIRO": {
+   "piel": [
+    235,
+    185,
+    150
+   ],
+   "pelo": [
+    25,
+    25,
+    30
+   ],
+   "estilo_pelo": "engominado",
+   "bigote": true,
+   "camiseta": [
+    70,
+    40,
+    90
+   ],
+   "traje": [
+    70,
+    40,
+    90
+   ],
+   "corbata": [
+    230,
+    190,
+    40
+   ],
+   "cadena": true,
+   "pantalon": [
+    70,
+    40,
+    90
+   ],
+   "cuerpo": "gordo",
+   "zapatos": [
+    30,
+    30,
+    30
+   ],
+   "suela": [
+    20,
+    20,
+    20
+   ]
+  }
+ },
+ "episodio": 3,
+ "dinero_inicial": 13.2,
+ "titulo": "El espía",
+ "gancho": "Leo espía al enemigo",
+ "portada": "Leo espía a Ramiro",
+ "escenas": [
+  {
+   "texto": "Opción B. Leo vuelve al despacho… como espía.",
+   "sfx": [
+    "pop"
+   ],
+   "plano": {
+    "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
+    "zoom": 1.05,
+    "zoom_fin": 1.15,
+    "foco": [
+     0.5,
+     0.55
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.28,
+      "expresion": "decidido",
+      "escala": 1.05,
+      "entra": "izquierda"
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.7,
+      "expresion": "chulo",
+      "escala": 1.1
+     }
+    ]
+   }
+  },
+  {
+   "voz": "RAMIRO",
+   "texto": "Hoy limpias mi despacho, chaval. Cincuenta euros.",
+   "plano": {
+    "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
+    "zoom": 1.25,
+    "zoom_fin": 1.35,
+    "foco": [
+     0.62,
+     0.48
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.28,
+      "expresion": "neutro",
+      "escala": 1.05
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.7,
+      "expresion": "chulo",
+      "accion": "señalar",
+      "habla": true,
+      "escala": 1.1
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Leo limpia. Y escucha.",
+   "efecto": [
+    "humo"
+   ],
+   "pausa": 0.4,
+   "plano": {
+    "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
+    "zoom": 1.1,
+    "zoom_fin": 1.2,
+    "foco": [
+     0.45,
+     0.55
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.3,
+      "expresion": "decidido",
+      "accion": "gesto",
+      "mirada": [
+       1,
+       0
+      ],
+      "escala": 1.0,
+      "y": 1760
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.72,
+      "expresion": "feliz",
+      "accion": "movil",
+      "escala": 1.0,
+      "y": 1760
+     }
+    ]
+   }
+  },
+  {
+   "voz": "RAMIRO",
+   "texto": "Tranquilo, concejal. El día catorce tiramos el bar.",
+   "plano": {
+    "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
+    "zoom": 1.35,
+    "zoom_fin": 1.45,
+    "foco": [
+     0.7,
+     0.45
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.3,
+      "expresion": "sorpresa",
+      "escala": 1.0,
+      "y": 1760
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.72,
+      "expresion": "chulo",
+      "accion": "movil",
+      "habla": true,
+      "escala": 1.0,
+      "y": 1760
+     }
+    ]
+   }
+  },
+  {
+   "voz": "RAMIRO",
+   "texto": "Y si el viejo paga… lo tiramos igual.",
+   "efecto": [
+    "shake"
+   ],
+   "pausa": 0.5,
+   "plano": {
+    "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
+    "zoom": 1.4,
+    "zoom_fin": 1.5,
+    "foco": [
+     0.7,
+     0.45
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.3,
+      "expresion": "sorpresa",
+      "escala": 1.0,
+      "y": 1760
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.72,
+      "expresion": "euforia",
+      "accion": "movil",
+      "habla": true,
+      "escala": 1.0,
+      "y": 1760
+     }
+    ],
+    "onomatopeya": {
+     "texto": "¡JA, JA!",
+     "en": 1.8,
+     "sfx": "boing",
+     "y": 0.26,
+     "rot": 6
+    }
+   }
+  },
+  {
+   "texto": "Es una trampa. Ni con diez mil euros.",
+   "sfx": [
+    {
+     "nombre": "bocina",
+     "en": 0.8
+    }
+   ],
+   "pausa": 0.4,
+   "plano": {
+    "fondo": "rayos",
+    "variante": 2,
+    "zoom": 1.3,
+    "foco": [
+     0.5,
+     0.48
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "expresion": "enfadado",
+      "accion": "manos_cara",
+      "temblor": true,
+      "escala": 1.2
+     }
+    ],
+    "onomatopeya": {
+     "texto": "¡TRAMPA!",
+     "en": 0.3,
+     "sfx": "golpe",
+     "y": 0.26,
+     "color": [
+      240,
+      70,
+      70
+     ]
+    }
+   }
+  },
+  {
+   "texto": "Leo saca el móvil. Y graba.",
+   "sfx": [
+    {
+     "nombre": "camara",
+     "en": 1.2
+    }
+   ],
+   "pausa": 0.4,
+   "plano": {
+    "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
+    "zoom": 1.3,
+    "zoom_fin": 1.4,
+    "foco": [
+     0.35,
+     0.5
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.3,
+      "expresion": "decidido",
+      "accion": "movil",
+      "escala": 1.0,
+      "y": 1760
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.72,
+      "expresion": "feliz",
+      "accion": "movil",
+      "escala": 1.0,
+      "y": 1760
+     }
+    ],
+    "onomatopeya": {
+     "texto": "● REC",
+     "en": 1.2,
+     "sfx": "pop",
+     "y": 0.26,
+     "color": [
+      240,
+      70,
+      70
+     ],
+     "rot": -4
+    }
+   }
+  },
+  {
+   "voz": "RAMIRO",
+   "texto": "Cincuenta euros. Menos cinco por el papel higiénico.",
+   "pausa": 0.8,
+   "sfx": [
+    {
+     "nombre": "kaching",
+     "en": 0.4
+    },
+    {
+     "nombre": "bocina",
+     "en": 3.0
+    }
+   ],
+   "plano": {
+    "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
+    "zoom": 1.0,
+    "dinero": [
+     13.2,
+     58.2
+    ],
+    "dinero_en": 3.0,
+    "ticket": {
+     "titulo": "RAMIRO S.L.",
+     "lineas": [
+      [
+       "Limpiar despacho",
+       "50,00 €"
+      ],
+      [
+       "Papel higiénico",
+       "-5,00 €"
+      ]
+     ],
+     "total": "45,00 €",
+     "tiempos": [
+      0.4,
+      2.0
+     ],
+     "sello": "PAGADO",
+     "sello_en": 3.0,
+     "x": 0.5,
+     "y": 0.42
+    },
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.2,
+      "expresion": "asco",
+      "escala": 0.8,
+      "y": 1820
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.8,
+      "expresion": "chulo",
+      "habla": true,
+      "escala": 0.8,
+      "y": 1820
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Cuarenta y cinco euros. Y una prueba.",
+   "sfx": [
+    "brillo"
+   ],
+   "pausa": 0.4,
+   "plano": {
+    "fondo": "rayos",
+    "variante": 0,
+    "zoom": 1.2,
+    "foco": [
+     0.5,
+     0.5
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "expresion": "euforia",
+      "accion": "celebrar",
+      "brillos": true,
+      "salto": true,
+      "escala": 1.2
+     }
+    ]
+   }
+  },
+  {
+   "voz": "RAMIRO",
+   "texto": "Eh, chaval. ¿Qué haces con ese móvil?",
+   "efecto": [
+    "shake"
+   ],
+   "sfx": [
+    {
+     "nombre": "boom",
+     "en": 0.2,
+     "vol": 0.7
+    }
+   ],
+   "pausa": 0.8,
+   "plano": {
+    "fondo": "despacho",
+    "lugar": "DESPACHO RAMIRO",
+    "zoom": 1.2,
+    "zoom_fin": 1.35,
+    "foco": [
+     0.55,
+     0.48
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.28,
+      "expresion": "sorpresa",
+      "accion": "movil",
+      "sudor": true,
+      "temblor": true,
+      "escala": 1.05
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.7,
+      "expresion": "enfadado",
+      "accion": "señalar",
+      "habla": true,
+      "escala": 1.1
+     }
+    ]
+   }
+  }
+ ],
+ "eleccion": {
+  "titulo": "¿Qué hace Leo?",
+  "pregunta": "¿Qué hace Leo?",
+  "A": "Borrar el vídeo delante de él",
+  "B": "Salir corriendo con la prueba",
+  "cta": "Comenta A o B.",
+  "plano": {
+   "fondo": "despacho",
+   "lugar": "DESPACHO RAMIRO",
+   "personajes": [
+    {
+     "id": "LEO",
+     "x": 0.28,
+     "expresion": "sorpresa",
+     "accion": "movil",
+     "escala": 1.0,
+     "y": 1980
+    },
+    {
+     "id": "RAMIRO",
+     "x": 0.72,
+     "expresion": "enfadado",
+     "escala": 1.0,
+     "y": 1980
+    }
+   ]
+  }
+ },
+ "avance": {
+  "texto": "Mañana, día cuatro. ¡Suscríbete!",
+  "pregunta": "¿Le pillará Ramiro?",
+  "personaje": "RAMIRO",
+  "suscribete": true,
+  "suscribete_en": 0.4
+ },
+ "portada_plano": {
+  "fondo": "despacho",
+  "lugar": "DESPACHO RAMIRO",
+  "personajes": [
+   {
+    "id": "LEO",
+    "x": 0.3,
+    "expresion": "decidido",
+    "accion": "movil",
+    "escala": 1.0,
+    "y": 1500
+   },
+   {
+    "id": "RAMIRO",
+    "x": 0.72,
+    "expresion": "chulo",
+    "accion": "movil",
+    "escala": 1.0,
+    "y": 1500
+   }
+  ]
+ },
+ "publicar": {
+  "titulo_youtube": "Graba a Don Ramiro y descubre su trampa 😱 Día 3/30 #shorts",
+  "titulo_tiktok": "Día 3/30: Leo espía a Ramiro… y le pilla grabando 😰 ¿A o B?",
+  "descripcion": "Votasteis B y Leo volvió como espía. Ha descubierto que Ramiro va a tirar el bar aunque el abuelo pague… y lo ha grabado. Pero Ramiro le ha visto. Comenta A o B: lo más votado pasa en el día 4. ¡Suscríbete!",
+  "hashtags": [
+   "#tudecides",
+   "#animacion",
+   "#historias",
+   "#reto30dias",
+   "#10000euros",
+   "#ladeudadelabuelo",
+   "#fyp",
+   "#parati"
+  ],
+  "comentario_fijado": "🅰️ borra el vídeo · 🅱️ sale corriendo con la prueba. Mañana DÍA 4 👀 ¡Suscríbete!"
+ }
+}

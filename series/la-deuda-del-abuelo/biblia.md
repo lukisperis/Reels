@@ -41,3 +41,4 @@ UNA sola voz para todo (narrador y personajes): Chatterbox con `mls_8882`, `exag
 |-----|--------|-------------------|---------------|
 | 1 | Treinta días | A vende todo / B trabaja para Ramiro → **ganó B** | 3,20 € |
 | 2 | Trabajando para el enemigo | Lava 7 coches por 100 € y Ramiro le descuenta 90 €. Descubre el PROYECTO PARKING: demoler el Bar Paco el 14 de diciembre. A contárselo al abuelo / B seguir espiando | 13,20 € |
+| 3 | El espía | Ganó B (espiar). Limpia el despacho por 45 €. Graba a Ramiro: "El día 14 tiramos el bar. Y si el viejo paga… lo tiramos igual". Ramiro le pilla. A borrar el vídeo / B salir corriendo | 58,20 € |
