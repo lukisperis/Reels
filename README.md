@@ -18,6 +18,9 @@ cada paso de Leo. Ver `series/la-deuda-del-abuelo/biblia.md`.
 **Cómo funciona:** subes el episodio, miras qué gana en comentarios (A o B) y se lo dices a Claude:
 "Ganó la A" → Claude hace el día siguiente.
 
+Segunda serie activa: **La lista** (misterio, estilo expediente noir, 7 partes) — ver
+`series/la-lista/biblia.md`. Entregas en `entregas/la-lista/parte-XX/`.
+
 En pausa: *La boda de mi ex* y *Cartas del futuro*.
 
 ## Generar a mano

@@ -1,0 +1,20 @@
+La lista — Día 1: El sobre
+
+[01] (narrador) Esta mañana había un sobre en tu buzón. Sin sello. Sin remitente.
+[02] (narrador) Dentro, una lista. Siete nombres. Escritos a máquina.
+[03] (narrador) El último… es el tuyo.
+[04] (narrador) Y el primero está tachado. En rojo.
+[05] (narrador) Por la tarde, lo ves en el periódico. Marta Ruiz. Desaparecida.
+[06] (narrador) La última cámara que la grabó… está en tu calle.
+[07] (narrador) A las tres y catorce, tu móvil vibra. Número oculto.
+[08] (narrador) No se lo cuentes a nadie. Mañana le toca al segundo.
+[09] (narrador) Entonces… alguien llama a tu puerta.
+[10] (narrador) Miras por la mirilla.
+[11] (narrador) No hay nadie.
+[12] (narrador) Pero por debajo de la puerta… aparece una foto.
+[13] (narrador) Es tu ventana. Desde fuera. Esta misma noche.
+
+FINAL: ¿Qué haces?
+  A) Ir a la policía
+  B) Buscar a Andrés
+  Comenta A o B.
