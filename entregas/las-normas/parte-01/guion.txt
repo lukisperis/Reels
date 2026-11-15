@@ -1,0 +1,20 @@
+Las normas — Día 1: Tres golpes
+
+[01] (narrador) El piso costaba trescientos euros al mes. Demasiado barato.
+[02] (narrador) El casero te dio las llaves. Y una hoja doblada.
+[03] (narrador) Norma uno. Nunca abras la puerta después de las tres.
+[04] (narrador) Norma cuatro. Si llaman tres veces, no mires por la mirilla.
+[05] (narrador) Y la última. El casero nunca viene de noche. Si oyes su voz… no es él.
+[06] (narrador) Esa tarde, el casero te escribe.
+[07] (narrador) Me vuelvo a Valencia. No nos veremos. Cumple las normas.
+[08] (narrador) A las tres y siete de la madrugada… llaman a tu puerta.
+[09] (narrador) Tres veces.
+[10] (narrador) Y al otro lado, una voz que conoces. Es el casero.
+[11] (narrador) Abre. Se me olvidó darte una cosa.
+[12] (narrador) Justo entonces, tu móvil vibra. Es el casero.
+[13] (narrador) Ya estoy en Valencia. ¿Todo bien por ahí?
+
+FINAL: ¿Qué haces?
+  A) Abrir la puerta
+  B) Mirar por la mirilla
+  Las dos rompen una norma. Comenta A o B.

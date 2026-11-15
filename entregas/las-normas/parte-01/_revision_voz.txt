@@ -1,0 +1,54 @@
+[OK ] 100%
+  guion: El piso costaba trescientos euros al mes. Demasiado barato.
+  oído:  El piso costaba trescientos euros al mes, demasiado barato.
+[OK ] 96%
+  guion: El casero te dio las llaves. Y una hoja doblada.
+  oído:  El casero te dio las aves, y una hoja doblada, y...
+[OK ] 100%
+  guion: Norma uno. Nunca abras la puerta después de las tres.
+  oído:  Norma uno Nunca abras la puerta después de las tres.
+[OK ] 96%
+  guion: Norma cuatro. Si llaman tres veces, no mires por la mirilla.
+  oído:  Norma cuatro Si llaman tres veces, no mires por la mirilla. Fats.
+[OK ] 99%
+  guion: Y la última. El casero nunca viene de noche. Si oyes su voz… no es él.
+  oído:  y la última. El casero nunca viene de noche. Si oye su voz, no es él.
+[OK ] 100%
+  guion: Esa tarde, el casero te escribe.
+  oído:  Esa tarde el casero te escribe.
+[OK ] 99%
+  guion: Me vuelvo a Valencia. No nos veremos. Cumple las normas.
+  oído:  Me vuelvo a Valencia, no nos veremos, umple las normas.
+[OK ] 100%
+  guion: A las tres y siete de la madrugada… llaman a tu puerta.
+  oído:  A las tres y siete de la madrugada llaman a tu puerta.
+[OK ] 100%
+  guion: Tres veces.
+  oído:  tres veces
+[OK ] 96%
+  guion: Y al otro lado, una voz que conoces. Es el casero.
+  oído:  Y al otro lado, una voz que conoces, es el casero y mi.
+[OK ] 100%
+  guion: Abre. Se me olvidó darte una cosa.
+  oído:  Abre, se me olvidó darte una cosa.
+[OK ] 97%
+  guion: Justo entonces, tu móvil vibra. Es el casero.
+  oído:  Justo entonces tu móvil vibra, es el casero, da.
+[OK ] 100%
+  guion: Ya estoy en Valencia. ¿Todo bien por ahí?
+  oído:  Ya estoy en Valencia. ¿Todo bien por ahí?
+[OK ] 100%
+  guion: ¿Qué haces?
+  oído:  ¿Qué haces?
+[OK ] 100%
+  guion: Opción A. Abrir la puerta.
+  oído:  Opción A, abrir la puerta.
+[OK ] 100%
+  guion: Opción B. Mirar por la mirilla.
+  oído:  Opción B, mirar por la mirilla.
+[OK ] 95%
+  guion: Las dos rompen una norma. Comenta A o B.
+  oído:  Las dos rompen una norma. Comenta a o ve.
+[OK ] 100%
+  guion: Suscríbete para ver la parte dos.
+  oído:  Suscríbete para ver la parte dos
