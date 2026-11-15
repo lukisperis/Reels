@@ -1,6 +1,6 @@
 # La deuda del abuelo — Día 3/30
 
-Duración: 69 s · Formato 1080x1920 · Listo para YouTube Shorts, TikTok e Instagram Reels.
+Duración: 53 s · Formato 1080x1920 · Listo para YouTube Shorts, TikTok e Instagram Reels.
 
 ## YouTube Shorts
 **Título:** Graba a Don Ramiro y descubre su trampa 😱 Día 3/30 #shorts
