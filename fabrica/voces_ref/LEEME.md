@@ -5,3 +5,8 @@ con licencia **CC BY 4.0** (https://huggingface.co/datasets/facebook/multilingua
 Los audios originales son grabaciones de dominio público de LibriVox.
 Se usan solo como referencia de timbre para el modelo de voz Chatterbox. El número es el
 `speaker_id` del corpus.
+
+Los clips `col_*.wav` son de locutores del corpus **Crowdsourced high-quality Colombian Spanish**
+(Google, OpenSLR 72), grabados en estudio, con licencia **CC BY-SA 4.0**
+(https://huggingface.co/datasets/ylacombe/google-colombian-spanish). El número es el `speaker_id`.
+Voz elegida para las series: `col_2436`.

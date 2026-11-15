@@ -9,31 +9,27 @@
  "voces": {
   "narrador": {
    "motor": "chatterbox",
-   "ref": "mls_8882",
-   "exageracion": 0.65,
-   "cfg": 0.35,
-   "tono": 0.85
+   "ref": "col_2436",
+   "exageracion": 0.55,
+   "cfg": 0.45
   },
   "LEO": {
    "motor": "chatterbox",
-   "ref": "mls_8882",
-   "exageracion": 0.65,
-   "cfg": 0.35,
-   "tono": 0.85
+   "ref": "col_2436",
+   "exageracion": 0.55,
+   "cfg": 0.45
   },
   "RAMIRO": {
    "motor": "chatterbox",
-   "ref": "mls_8882",
-   "exageracion": 0.65,
-   "cfg": 0.35,
-   "tono": 0.85
+   "ref": "col_2436",
+   "exageracion": 0.55,
+   "cfg": 0.45
   },
   "ABUELO": {
    "motor": "chatterbox",
-   "ref": "mls_8882",
-   "exageracion": 0.65,
-   "cfg": 0.35,
-   "tono": 0.85
+   "ref": "col_2436",
+   "exageracion": 0.55,
+   "cfg": 0.45
   }
  },
  "personajes": {
@@ -338,12 +334,11 @@
    ],
    "pausa": 0.4,
    "plano": {
-    "fondo": "rayos",
-    "variante": 2,
+    "fondo": "despacho",
     "zoom": 1.3,
     "foco": [
-     0.5,
-     0.48
+     0.42,
+     0.5
     ],
     "personajes": [
      {
@@ -351,7 +346,9 @@
       "expresion": "enfadado",
       "accion": "manos_cara",
       "temblor": true,
-      "escala": 1.2
+      "escala": 1.05,
+      "x": 0.4,
+      "y": 1800
      }
     ],
     "onomatopeya": {
@@ -364,7 +361,8 @@
       70,
       70
      ]
-    }
+    },
+    "lugar": "DESPACHO RAMIRO"
    }
   },
   {
@@ -488,11 +486,10 @@
    ],
    "pausa": 0.4,
    "plano": {
-    "fondo": "rayos",
-    "variante": 0,
-    "zoom": 1.2,
+    "fondo": "despacho",
+    "zoom": 1.3,
     "foco": [
-     0.5,
+     0.42,
      0.5
     ],
     "personajes": [
@@ -502,9 +499,12 @@
       "accion": "celebrar",
       "brillos": true,
       "salto": true,
-      "escala": 1.2
+      "escala": 1.05,
+      "x": 0.4,
+      "y": 1800
      }
-    ]
+    ],
+    "lugar": "DESPACHO RAMIRO"
    }
   },
   {
@@ -581,7 +581,7 @@
   }
  },
  "avance": {
-  "texto": "Mañana, día cuatro. ¡Suscríbete!",
+  "texto": "Suscríbete para ver el día cuatro.",
   "pregunta": "¿Le pillará Ramiro?",
   "personaje": "RAMIRO",
   "suscribete": true,

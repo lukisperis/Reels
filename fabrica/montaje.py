@@ -663,7 +663,7 @@ def _avance(frame, t, ep, partes, cache):
         base.alpha_composite(sil)
         cache["av_sil"] = base
         cache["av_q"] = texto_img([["?"]], 380, {0: (255, 225, 77)}, borde=14, ruta=caricatura.F_CARTOON)
-        cache["av_m"] = texto_img([["MAÑANA"]], 100, {0: (255, 255, 255)}, borde=10, ruta=caricatura.F_CARTOON)
+        cache["av_m"] = texto_img([["SUSCRÍBETE", "PARA", "EL"]], 84, {0: (255, 60, 70)}, borde=10, ruta=caricatura.F_CARTOON)
         cache["av_d"] = caricatura.letrero_dia(ep["episodio"] + 1, ep["total"])
         if av.get("pregunta"):
             cache["av_p"] = texto_img(partir_lineas(av["pregunta"].upper().split(), 84, 900), 84, {}, borde=9)

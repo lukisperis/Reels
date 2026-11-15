@@ -26,6 +26,12 @@ que el usuario lo pida.
 ## 3. Escribir `series/<serie>/dia-XX.json`
 Mismo esquema que `dia-01.json`. 11–16 escenas, 35–60 s. Empieza con "Votasteis X." + consecuencia.
 
+**Voz del canal:** UNA voz de estudio para todo, `{"motor": "chatterbox", "ref": "col_2436",
+"exageracion": 0.55, "cfg": 0.45}` (sin tono ni eco). **Fondos:** cada plano en el lugar real donde
+ocurre (despacho, bar, garaje, calle…); `rayos` solo para portadas, no para reacciones.
+**Cierre:** el `avance` dice "Suscríbete para ver el día N" (en letra) y la pantalla pone
+"SUSCRÍBETE PARA EL DÍA N".
+
 **Voces:** usa siempre el motor `chatterbox` con las referencias de `fabrica/voces_ref/` (ver la
 biblia de la serie). Generar la voz tarda ~30 s por frase; se guarda en caché (`.cache/tts`).
 

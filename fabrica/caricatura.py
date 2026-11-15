@@ -392,7 +392,7 @@ def dibujar_personaje(p, expr="neutro", accion="quieto", boca_abierta=False, par
 # ---------------------------------------------------------------------------
 # Fondos
 # ---------------------------------------------------------------------------
-SUELO = {"despacho": 1700, "garaje": 1780, "bar": 1700, "dormitorio": 1720, "espejo": 1800, "rayos": 1760, "gimnasio": 1720, "parque": 1740, "movil": 1900,
+SUELO = {"despacho": 1760, "garaje": 1780, "bar": 1700, "dormitorio": 1720, "espejo": 1800, "rayos": 1760, "gimnasio": 1720, "parque": 1740, "movil": 1900,
          "calle": 1740, "plano": 1760}
 
 
@@ -476,31 +476,66 @@ def fondo(nombre, variante=0):
         for x in range(60, W, 240):
             L.rect((x, 1600, x + 120, 1900), (120, 78, 50), r=12)
     elif nombre == "despacho":
-        L.d.rectangle([0, 0, W * K, H * K], fill=(95, 55, 120))
-        for x in range(0, W, 110):
-            L.d.rectangle([x * K, 0, (x + 55) * K, 1250 * K], fill=(105, 62, 132))
-        # cuadro dorado con la "R"
-        L.rect((340, 200, 740, 640), (230, 180, 50), r=10)
-        L.rect((375, 235, 705, 605), (60, 30, 80), r=6)
-        L.texto((540, 430), "R", 260, (240, 200, 60), F_CARTOON, borde=6)
+        # pared con zócalo de madera
+        L.d.rectangle([0, 0, W * K, H * K], fill=(214, 196, 168))
+        L.d.rectangle([0, 1000 * K, W * K, 1250 * K], fill=(120, 78, 48))
+        for x in range(0, W, 90):
+            L.d.line([x * K, 1000 * K, x * K, 1250 * K], fill=(100, 64, 40), width=4 * K)
+        # ventanal con ciudad
+        L.rect((60, 160, 520, 720), (150, 205, 240), r=6)
+        for i, (x, w_, h_) in enumerate(((70, 90, 300), (170, 80, 420), (260, 110, 250), (380, 130, 360))):
+            L.rect((x, 720 - h_, x + w_, 720), [(120, 140, 170), (100, 120, 150), (140, 160, 185), (110, 130, 160)][i], r=2, ol=False)
+            for wy in range(720 - h_ + 25, 700, 45):
+                for wx in range(x + 12, x + w_ - 20, 30):
+                    L.rect((wx, wy, wx + 14, wy + 20), (230, 240, 250), r=2, ol=False)
+        L.linea([(290, 160), (290, 720)], OUT, 10)
+        L.linea([(60, 440), (520, 440)], OUT, 10)
+        L.rect((40, 130, 540, 175), (110, 70, 45), r=8)
+        # estantería con libros
+        L.rect((600, 150, 1040, 980), (110, 70, 45), r=8)
+        cols = [(180, 50, 50), (50, 90, 160), (220, 170, 60), (60, 130, 80), (120, 60, 140), (200, 100, 40)]
+        for fila, y in enumerate((170, 370, 570, 770)):
+            L.rect((620, y + 180, 1020, y + 200), (90, 56, 36), r=2)
+            x = 630
+            i = fila
+            while x < 1000:
+                w_ = 28 + (i * 13) % 22
+                h_ = 140 + (i * 29) % 40
+                L.rect((x, y + 180 - h_, x + w_, y + 180), cols[i % len(cols)], r=3)
+                x += w_ + 4
+                i += 1
+        # cuadro de Ramiro (la "R" dorada)
+        L.rect((150, 780, 410, 960), (230, 180, 50), r=6)
+        L.rect((172, 802, 388, 938), (60, 30, 80), r=4)
+        L.texto((280, 872), "R", 110, (240, 200, 60), F_CARTOON)
+        # planta
+        L.rect((470, 1080, 560, 1240), (180, 90, 50), r=10)
+        for dx, dy in ((-50, -40), (0, -80), (50, -40), (-30, -110), (35, -120)):
+            L.elipse((515 + dx - 40, 1080 + dy - 30, 515 + dx + 40, 1080 + dy + 30), (70, 150, 80))
+        # suelo con alfombra
+        L.d.rectangle([0, 1250 * K, W * K, H * K], fill=(150, 100, 65))
+        for y in range(1250, H, 70):
+            L.d.line([0, y * K, W * K, y * K], fill=(130, 86, 55), width=4 * K)
+        L.elipse((140, 1640, 940, 1860), (140, 40, 50), ol=False)
+        # sillón de director (detrás de la mesa)
+        L.rect((600, 1020, 860, 1330), (40, 30, 30), r=40)
+        # mesa de despacho con ordenador, lámpara, papeles y teléfono
+        L.rect((380, 1300, 1060, 1360), (95, 58, 35), r=8)
+        L.rect((400, 1360, 1040, 1560), (120, 75, 45), r=6)
+        for x in (420, 730):
+            L.rect((x, 1390, x + 280, 1530), (105, 65, 40), r=6)
+            L.elipse((x + 125, 1450, x + 155, 1470), (220, 190, 120))
+        L.rect((760, 1110, 980, 1260), (40, 40, 50), r=10)
+        L.rect((775, 1125, 965, 1245), (90, 170, 230), r=4, ol=False)
+        L.rect((850, 1260, 890, 1300), (40, 40, 50), r=2)
+        L.poli([(440, 1300), (470, 1210), (520, 1210), (550, 1300)], (230, 190, 60))
+        L.linea([(495, 1210), (495, 1180)], OUT, 6)
+        L.rect((570, 1270, 700, 1300), (245, 245, 240), r=2)
+        L.rect((580, 1255, 710, 1285), (235, 235, 230), r=2)
         # caja fuerte
-        L.rect((790, 760, 1040, 1150), (130, 135, 150), r=16)
-        L.elipse((860, 880, 970, 990), (90, 95, 110))
-        L.linea([(915, 935), (950, 905)], OUT, 8)
-        L.rect((800, 1150, 1030, 1190), (90, 95, 110), r=6)
-        # billetes
-        for i, (x, y) in enumerate(((80, 1080), (150, 1050), (110, 1010), (200, 1090))):
-            L.rect((x, y, x + 150, y + 60), (90, 180, 90), r=6)
-            L.elipse((x + 55, y + 12, x + 95, y + 48), (60, 140, 60), ol=False)
-        L.d.rectangle([0, 1250 * K, W * K, H * K], fill=(140, 30, 50))
-        for y in range(1250, H, 90):
-            L.d.line([0, y * K, W * K, y * K], fill=(120, 25, 42), width=4 * K)
-        # mesa delante
-        L.rect((-20, 1560, W + 20, 1640), (80, 45, 25), r=10)
-        L.rect((40, 1640, 140, H + 20), (70, 40, 22), r=6)
-        L.rect((940, 1640, 1040, H + 20), (70, 40, 22), r=6)
-        L.rect((700, 1470, 790, 1560), (230, 180, 50), r=8)
-        L.poli([(660, 1480), (830, 1480), (790, 1400), (700, 1400)], (250, 220, 120))
+        L.rect((60, 1080, 300, 1300), (120, 125, 140), r=12)
+        L.elipse((140, 1140, 220, 1220), (90, 95, 110))
+        L.linea([(180, 1180), (205, 1160)], OUT, 6)
     elif nombre == "garaje":
         L.d.rectangle([0, 0, W * K, H * K], fill=(180, 185, 195))
         for y in range(120, 1100, 160):

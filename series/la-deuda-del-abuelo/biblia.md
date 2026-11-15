@@ -8,9 +8,12 @@ resultado de la votación, se produce el siguiente día.
 en 30 días, Ramiro se queda con el **Bar Paco** (abierto desde 1985, la vida del abuelo). Leo, su nieto
 de 17 años, tiene 3,20 € y promete conseguir el dinero.
 
-## Voz (desde el día 2, estilo del vídeo de referencia)
-UNA sola voz para todo (narrador y personajes): Chatterbox con `mls_8882`, `exageracion` 0.65,
-`cfg` 0.35, `tono` 0.85 (más grave). Copiar el bloque `voces` de `dia-02.json`.
+## Voz (desde el día 3)
+UNA sola voz de estudio para todo: Chatterbox `col_2436`, exageración 0.55, cfg 0.45, SIN cambio de tono
+ni eco. Copiar el bloque `voces` de `dia-03.json`.
+
+## Fondos
+Cada escena en el sitio donde ocurre (despacho, bar, garaje, calle…). Nada de `rayos` para reacciones.
 
 ## Personajes (copiar `personajes` y `voces` del día 1 en cada episodio)
 - **LEO** — 17 años, rizos, sudadera verde con bolsillo. Ingenioso, cabezota, buen corazón. Voz `LEO`.
