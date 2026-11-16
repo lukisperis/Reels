@@ -1,0 +1,19 @@
+Las normas — Día 2: Planta trece
+
+[01] (narrador) La mayoría votó A. Abres la puerta.
+[02] (narrador) No hay nadie. Solo el pasillo… y la luz parpadeando.
+[03] (narrador) En el felpudo, una caja pequeña.
+[04] (narrador) Dentro hay una llave. Con una etiqueta. Planta trece.
+[05] (narrador) Has roto la norma uno.
+[06] (narrador) Tu móvil vibra. Es el casero.
+[07] (narrador) ¿Por qué has abierto? Ahora ya sabe cómo te llamas.
+[08] (narrador) Por la mañana coges el ascensor. Pulsas el bajo.
+[09] (narrador) Pero el ascensor… sube.
+[10] (narrador) Planta trece. Las puertas se abren.
+[11] (narrador) Norma dos. Si el ascensor marca la trece, no salgas.
+[12] (narrador) Y desde la oscuridad… alguien susurra tu nombre.
+
+FINAL: ¿Qué haces?
+  A) Salir a la planta 13
+  B) Usar la llave
+  Comenta A o B.

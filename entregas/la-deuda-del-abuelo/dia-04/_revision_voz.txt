@@ -1,0 +1,48 @@
+[OK ] 99%
+  guion: Opción B. Leo sale corriendo… con la prueba.
+  oído:  Opción Beleo sale corriendo con la prueba.
+[OK ] 100%
+  guion: ¡Vuelve aquí, chaval!
+  oído:  ¡Vuelve aquí chaval!
+[OK ] 100%
+  guion: Por el camino, se le caen ocho euros.
+  oído:  por el camino se le caen ocho euros.
+[OK ] 100%
+  guion: Llega al bar del abuelo. Sin aliento.
+  oído:  Llega al bar del abuelo, sin aliento.
+[OK ] 100%
+  guion: Abuelo, tienes que ver esto.
+  oído:  Abuelo tienes que ver esto.
+[OK ] 100%
+  guion: Y si el viejo paga… lo tiramos igual.
+  oído:  y si el viejo paga, lo tiramos igual.
+[OK ] 100%
+  guion: Ese sinvergüenza nunca pensó dejarme el bar.
+  oído:  ese sinvergüenza nunca pensó dejarme el bar.
+[OK ] 100%
+  guion: Pero entonces… el abuelo sonríe.
+  oído:  pero entonces el abuelo sonríe.
+[OK ] 100%
+  guion: Hijo, con este vídeo… podemos ganar.
+  oído:  hijo con este vídeo podemos ganar.
+[OK ] 100%
+  guion: Pero la puerta del bar se abre de golpe.
+  oído:  pero la puerta del bar se abre de golpe.
+[OK ] 100%
+  guion: Si subís ese vídeo, os denuncio a los dos.
+  oído:  Si subís ese vídeo os denuncio a los dos.
+[OK ] 100%
+  guion: ¿Qué hace Leo?
+  oído:  ¿Qué hace Leo?
+[OK ] 100%
+  guion: Opción A. Subir el vídeo a internet.
+  oído:  Opciona Subir el vídeo a Internet.
+[OK ] 100%
+  guion: Opción B. Usarlo para negociar con Ramiro.
+  oído:  Opción B, usarlo para negociar con Ramiro.
+[OK ] 91%
+  guion: Comenta A o B.
+  oído:  Comenta a OBEY
+[OK ] 100%
+  guion: Suscríbete para ver el día cinco.
+  oído:  Suscríbete para ver el día cinco

@@ -1,0 +1,18 @@
+La deuda del abuelo — Día 4: Corre, Leo
+
+[01] (narrador) Opción B. Leo sale corriendo… con la prueba.
+[02] (RAMIRO) ¡Vuelve aquí, chaval!
+[03] (narrador) Por el camino, se le caen ocho euros.
+[04] (narrador) Llega al bar del abuelo. Sin aliento.
+[05] (LEO) Abuelo, tienes que ver esto.
+[06] (RAMIRO) Y si el viejo paga… lo tiramos igual.
+[07] (ABUELO) Ese sinvergüenza nunca pensó dejarme el bar.
+[08] (narrador) Pero entonces… el abuelo sonríe.
+[09] (ABUELO) Hijo, con este vídeo… podemos ganar.
+[10] (narrador) Pero la puerta del bar se abre de golpe.
+[11] (RAMIRO) Si subís ese vídeo, os denuncio a los dos.
+
+FINAL: ¿Qué hace Leo?
+  A) Subir el vídeo a internet
+  B) Usarlo para negociar con Ramiro
+  Comenta A o B.

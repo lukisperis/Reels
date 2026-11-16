@@ -1,0 +1,51 @@
+[OK ] 96%
+  guion: La mayoría votó A. Abres la puerta.
+  oído:  La mayoría goto A abres la puerta.
+[OK ] 100%
+  guion: No hay nadie. Solo el pasillo… y la luz parpadeando.
+  oído:  No hay nadie, solo el pasillo y la luz parpadeando.
+[OK ] 100%
+  guion: En el felpudo, una caja pequeña.
+  oído:  en el felpudo una caja pequeña.
+[OK ] 94%
+  guion: Dentro hay una llave. Con una etiqueta. Planta trece.
+  oído:  dentro de una llave, con una etiqueta planta trece
+[OK ] 94%
+  guion: Has roto la norma uno.
+  oído:  Haz roto la norma uno
+[OK ] 100%
+  guion: Tu móvil vibra. Es el casero.
+  oído:  tu móvil vibra, es el casero.
+[OK ] 100%
+  guion: ¿Por qué has abierto? Ahora ya sabe cómo te llamas.
+  oído:  porque has abierto ahora ya sabe cómo te llamas
+[OK ] 95%
+  guion: Por la mañana coges el ascensor. Pulsas el bajo.
+  oído:  Por la mañana cógese el ascensor, puzás el bajo.
+[OK ] 100%
+  guion: Pero el ascensor… sube.
+  oído:  pero el ascensor sube.
+[OK ] 100%
+  guion: Planta trece. Las puertas se abren.
+  oído:  Planta trece Las puertas se abren.
+[OK ] 96%
+  guion: Norma dos. Si el ascensor marca la trece, no salgas.
+  oído:  Norma dos Si el ascensor marca la trece no salirás.
+[OK ] 100%
+  guion: Y desde la oscuridad… alguien susurra tu nombre.
+  oído:  y desde la oscuridad alguien susurra tu nombre.
+[OK ] 100%
+  guion: ¿Qué haces?
+  oído:  ¿Qué haces?
+[OK ] 86%
+  guion: Opción A. Salir a la planta 13.
+  oído:  opciona, salir a la planta trece
+[OK ] 91%
+  guion: Opción B. Usar la llave.
+  oído:  Opción B, usarla ya ve.
+[OK ] 95%
+  guion: Comenta A o B.
+  oído:  Comenta a OBE
+[OK ] 100%
+  guion: Suscríbete para ver la parte tres.
+  oído:  Suscríbete para ver la parte tres
