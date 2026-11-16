@@ -1,0 +1,612 @@
+{
+ "serie": "la-deuda-del-abuelo",
+ "serie_titulo": "La deuda del abuelo",
+ "estilo": "cartoon",
+ "total": 30,
+ "meta": 10000,
+ "barra": "DEUDA PAGADA",
+ "musica": "comedia",
+ "voces": {
+  "narrador": {
+   "motor": "chatterbox",
+   "ref": "col_2436",
+   "exageracion": 0.55,
+   "cfg": 0.45
+  },
+  "LEO": {
+   "motor": "chatterbox",
+   "ref": "col_2436",
+   "exageracion": 0.55,
+   "cfg": 0.45
+  },
+  "RAMIRO": {
+   "motor": "chatterbox",
+   "ref": "col_2436",
+   "exageracion": 0.55,
+   "cfg": 0.45
+  },
+  "ABUELO": {
+   "motor": "chatterbox",
+   "ref": "col_2436",
+   "exageracion": 0.55,
+   "cfg": 0.45
+  }
+ },
+ "personajes": {
+  "LEO": {
+   "piel": [
+    240,
+    190,
+    150
+   ],
+   "pelo": [
+    90,
+    55,
+    30
+   ],
+   "estilo_pelo": "rizos",
+   "camiseta": [
+    70,
+    170,
+    120
+   ],
+   "pantalon": [
+    60,
+    70,
+    110
+   ],
+   "cuerpo": "normal",
+   "bolsillo": true
+  },
+  "ABUELO": {
+   "piel": [
+    245,
+    200,
+    170
+   ],
+   "pelo": [
+    225,
+    225,
+    230
+   ],
+   "estilo_pelo": "calvo",
+   "bigote": true,
+   "gafas": true,
+   "arrugas": true,
+   "camiseta": [
+    150,
+    110,
+    80
+   ],
+   "pantalon": [
+    90,
+    80,
+    70
+   ],
+   "botones": true,
+   "cuerpo": "gordo",
+   "zapatos": [
+    80,
+    50,
+    30
+   ],
+   "suela": [
+    50,
+    30,
+    20
+   ]
+  },
+  "RAMIRO": {
+   "piel": [
+    235,
+    185,
+    150
+   ],
+   "pelo": [
+    25,
+    25,
+    30
+   ],
+   "estilo_pelo": "engominado",
+   "bigote": true,
+   "camiseta": [
+    70,
+    40,
+    90
+   ],
+   "traje": [
+    70,
+    40,
+    90
+   ],
+   "corbata": [
+    230,
+    190,
+    40
+   ],
+   "cadena": true,
+   "pantalon": [
+    70,
+    40,
+    90
+   ],
+   "cuerpo": "gordo",
+   "zapatos": [
+    30,
+    30,
+    30
+   ],
+   "suela": [
+    20,
+    20,
+    20
+   ]
+  }
+ },
+ "episodio": 4,
+ "dinero_inicial": 58.2,
+ "titulo": "Corre, Leo",
+ "gancho": "Leo huye con la prueba",
+ "portada": "¡Corre, Leo!",
+ "escenas": [
+  {
+   "texto": "Opción B. Leo sale corriendo… con la prueba.",
+   "sfx": [
+    "whoosh"
+   ],
+   "plano": {
+    "fondo": "calle",
+    "lugar": "CALLE",
+    "zoom": 1.1,
+    "foco": [
+     0.5,
+     0.55
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.45,
+      "expresion": "esfuerzo",
+      "accion": "correr",
+      "sudor": true,
+      "escala": 1.0,
+      "y": 1800,
+      "entra": "derecha"
+     }
+    ],
+    "onomatopeya": {
+     "texto": "¡CORRE!",
+     "en": 0.8,
+     "sfx": "pop",
+     "y": 0.26
+    }
+   }
+  },
+  {
+   "voz": "RAMIRO",
+   "texto": "¡Vuelve aquí, chaval!",
+   "efecto": [
+    "shake"
+   ],
+   "pausa": 0.3,
+   "plano": {
+    "fondo": "calle",
+    "lugar": "CALLE",
+    "zoom": 1.25,
+    "foco": [
+     0.6,
+     0.5
+    ],
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.25,
+      "expresion": "sorpresa",
+      "accion": "correr",
+      "escala": 0.85,
+      "y": 1820
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.72,
+      "expresion": "enfadado",
+      "accion": "señalar",
+      "habla": true,
+      "escala": 1.05,
+      "y": 1800
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Por el camino, se le caen ocho euros.",
+   "sfx": [
+    {
+     "nombre": "bocina",
+     "en": 2.0
+    }
+   ],
+   "pausa": 0.4,
+   "plano": {
+    "fondo": "calle",
+    "lugar": "CALLE",
+    "zoom": 1.2,
+    "foco": [
+     0.5,
+     0.55
+    ],
+    "dinero": [
+     58.2,
+     50.2
+    ],
+    "dinero_en": 2.0,
+    "personajes": [
+     {
+      "id": "LEO",
+      "x": 0.5,
+      "expresion": "dolor",
+      "accion": "correr",
+      "escala": 1.0,
+      "y": 1800
+     }
+    ],
+    "onomatopeya": {
+     "texto": "-8 €",
+     "en": 2.0,
+     "y": 0.26,
+     "color": [
+      240,
+      70,
+      70
+     ]
+    }
+   }
+  },
+  {
+   "texto": "Llega al bar del abuelo. Sin aliento.",
+   "efecto": [
+    "humo"
+   ],
+   "plano": {
+    "fondo": "bar",
+    "lugar": "BAR PACO",
+    "zoom": 1.05,
+    "foco": [
+     0.5,
+     0.55
+    ],
+    "personajes": [
+     {
+      "id": "ABUELO",
+      "x": 0.27,
+      "expresion": "sorpresa",
+      "escala": 1.05
+     },
+     {
+      "id": "LEO",
+      "x": 0.7,
+      "expresion": "esfuerzo",
+      "sudor": true,
+      "escala": 1.05
+     }
+    ]
+   }
+  },
+  {
+   "voz": "LEO",
+   "texto": "Abuelo, tienes que ver esto.",
+   "plano": {
+    "fondo": "bar",
+    "lugar": "BAR PACO",
+    "zoom": 1.25,
+    "foco": [
+     0.6,
+     0.48
+    ],
+    "personajes": [
+     {
+      "id": "ABUELO",
+      "x": 0.27,
+      "expresion": "neutro",
+      "escala": 1.05
+     },
+     {
+      "id": "LEO",
+      "x": 0.7,
+      "expresion": "decidido",
+      "accion": "movil",
+      "habla": true,
+      "escala": 1.05
+     }
+    ]
+   }
+  },
+  {
+   "voz": "RAMIRO",
+   "texto": "Y si el viejo paga… lo tiramos igual.",
+   "efecto": [
+    "shake"
+   ],
+   "pausa": 0.4,
+   "plano": {
+    "fondo": "movil",
+    "zoom": 1.0,
+    "zoom_fin": 1.1,
+    "foco": [
+     0.5,
+     0.45
+    ],
+    "movil": {
+     "de": "Vídeo",
+     "titulo": "● GRABACIÓN",
+     "avatares": [
+      "RAMIRO"
+     ],
+     "lineas": [
+      "“Lo tiramos igual”"
+     ]
+    }
+   }
+  },
+  {
+   "voz": "ABUELO",
+   "texto": "Ese sinvergüenza nunca pensó dejarme el bar.",
+   "pausa": 0.4,
+   "plano": {
+    "fondo": "bar",
+    "lugar": "BAR PACO",
+    "zoom": 1.35,
+    "foco": [
+     0.32,
+     0.46
+    ],
+    "personajes": [
+     {
+      "id": "ABUELO",
+      "x": 0.27,
+      "expresion": "enfadado",
+      "habla": true,
+      "temblor": true,
+      "escala": 1.05
+     },
+     {
+      "id": "LEO",
+      "x": 0.7,
+      "expresion": "triste",
+      "escala": 1.05
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Pero entonces… el abuelo sonríe.",
+   "sfx": [
+    "brillo"
+   ],
+   "pausa": 0.3,
+   "plano": {
+    "fondo": "bar",
+    "lugar": "BAR PACO",
+    "zoom": 1.4,
+    "foco": [
+     0.32,
+     0.46
+    ],
+    "personajes": [
+     {
+      "id": "ABUELO",
+      "x": 0.27,
+      "expresion": "feliz",
+      "brillos": true,
+      "escala": 1.05
+     },
+     {
+      "id": "LEO",
+      "x": 0.7,
+      "expresion": "sorpresa",
+      "escala": 1.05
+     }
+    ]
+   }
+  },
+  {
+   "voz": "ABUELO",
+   "texto": "Hijo, con este vídeo… podemos ganar.",
+   "plano": {
+    "fondo": "bar",
+    "lugar": "BAR PACO",
+    "zoom": 1.2,
+    "foco": [
+     0.5,
+     0.48
+    ],
+    "personajes": [
+     {
+      "id": "ABUELO",
+      "x": 0.27,
+      "expresion": "decidido",
+      "accion": "señalar",
+      "habla": true,
+      "escala": 1.05
+     },
+     {
+      "id": "LEO",
+      "x": 0.7,
+      "expresion": "euforia",
+      "escala": 1.05
+     }
+    ]
+   }
+  },
+  {
+   "texto": "Pero la puerta del bar se abre de golpe.",
+   "sfx": [
+    {
+     "nombre": "golpe",
+     "en": 1.0
+    }
+   ],
+   "efecto": [
+    "shake"
+   ],
+   "plano": {
+    "fondo": "bar",
+    "lugar": "BAR PACO",
+    "zoom": 1.05,
+    "foco": [
+     0.5,
+     0.55
+    ],
+    "personajes": [
+     {
+      "id": "ABUELO",
+      "x": 0.2,
+      "expresion": "sorpresa",
+      "escala": 0.95,
+      "y": 1760
+     },
+     {
+      "id": "LEO",
+      "x": 0.45,
+      "expresion": "sorpresa",
+      "escala": 0.95,
+      "y": 1760
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.8,
+      "expresion": "enfadado",
+      "entra": "derecha",
+      "escala": 1.0,
+      "y": 1760
+     }
+    ]
+   }
+  },
+  {
+   "voz": "RAMIRO",
+   "texto": "Si subís ese vídeo, os denuncio a los dos.",
+   "pausa": 0.8,
+   "sfx": [
+    {
+     "nombre": "boom",
+     "en": 2.8,
+     "vol": 0.7
+    }
+   ],
+   "plano": {
+    "fondo": "bar",
+    "lugar": "BAR PACO",
+    "zoom": 1.3,
+    "foco": [
+     0.72,
+     0.46
+    ],
+    "personajes": [
+     {
+      "id": "ABUELO",
+      "x": 0.2,
+      "expresion": "sorpresa",
+      "escala": 0.95,
+      "y": 1760
+     },
+     {
+      "id": "LEO",
+      "x": 0.45,
+      "expresion": "enfadado",
+      "escala": 0.95,
+      "y": 1760
+     },
+     {
+      "id": "RAMIRO",
+      "x": 0.8,
+      "expresion": "enfadado",
+      "accion": "señalar",
+      "habla": true,
+      "escala": 1.0,
+      "y": 1760
+     }
+    ]
+   }
+  }
+ ],
+ "eleccion": {
+  "titulo": "¿Qué hace Leo?",
+  "pregunta": "¿Qué hace Leo?",
+  "A": "Subir el vídeo a internet",
+  "B": "Usarlo para negociar con Ramiro",
+  "cta": "Comenta A o B.",
+  "plano": {
+   "fondo": "bar",
+   "lugar": "BAR PACO",
+   "personajes": [
+    {
+     "id": "ABUELO",
+     "x": 0.2,
+     "expresion": "sorpresa",
+     "escala": 0.95,
+     "y": 1980
+    },
+    {
+     "id": "LEO",
+     "x": 0.5,
+     "expresion": "decidido",
+     "accion": "movil",
+     "escala": 0.95,
+     "y": 1980
+    },
+    {
+     "id": "RAMIRO",
+     "x": 0.8,
+     "expresion": "enfadado",
+     "escala": 0.95,
+     "y": 1980
+    }
+   ]
+  }
+ },
+ "avance": {
+  "texto": "Suscríbete para ver el día cinco.",
+  "pregunta": "¿Le denunciará Ramiro?",
+  "personaje": "RAMIRO",
+  "suscribete": true,
+  "suscribete_en": 0.4
+ },
+ "portada_plano": {
+  "fondo": "bar",
+  "lugar": "BAR PACO",
+  "personajes": [
+   {
+    "id": "ABUELO",
+    "x": 0.28,
+    "expresion": "feliz",
+    "escala": 1.0,
+    "y": 1500
+   },
+   {
+    "id": "LEO",
+    "x": 0.72,
+    "expresion": "decidido",
+    "accion": "movil",
+    "escala": 1.0,
+    "y": 1500
+   }
+  ]
+ },
+ "publicar": {
+  "titulo_youtube": "Huye de Ramiro con la prueba… y el abuelo tiene un plan 😳 Día 4/30 #shorts",
+  "titulo_tiktok": "Día 4/30: Leo escapa con el vídeo que puede salvar el bar 😱 ¿A o B?",
+  "descripcion": "Votasteis B: Leo salió corriendo con la prueba. El abuelo ya sabe la verdad… pero Ramiro amenaza con denunciarles. Comenta A o B: lo más votado pasa en el día 5. ¡Suscríbete!",
+  "hashtags": [
+   "#tudecides",
+   "#animacion",
+   "#historias",
+   "#reto30dias",
+   "#10000euros",
+   "#ladeudadelabuelo",
+   "#fyp",
+   "#parati"
+  ],
+  "comentario_fijado": "🅰️ subir el vídeo · 🅱️ negociar con Ramiro. Mañana DÍA 5 👀 ¡Suscríbete!"
+ }
+}

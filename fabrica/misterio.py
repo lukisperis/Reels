@@ -136,6 +136,29 @@ def escenario(vista):
         R(L, (700, 1110, 718, 1180), (120, 100, 70), 6)  # cerrojo
     elif vista == "mirilla":
         R(L, (0, 0, W, H), (4, 4, 4))
+    elif vista == "pasillo":
+        R(L, (0, 0, W, H), (10, 9, 9))
+        cx, cy = 540, 900
+        P(L, [(0, 0), (W, 0), (cx + 140, cy - 160), (cx - 140, cy - 160)], (40, 36, 32))      # techo
+        P(L, [(0, H), (W, H), (cx + 140, cy + 160), (cx - 140, cy + 160)], (52, 40, 32))      # suelo
+        P(L, [(0, 0), (cx - 140, cy - 160), (cx - 140, cy + 160), (0, H)], (66, 58, 50))      # pared izq
+        P(L, [(W, 0), (cx + 140, cy - 160), (cx + 140, cy + 160), (W, H)], (60, 52, 46))      # pared der
+        R(L, (cx - 140, cy - 160, cx + 140, cy + 160), (14, 12, 12))                          # fondo oscuro
+        for (x1, x2, y1, y2) in ((60, 230, 520, 1500), (300, 380, 760, 1110)):
+            P(L, [(x1, y1 - (x1 * 0.2)), (x2, y1 + 40), (x2, y2 - 40), (x1, y2 + (x1 * 0.2))], (36, 30, 26), PAPEL2, 3)
+        for (x1, x2, y1, y2) in ((850, 1020, 520, 1500), (700, 780, 760, 1110)):
+            P(L, [(x2, y1 - ((W - x2) * 0.2)), (x1, y1 + 40), (x1, y2 - 40), (x2, y2 + ((W - x2) * 0.2))], (36, 30, 26), PAPEL2, 3)
+        R(L, (cx - 220, 1560, cx + 220, 1720), (90, 30, 30), 6)                                # felpudo
+    elif vista == "objeto":
+        R(L, (0, 0, W, H), (24, 20, 20))
+        E(L, (140, 600, 940, 1400), (40, 34, 34))
+    elif vista == "ascensor":
+        R(L, (0, 0, W, H), (70, 72, 76))
+        for x in range(0, W, 60):
+            Lin(L, [(x, 0), (x, H)], (80, 82, 86), 3)
+        R(L, (160, 560, 920, 1760), (40, 42, 46), 6, (120, 122, 126), 8)                      # puertas
+        Lin(L, [(540, 560), (540, 1760)], (20, 20, 22), 8)
+        R(L, (330, 400, 750, 530), (10, 10, 10), 8, (120, 122, 126), 6)                        # display
     elif vista == "foto":
         R(L, (0, 0, W, H), (34, 28, 26))
     elif vista == "tablero":
@@ -377,6 +400,55 @@ def componer(pl, tl, t, cache):
         if k not in cache:
             cache[k] = _foto(pl.get("foto", {}))
         frame.alpha_composite(cache[k], (int(W / 2 - cache[k].width / 2), 440))
+    elif vista == "pasillo":
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(capa)
+        luz = 1.0 if not pl.get("parpadeo") else (1.0 if math.sin(t * 17) + math.sin(t * 5.3) > -0.6 else 0.15)
+        d.ellipse((480, 300, 600, 340), fill=(255, 230, 170, int(255 * luz)))
+        d.polygon([(470, 330), (610, 330), (900, 1700), (180, 1700)], fill=(255, 220, 150, int(30 * luz)))
+        if not luz > 0.5:
+            d.rectangle((0, 0, W, H), fill=(0, 0, 0, 150))
+        if pl.get("caja"):
+            d.rounded_rectangle((470, 1560, 610, 1650), 6, fill=(150, 120, 80, 255), outline=(30, 20, 10, 255), width=4)
+            d.line((470, 1600, 610, 1600), fill=(90, 20, 20, 255), width=8)
+        if pl.get("figura"):
+            d.ellipse((520, 790, 560, 830), fill=(0, 0, 0, 255))
+            d.rounded_rectangle((510, 826, 570, 940), 14, fill=(0, 0, 0, 255))
+        frame.alpha_composite(capa)
+    elif vista == "objeto":
+        k = ("llave", pl.get("etiqueta", ""))
+        if k not in cache:
+            L = Lienzo(W, H)
+            E(L, (230, 760, 450, 980), None, (200, 170, 90), 26)                  # anillo
+            R(L, (430, 845, 860, 895), (200, 170, 90), 10)                        # caña
+            for x in (700, 760, 820):
+                R(L, (x, 890, x + 34, 960 + (x % 3) * 12), (200, 170, 90), 4)     # dientes
+            Lin(L, [(300, 860), (230, 1080)], (150, 140, 120), 4)                  # cordel
+            P(L, [(140, 1080), (330, 1060), (350, 1260), (160, 1280)], PAPEL, TINTA, 3)
+            T(L, (245, 1170), pl.get("etiqueta", "13"), 90, ROJO, F_NEGRA)
+            cache[k] = L.final()
+        frame.alpha_composite(cache[k])
+    elif vista == "ascensor":
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(capa)
+        pisos = pl.get("pisos", [0])
+        dur = pl.get("pisos_dur", 3.0)
+        i = min(len(pisos) - 1, int(tl / max(0.1, dur) * len(pisos)))
+        piso = str(pisos[i])
+        rojo = piso == "13"
+        f = fuente(F_NEGRA, 110)
+        d.text((540, 465), piso, font=f, fill=(230, 40, 40) if rojo else (240, 200, 90), anchor="mm")
+        ab = pl.get("abrir")
+        if ab is not None and tl >= ab:
+            p = min(1, (tl - ab) / 1.5)
+            ancho = int(370 * p)
+            d.rectangle((540 - ancho, 570, 540 + ancho, 1750), fill=(6, 4, 4, 255))
+            d.polygon([(540 - ancho, 1750), (540 + ancho, 1750), (540 + ancho * 1.4, 1915), (540 - ancho * 1.4, 1915)],
+                      fill=(160, 20, 20, int(70 * p)))
+            if pl.get("figura") and p >= 1:
+                d.ellipse((520, 1180, 560, 1220), fill=(20, 0, 0, 255))
+                d.rounded_rectangle((506, 1216, 574, 1340), 16, fill=(20, 0, 0, 255))
+        frame.alpha_composite(capa)
     if pl.get("glitch"):
         frame = _glitch(frame, tl)
     return frame

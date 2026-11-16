@@ -26,4 +26,5 @@ Una sola, grave y SIN eco: Chatterbox `mls_8882`, exageración 0.4, cfg 0.5, ton
 ## Historial
 | Parte | Título | Final | Ganó |
 |-------|--------|-------|------|
-| 1 | Tres golpes | A abrir la puerta (rompe norma 1) / B mirar por la mirilla (rompe norma 4) | _pendiente_ |
+| 1 | Tres golpes | A abrir la puerta (rompe norma 1) / B mirar por la mirilla (rompe norma 4) | **A** |
+| 2 | Planta trece | Abriste (norma 1 rota): llave con etiqueta "13". El casero: "Ahora ya sabe cómo te llamas". El ascensor sube solo a la 13. A salir (rompe norma 2) / B usar la llave | _pendiente_ |

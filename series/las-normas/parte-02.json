@@ -1,0 +1,391 @@
+{
+ "serie": "las-normas",
+ "serie_titulo": "Las normas",
+ "estilo": "misterio",
+ "total": 5,
+ "musica": "misterio",
+ "latido_bpm": 62,
+ "contador_txt": "NORMAS ROTAS",
+ "contador_total": 5,
+ "episodio": 2,
+ "contador_inicial": 0,
+ "voces": {
+  "narrador": {
+   "motor": "chatterbox",
+   "ref": "col_2436",
+   "exageracion": 0.45,
+   "cfg": 0.5
+  }
+ },
+ "titulo": "Planta trece",
+ "gancho": "El ascensor marcó la planta 13",
+ "portada": "El ascensor marcó la 13",
+ "escenas": [
+  {
+   "texto": "La mayoría votó A. Abres la puerta.",
+   "sfx": [
+    {
+     "nombre": "golpe",
+     "en": 1.8,
+     "vol": 0.6
+    }
+   ],
+   "pausa": 0.5,
+   "plano": {
+    "vista": "puerta",
+    "zoom": 1.15,
+    "zoom_fin": 1.25,
+    "foco": [
+     0.5,
+     0.55
+    ]
+   }
+  },
+  {
+   "texto": "No hay nadie. Solo el pasillo… y la luz parpadeando.",
+   "pausa": 0.4,
+   "plano": {
+    "vista": "pasillo",
+    "parpadeo": true,
+    "zoom": 1.0,
+    "zoom_fin": 1.12
+   }
+  },
+  {
+   "texto": "En el felpudo, una caja pequeña.",
+   "sfx": [
+    {
+     "nombre": "latido",
+     "en": 0.6
+    }
+   ],
+   "plano": {
+    "vista": "pasillo",
+    "caja": true,
+    "zoom": 1.4,
+    "zoom_fin": 1.55,
+    "foco": [
+     0.5,
+     0.82
+    ]
+   }
+  },
+  {
+   "texto": "Dentro hay una llave. Con una etiqueta. Planta trece.",
+   "sfx": [
+    {
+     "nombre": "boom",
+     "en": 3.0,
+     "vol": 0.7
+    }
+   ],
+   "pausa": 0.6,
+   "plano": {
+    "vista": "objeto",
+    "etiqueta": "13",
+    "zoom": 1.0,
+    "zoom_fin": 1.15,
+    "foco": [
+     0.45,
+     0.52
+    ]
+   }
+  },
+  {
+   "texto": "Has roto la norma uno.",
+   "sfx": [
+    {
+     "nombre": "papel",
+     "en": 0.4,
+     "vol": 0.6
+    }
+   ],
+   "pausa": 0.6,
+   "plano": {
+    "vista": "normas",
+    "zoom": 1.45,
+    "zoom_fin": 1.5,
+    "foco": [
+     0.5,
+     0.36
+    ],
+    "contador": 1,
+    "glitch": true,
+    "normas": {
+     "titulo": "Normas del edificio",
+     "lista": [
+      [
+       1,
+       "Nunca abras la puerta después de las 3:00."
+      ],
+      [
+       2,
+       "El edificio tiene 12 plantas. Si el ascensor marca la 13, no salgas."
+      ],
+      [
+       3,
+       "Si la vecina del 4ºB te pide sal, no se la des."
+      ],
+      [
+       4,
+       "Si llaman tres veces, no mires por la mirilla."
+      ],
+      [
+       5,
+       "El casero nunca viene de noche. Si oyes su voz, no es él."
+      ]
+     ],
+     "rotas": [
+      0
+     ]
+    }
+   }
+  },
+  {
+   "texto": "Tu móvil vibra. Es el casero.",
+   "sfx": [
+    {
+     "nombre": "zumbido",
+     "en": 0.4,
+     "vol": 0.8
+    }
+   ],
+   "plano": {
+    "vista": "movil",
+    "contador": 1,
+    "zoom": 1.0,
+    "zoom_fin": 1.06,
+    "movil": {
+     "de": "Sr. Ortega (casero)",
+     "hora": "03:12",
+     "mensajes": [],
+     "escribiendo": 0.6
+    }
+   }
+  },
+  {
+   "texto": "¿Por qué has abierto? Ahora ya sabe cómo te llamas.",
+   "pausa": 0.8,
+   "sfx": [
+    {
+     "nombre": "boom",
+     "en": 3.2,
+     "vol": 0.7
+    }
+   ],
+   "plano": {
+    "vista": "movil",
+    "contador": 1,
+    "zoom": 1.06,
+    "zoom_fin": 1.18,
+    "foco": [
+     0.5,
+     0.42
+    ],
+    "glitch": true,
+    "movil": {
+     "de": "Sr. Ortega (casero)",
+     "hora": "03:12",
+     "mensajes": [
+      [
+       "¿Por qué has abierto?",
+       0.1
+      ],
+      [
+       "Ahora ya sabe cómo te llamas.",
+       1.6
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "texto": "Por la mañana coges el ascensor. Pulsas el bajo.",
+   "sfx": [
+    {
+     "nombre": "drone",
+     "en": 0.5,
+     "vol": 0.6
+    }
+   ],
+   "plano": {
+    "vista": "ascensor",
+    "contador": 1,
+    "pisos": [
+     4
+    ],
+    "zoom": 1.0,
+    "zoom_fin": 1.08
+   }
+  },
+  {
+   "texto": "Pero el ascensor… sube.",
+   "sfx": [
+    {
+     "nombre": "latido",
+     "en": 0.6
+    },
+    {
+     "nombre": "latido",
+     "en": 1.6
+    },
+    {
+     "nombre": "latido",
+     "en": 2.5
+    }
+   ],
+   "pausa": 1.2,
+   "plano": {
+    "vista": "ascensor",
+    "contador": 1,
+    "pisos": [
+     5,
+     7,
+     9,
+     11,
+     12,
+     13
+    ],
+    "pisos_dur": 3.0,
+    "zoom": 1.1,
+    "zoom_fin": 1.3,
+    "foco": [
+     0.5,
+     0.3
+    ]
+   }
+  },
+  {
+   "texto": "Planta trece. Las puertas se abren.",
+   "sfx": [
+    {
+     "nombre": "boom",
+     "en": 0.8,
+     "vol": 0.8
+    }
+   ],
+   "pausa": 1.2,
+   "plano": {
+    "vista": "ascensor",
+    "contador": 1,
+    "pisos": [
+     13
+    ],
+    "abrir": 1.0,
+    "zoom": 1.0,
+    "zoom_fin": 1.1,
+    "glitch": true
+   }
+  },
+  {
+   "texto": "Norma dos. Si el ascensor marca la trece, no salgas.",
+   "plano": {
+    "vista": "normas",
+    "contador": 1,
+    "zoom": 1.45,
+    "zoom_fin": 1.5,
+    "foco": [
+     0.5,
+     0.45
+    ],
+    "normas": {
+     "titulo": "Normas del edificio",
+     "lista": [
+      [
+       1,
+       "Nunca abras la puerta después de las 3:00."
+      ],
+      [
+       2,
+       "El edificio tiene 12 plantas. Si el ascensor marca la 13, no salgas."
+      ],
+      [
+       3,
+       "Si la vecina del 4ºB te pide sal, no se la des."
+      ],
+      [
+       4,
+       "Si llaman tres veces, no mires por la mirilla."
+      ],
+      [
+       5,
+       "El casero nunca viene de noche. Si oyes su voz, no es él."
+      ]
+     ],
+     "rotas": [
+      0
+     ],
+     "resaltar": 1
+    }
+   }
+  },
+  {
+   "texto": "Y desde la oscuridad… alguien susurra tu nombre.",
+   "sfx": [
+    {
+     "nombre": "estatica",
+     "en": 2.6,
+     "vol": 0.6
+    }
+   ],
+   "pausa": 1.2,
+   "plano": {
+    "vista": "ascensor",
+    "contador": 1,
+    "pisos": [
+     13
+    ],
+    "abrir": 0.0,
+    "figura": true,
+    "zoom": 1.1,
+    "zoom_fin": 1.35,
+    "foco": [
+     0.5,
+     0.62
+    ],
+    "glitch": true
+   }
+  }
+ ],
+ "eleccion": {
+  "pregunta": "¿Qué haces?",
+  "A": "Salir a la planta 13",
+  "sub_A": "rompes la norma 2",
+  "B": "Usar la llave",
+  "sub_B": "¿qué abrirá?",
+  "cta": "Comenta A o B.",
+  "plano": {
+   "vista": "ascensor",
+   "pisos": [
+    13
+   ],
+   "abrir": 0.0,
+   "figura": true
+  }
+ },
+ "avance": {
+  "texto": "Suscríbete para ver la parte tres."
+ },
+ "portada_plano": {
+  "vista": "ascensor",
+  "pisos": [
+   13
+  ]
+ },
+ "publicar": {
+  "titulo_youtube": "El ascensor de mi edificio subió a la planta 13… y solo hay 12 😨 Parte 2 #shorts",
+  "titulo_tiktok": "Parte 2: abriste la puerta. Ahora el ascensor te lleva a la planta 13… ¿Qué harías? A o B 👇",
+  "descripcion": "Votasteis A y abriste la puerta: norma 1 rota. Dentro de una caja, una llave de la planta 13. Por la mañana el ascensor sube solo… hasta la 13. Comenta A o B y suscríbete para ver la parte 3.",
+  "hashtags": [
+   "#misterio",
+   "#terror",
+   "#lasnormas",
+   "#historiasdeterror",
+   "#tudecides",
+   "#suspense",
+   "#fyp",
+   "#parati"
+  ],
+  "comentario_fijado": "🅰️ salir a la planta 13 · 🅱️ usar la llave. Lo más votado decide la PARTE 3 👀 ¡Suscríbete!"
+ }
+}
