@@ -1,0 +1,48 @@
+[OK ] 100%
+  guion: Opción B. Leo va a negociar con Ramiro.
+  oído:  Opción B, Leo va a negociar con Ramiro.
+[OK ] 100%
+  guion: Borro el vídeo si firmas que no tiras el bar.
+  oído:  Borro el video, si firmas que no tiras el bar.
+[OK ] 100%
+  guion: Vale. Pero si el viejo no paga… el bar es mío.
+  oído:  Vale, pero si el viejo no paga, el bar es mío.
+[OK ] 100%
+  guion: Firman. Ahora es oficial.
+  oído:  ¡Firman, ahora es oficial!
+[OK ] 98%
+  guion: Pero quedan veintiséis días. Y Leo tiene cincuenta euros.
+  oído:  pero que han veintiséis días y Leo tiene cincuenta euros.
+[OK ] 100%
+  guion: Entonces… huele a croquetas.
+  oído:  Entonces huele a croquetas.
+[OK ] 100%
+  guion: Abuelo, ¡vamos a vender tus croquetas!
+  oído:  Abuelo, vamos a vender tus croquetas.
+[OK ] 91%
+  guion: Primer día: cuarenta pedidos.
+  oído:  Primer día, cuarenta peyos.
+[OK ] 100%
+  guion: Pero a la mañana siguiente… llega un inspector.
+  oído:  Pero a la mañana siguiente llega un inspector.
+[OK ] 94%
+  guion: Multa de trescientos euros. Por cocinar sin permiso.
+  oído:  mojita de trescientos euros por cocinar sin permiso.
+[OK ] 98%
+  guion: Y en la puerta… Ramiro sonríe.
+  oído:  y en la puerta gramiro sonríe.
+[OK ] 100%
+  guion: ¿Qué hace Leo?
+  oído:  ¿Qué hace Leo?
+[OK ] 95%
+  guion: Opción A. Pagar la multa.
+  oído:  opciona pagar la muyta.
+[OK ] 100%
+  guion: Opción B. Demostrar que es una trampa.
+  oído:  Opción B, demostrar que es una trampa.
+[OK ] 91%
+  guion: Comenta A o B.
+  oído:  Comenta a OBEY
+[OK ] 100%
+  guion: Suscríbete para ver el día seis.
+  oído:  Suscríbete para ver el día seis

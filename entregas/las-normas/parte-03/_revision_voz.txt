@@ -1,0 +1,48 @@
+[OK ] 100%
+  guion: La mayoría votó B. No sales del ascensor.
+  oído:  La mayoría voto B no sales del ascensor.
+[OK ] 100%
+  guion: Debajo de los botones hay una cerradura. Metes la llave.
+  oído:  debajo de los botones hay una cerradura, metes la llave.
+[OK ] 100%
+  guion: Las puertas se cierran. Justo a tiempo.
+  oído:  Las puertas se cierran, justo a tiempo.
+[OK ] 98%
+  guion: El ascensor baja solo. Y se para en la cuarta planta.
+  oído:  el ascensor baja solo y separa la cuarta planta.
+[OK ] 100%
+  guion: Las puertas se abren. Frente a ti… el cuarto B.
+  oído:  las puertas se abren. Frente a ti el cuarto B.
+[OK ] 100%
+  guion: La puerta está entreabierta. Y una voz de mujer te llama.
+  oído:  La puerta está entreabierta y una voz de mujer te llama.
+[OK ] 100%
+  guion: Hola, vecino. ¿Me dejas un poco de sal?
+  oído:  Hola vecino, ¿me dejas un poco de sal?
+[OK ] 97%
+  guion: Norma tres. Si la vecina del cuarto B te pide sal, no se la des.
+  oído:  Norma tres si la vecina del cuarto vete pide sal, no se la des.
+[OK ] 100%
+  guion: Tu móvil vibra. Es el casero.
+  oído:  tu móvil vibra, es el casero.
+[OK ] 98%
+  guion: No le des nada. Ella murió el año pasado.
+  oído:  No lees nada. Ella murió el año pasado.
+[OK ] 100%
+  guion: Ahora está en el pasillo. Mirándote.
+  oído:  Ahora está en el pasillo, mirándote.
+[OK ] 100%
+  guion: ¿Qué haces?
+  oído:  ¿Qué haces?
+[OK ] 100%
+  guion: Opción A. Darle la sal.
+  oído:  Opciona darle la sal.
+[OK ] 100%
+  guion: Opción B. Volver al ascensor.
+  oído:  Opción B, volver al ascensor.
+[OK ] 95%
+  guion: Comenta A o B.
+  oído:  Comenta a OBE
+[OK ] 100%
+  guion: Suscríbete para ver la parte cuatro.
+  oído:  Suscríbete para ver la parte cuatro

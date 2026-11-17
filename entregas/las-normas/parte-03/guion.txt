@@ -1,0 +1,18 @@
+Las normas — Día 3: Cuarto B
+
+[01] (narrador) La mayoría votó B. No sales del ascensor.
+[02] (narrador) Debajo de los botones hay una cerradura. Metes la llave.
+[03] (narrador) Las puertas se cierran. Justo a tiempo.
+[04] (narrador) El ascensor baja solo. Y se para en la cuarta planta.
+[05] (narrador) Las puertas se abren. Frente a ti… el cuarto B.
+[06] (narrador) La puerta está entreabierta. Y una voz de mujer te llama.
+[07] (narrador) Hola, vecino. ¿Me dejas un poco de sal?
+[08] (narrador) Norma tres. Si la vecina del cuarto B te pide sal, no se la des.
+[09] (narrador) Tu móvil vibra. Es el casero.
+[10] (narrador) No le des nada. Ella murió el año pasado.
+[11] (narrador) Ahora está en el pasillo. Mirándote.
+
+FINAL: ¿Qué haces?
+  A) Darle la sal
+  B) Volver al ascensor
+  Comenta A o B.

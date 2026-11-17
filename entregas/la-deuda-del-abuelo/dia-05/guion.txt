@@ -1,0 +1,18 @@
+La deuda del abuelo — Día 5: Las croquetas
+
+[01] (narrador) Opción B. Leo va a negociar con Ramiro.
+[02] (LEO) Borro el vídeo si firmas que no tiras el bar.
+[03] (RAMIRO) Vale. Pero si el viejo no paga… el bar es mío.
+[04] (narrador) Firman. Ahora es oficial.
+[05] (narrador) Pero quedan veintiséis días. Y Leo tiene cincuenta euros.
+[06] (narrador) Entonces… huele a croquetas.
+[07] (LEO) Abuelo, ¡vamos a vender tus croquetas!
+[08] (narrador) Primer día: cuarenta pedidos.
+[09] (narrador) Pero a la mañana siguiente… llega un inspector.
+[10] (INSPECTOR) Multa de trescientos euros. Por cocinar sin permiso.
+[11] (narrador) Y en la puerta… Ramiro sonríe.
+
+FINAL: ¿Qué hace Leo?
+  A) Pagar la multa
+  B) Demostrar que es una trampa
+  Comenta A o B.
