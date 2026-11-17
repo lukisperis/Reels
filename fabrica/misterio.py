@@ -439,8 +439,13 @@ def componer(pl, tl, t, cache):
         f = fuente(F_NEGRA, 110)
         d.text((540, 465), piso, font=f, fill=(230, 40, 40) if rojo else (240, 200, 90), anchor="mm")
         ab = pl.get("abrir")
+        ce = pl.get("cerrar")
+        p = 0.0
         if ab is not None and tl >= ab:
             p = min(1, (tl - ab) / 1.5)
+        if ce is not None:
+            p = 1 - min(1, max(0, (tl - ce) / 1.2))
+        if p > 0:
             ancho = int(370 * p)
             d.rectangle((540 - ancho, 570, 540 + ancho, 1750), fill=(6, 4, 4, 255))
             d.polygon([(540 - ancho, 1750), (540 + ancho, 1750), (540 + ancho * 1.4, 1915), (540 - ancho * 1.4, 1915)],

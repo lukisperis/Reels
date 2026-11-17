@@ -46,3 +46,4 @@ Cada escena en el sitio donde ocurre (despacho, bar, garaje, calle…). Nada de 
 | 2 | Trabajando para el enemigo | Lava 7 coches por 100 € y Ramiro le descuenta 90 €. Descubre el PROYECTO PARKING: demoler el Bar Paco el 14 de diciembre. A contárselo al abuelo / B seguir espiando | 13,20 € |
 | 3 | El espía | Ganó B (espiar). Limpia el despacho por 45 €. Graba a Ramiro: "El día 14 tiramos el bar. Y si el viejo paga… lo tiramos igual". Ramiro le pilla. A borrar el vídeo / B salir corriendo | 58,20 € |
 | 4 | Corre, Leo | Ganó B (huir con la prueba). Pierde 8 € corriendo. El abuelo ve el vídeo y tiene un plan; Ramiro amenaza con denunciarles. A subir el vídeo / B negociar | 50,20 € |
+| 5 | Las croquetas | Ganó B (negociar). Contrato firmado: si paga 10.000 € antes del 13 DIC, bar salvado. Venden croquetas del abuelo: +120 €. Inspector (enviado por Ramiro) pone multa de 300 €. A pagar / B demostrar trampa | 170,20 € |

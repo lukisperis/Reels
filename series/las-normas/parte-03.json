@@ -1,0 +1,318 @@
+{
+ "serie": "las-normas",
+ "serie_titulo": "Las normas",
+ "estilo": "misterio",
+ "total": 5,
+ "musica": "misterio",
+ "latido_bpm": 62,
+ "contador_txt": "NORMAS ROTAS",
+ "contador_total": 5,
+ "voces": {
+  "narrador": {
+   "motor": "chatterbox",
+   "ref": "col_2436",
+   "exageracion": 0.45,
+   "cfg": 0.5
+  }
+ },
+ "episodio": 3,
+ "contador_inicial": 1,
+ "titulo": "Cuarto B",
+ "gancho": "La vecina del 4ºB murió el año pasado",
+ "portada": "No le des sal a la vecina",
+ "escenas": [
+  {
+   "texto": "La mayoría votó B. No sales del ascensor.",
+   "pausa": 0.3,
+   "plano": {
+    "vista": "ascensor",
+    "pisos": [
+     13
+    ],
+    "abrir": 0.0,
+    "figura": true,
+    "zoom": 1.1,
+    "zoom_fin": 1.2,
+    "foco": [
+     0.5,
+     0.58
+    ]
+   }
+  },
+  {
+   "texto": "Debajo de los botones hay una cerradura. Metes la llave.",
+   "sfx": [
+    {
+     "nombre": "golpe",
+     "en": 3.4,
+     "vol": 0.6
+    }
+   ],
+   "pausa": 0.3,
+   "plano": {
+    "vista": "objeto",
+    "etiqueta": "13",
+    "zoom": 1.0,
+    "zoom_fin": 1.2,
+    "foco": [
+     0.55,
+     0.48
+    ]
+   }
+  },
+  {
+   "texto": "Las puertas se cierran. Justo a tiempo.",
+   "sfx": [
+    {
+     "nombre": "boom",
+     "en": 1.4,
+     "vol": 0.6
+    }
+   ],
+   "pausa": 0.6,
+   "plano": {
+    "vista": "ascensor",
+    "pisos": [
+     13
+    ],
+    "cerrar": 0.4,
+    "figura": true,
+    "zoom": 1.0,
+    "zoom_fin": 1.08
+   }
+  },
+  {
+   "texto": "El ascensor baja solo. Y se para en la cuarta planta.",
+   "sfx": [
+    {
+     "nombre": "latido",
+     "en": 3.2
+    }
+   ],
+   "pausa": 0.5,
+   "plano": {
+    "vista": "ascensor",
+    "pisos": [
+     12,
+     10,
+     8,
+     6,
+     5,
+     4
+    ],
+    "pisos_dur": 3.4,
+    "zoom": 1.1,
+    "zoom_fin": 1.3,
+    "foco": [
+     0.5,
+     0.3
+    ]
+   }
+  },
+  {
+   "texto": "Las puertas se abren. Frente a ti… el cuarto B.",
+   "pausa": 0.4,
+   "plano": {
+    "vista": "ascensor",
+    "pisos": [
+     4
+    ],
+    "abrir": 0.3,
+    "zoom": 1.0,
+    "zoom_fin": 1.1
+   }
+  },
+  {
+   "texto": "La puerta está entreabierta. Y una voz de mujer te llama.",
+   "plano": {
+    "vista": "puerta",
+    "zoom": 1.0,
+    "zoom_fin": 1.15,
+    "foco": [
+     0.5,
+     0.55
+    ],
+    "pies": true
+   }
+  },
+  {
+   "texto": "Hola, vecino. ¿Me dejas un poco de sal?",
+   "pausa": 0.8,
+   "sfx": [
+    {
+     "nombre": "estatica",
+     "en": 0.0,
+     "vol": 0.4
+    }
+   ],
+   "plano": {
+    "vista": "puerta",
+    "zoom": 1.2,
+    "zoom_fin": 1.3,
+    "foco": [
+     0.5,
+     0.62
+    ],
+    "pies": true,
+    "glitch": true
+   }
+  },
+  {
+   "texto": "Norma tres. Si la vecina del cuarto B te pide sal, no se la des.",
+   "plano": {
+    "vista": "normas",
+    "zoom": 1.45,
+    "zoom_fin": 1.5,
+    "foco": [
+     0.5,
+     0.52
+    ],
+    "normas": {
+     "titulo": "Normas del edificio",
+     "lista": [
+      [
+       1,
+       "Nunca abras la puerta después de las 3:00."
+      ],
+      [
+       2,
+       "El edificio tiene 12 plantas. Si el ascensor marca la 13, no salgas."
+      ],
+      [
+       3,
+       "Si la vecina del 4ºB te pide sal, no se la des."
+      ],
+      [
+       4,
+       "Si llaman tres veces, no mires por la mirilla."
+      ],
+      [
+       5,
+       "El casero nunca viene de noche. Si oyes su voz, no es él."
+      ]
+     ],
+     "rotas": [
+      0
+     ],
+     "resaltar": 2
+    }
+   }
+  },
+  {
+   "texto": "Tu móvil vibra. Es el casero.",
+   "sfx": [
+    {
+     "nombre": "zumbido",
+     "en": 0.4,
+     "vol": 0.8
+    }
+   ],
+   "plano": {
+    "vista": "movil",
+    "zoom": 1.0,
+    "zoom_fin": 1.06,
+    "movil": {
+     "de": "Sr. Ortega (casero)",
+     "hora": "08:41",
+     "mensajes": [],
+     "escribiendo": 0.6
+    }
+   }
+  },
+  {
+   "texto": "No le des nada. Ella murió el año pasado.",
+   "pausa": 0.8,
+   "sfx": [
+    {
+     "nombre": "boom",
+     "en": 2.0,
+     "vol": 0.8
+    }
+   ],
+   "plano": {
+    "vista": "movil",
+    "zoom": 1.06,
+    "zoom_fin": 1.18,
+    "foco": [
+     0.5,
+     0.42
+    ],
+    "glitch": true,
+    "movil": {
+     "de": "Sr. Ortega (casero)",
+     "hora": "08:41",
+     "mensajes": [
+      [
+       "No le des nada.",
+       0.1
+      ],
+      [
+       "Ella murió el año pasado.",
+       1.2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "texto": "Ahora está en el pasillo. Mirándote.",
+   "pausa": 1.0,
+   "sfx": [
+    {
+     "nombre": "latido",
+     "en": 0.5
+    },
+    {
+     "nombre": "latido",
+     "en": 1.4
+    }
+   ],
+   "plano": {
+    "vista": "pasillo",
+    "figura": true,
+    "parpadeo": true,
+    "zoom": 1.0,
+    "zoom_fin": 1.25,
+    "foco": [
+     0.5,
+     0.47
+    ]
+   }
+  }
+ ],
+ "eleccion": {
+  "pregunta": "¿Qué haces?",
+  "A": "Darle la sal",
+  "sub_A": "rompes la norma 3",
+  "B": "Volver al ascensor",
+  "sub_B": "las puertas se cierran",
+  "cta": "Comenta A o B.",
+  "plano": {
+   "vista": "pasillo",
+   "figura": true
+  }
+ },
+ "avance": {
+  "texto": "Suscríbete para ver la parte cuatro."
+ },
+ "portada_plano": {
+  "vista": "pasillo",
+  "figura": true
+ },
+ "publicar": {
+  "titulo_youtube": "Mi vecina del 4ºB me pidió sal… pero murió el año pasado 😨 Parte 3 #shorts",
+  "titulo_tiktok": "Parte 3: usaste la llave y el ascensor te dejó en el 4ºB… ¿Le das la sal? A o B 👇",
+  "descripcion": "Votasteis B: usaste la llave y escapaste de la planta 13. Pero el ascensor se paró en el cuarto… y la vecina del 4ºB te pide sal. El casero dice que murió el año pasado. Comenta A o B y suscríbete para ver la parte 4.",
+  "hashtags": [
+   "#misterio",
+   "#terror",
+   "#lasnormas",
+   "#historiasdeterror",
+   "#tudecides",
+   "#suspense",
+   "#fyp",
+   "#parati"
+  ],
+  "comentario_fijado": "🅰️ darle la sal · 🅱️ volver al ascensor. Lo más votado decide la PARTE 4 👀 ¡Suscríbete!"
+ }
+}
